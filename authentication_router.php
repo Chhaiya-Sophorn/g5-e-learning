@@ -3,6 +3,12 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $page = "";
 $routes = [
     '/signin' => 'controllers/signin/signin.controller.php',
+    '/signup' => 'controllers/signup/signup.controller.php',
+    '/student' => 'controllers/student/student.controller.php',
+    '/student_profile' => 'controllers/student/profile.controller.php',
+    '/' => 'controllers/home/home.controller.php',
+    '/edit' => 'controllers/edit.view.php/edit.controller.php',
+
     // '/trainer-review' => 'controllers/reviews/review.controller.php',
     // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
 ];
