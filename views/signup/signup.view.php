@@ -51,26 +51,39 @@
                         <a href="index.html" class="">
                             <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
                         </a>
-                        <h3>Sign In</h3>
+                        <h3>Create Account</h3>
                     </div>
-                    <div class="form-floating mb-3 " >
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.5);" name='email'>
-                        <label for="floatingInput">Email address</label>
-                    </div>
-                    <div class="form-floating mb-4">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="background-color: rgba(0, 0, 0, 0.5);" name='password'>
-                        <label for="floatingPassword">Password</label>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" style="background-color: rgba(0, 0, 0, 0.5);">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <!-- <form action="/create_user" method="post">                           -->
+                        <div class="form-floating mb-3 " >
+                            <input type="name" class="form-control" id="floatingInput" placeholder="name" style="background-color: rgba(0, 0, 0, 0.5);" name='name'>
+                            <label for="floatingInput">Name</label>
                         </div>
-                        <a href="">Forgot Password</a>
-                    </div>
-                    <a href="/student"><button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button></a>
-                    
-                    <p class="text-center mb-0">Don't have an Account? <a href="/signup">Create Account</a></p>
+                        <div class="form-floating mb-3 " >
+                            <input type="text" class="form-control" id="floatingInput" placeholder="phone" style="background-color: rgba(0, 0, 0, 0.5);" name='phone'>
+                            <label for="floatingInput">Phone</label>
+                        </div>
+                        <div class="form-floating mb-3 " >
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.5);" name='email'>
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="background-color: rgba(0, 0, 0, 0.5);" name='password'> 
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="exampleCheck1" style="background-color: rgba(0, 0, 0, 0.5);" name='gender' value='Male'>
+                                <label class="form-check-label" for="exampleCheck1">Male</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input m-1" id="exampleCheck1" style="background-color: rgba(0, 0, 0, 0.5);" name='gender' value='Female'>
+                                <label class="form-check-label" for="exampleCheck1">Female</label>
+                            </div>
+                        </div>
+                        <a href="/student"><button type="submit" class="btn btn-primary py-3 w-100 mb-4">Create Account</button></a>
+                                              
+                    <!-- </form> -->
+
                 </div>
             </div>
         </div>
