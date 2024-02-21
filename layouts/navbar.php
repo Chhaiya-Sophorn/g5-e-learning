@@ -289,7 +289,8 @@
   
       <!-- Signout button  -->
       <div class="navbar-nav d-none d-lg-inline-block">
-        <button class="btn btn-danger-soft mb-0"><i class="fas fa-sign-in-alt me-2"></i>Sign Up</button>
+        <a href="/signin"><button class="btn btn-danger-soft mb-0"><i class="fas fa-sign-in-alt me-2"></i>Sign Up</button></a>
+        
       </div>
       <!-- Right header content END -->
     
