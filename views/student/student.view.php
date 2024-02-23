@@ -307,7 +307,7 @@
         <span class="d-none d-lg-inline-flex"><?=$user['name']?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
-		<form action="#" method="post">  
+		<form action="/student_profile" method="post">  
 			<input type="hidden" name="id" value=<?=$user['user_id'] ?>>
 			<button type="submit" class="btn btn-primary py-1 w-100 mb-4">My Profile</button>                                                                
 		</form>
