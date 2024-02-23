@@ -31,55 +31,76 @@
     <link href="vendor/css/admin.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container-fluid position-relative d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+<body style="background-image: url('assets/images/bg/02.jpg'); background-size: cover; background-repeat: no-repeat;">
+<div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <!-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
         </div>
-        <!-- Spinner End -->
+    </div> -->
+    <!-- Spinner End -->
+    
 
 
-        <!-- Sign In Start -->
-        <div class="container-fluid">
-            <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-                    <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <a href="index.html" class="">
-                                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
-                            </a>
-                            <h3>Edit Profile</h3>
+    <!-- Sign In Start -->
+    <div class="container-fluid">
+        <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-lg-4">
+                <div class="rounded p-4 p-sm-5 my-4 mx-3 shadhow-lg" style="background-color: rgba(0, 0, 0, 0.3);">
+                    
+                    <?php
+                        require 'database/database.php';    
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        $id = $_POST['id'];
+                        $statement = $connection->prepare("SELECT* FROM users WHERE user_id LIKE :id");
+                        $statement->execute([
+                            ':id' => $id
+                        ]);
+                        $users = $statement->fetchAll();
+                        }
+                        foreach ($users as $user):
+
+                    ?>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <img class="rounded-circle me-lg-2" src="../../uploading/<?=$user['profile_image']?>" alt="" style="width: 110px; height:110px;">
+                        <h3>Edit profile</h3>
+                    </div>
+                    <form action="/get_edit" method="post" enctype="multipart/form-data">   
+                        <div class="mb-3" style="background-color: rgba(0, 0, 0, 0.5);" >
+                            <label class="form-check-label" for="exampleCheck1">Choose Profile image</label>
+                            <input type="file" name='image' class="form-control" aria-label="file example" style="background-color: rgba(0, 0, 0, 0.1);">
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="name" class="form-control" id="floatingInput" placeholder="Name">
+                        <div class="form-floating mb-3 " >
+                            <input type="hidden" value='<?= $user['user_id']?>' class="form-control" id="floatingInput" placeholder="id" style="background-color: rgba(0, 0, 0, 0.5);" name='id'>
+                            <input type="name" value='<?= $user['name']?>' class="form-control" id="floatingInput" placeholder="name" style="background-color: rgba(0, 0, 0, 0.5);" name='name'>
                             <label for="floatingInput">Name</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <div class="form-floating mb-3 " >
+                            <input type="text" value='<?= $user['phone']?>'  class="form-control" id="floatingInput" placeholder="phone" style="background-color: rgba(0, 0, 0, 0.5);" name='phone'>
+                            <label for="floatingInput">Phone</label>
+                        </div>
+                        <div class="form-floating mb-3 " >
+                            <input type="email" value='<?= $user['email']?>'  class="form-control" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.5);" name='email'>
                             <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <input type="text" value='<?= $user['password']?>'  class="form-control" id="floatingPassword" placeholder="Password" style="background-color: rgba(0, 0, 0, 0.5);" name='password'> 
                             <label for="floatingPassword">Password</label>
                         </div>
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <div class="form-check">
-                                <input type="radio" class="form-check-input" id="male">
-                                <label class="form-check-label" for="Male">Male</label>
-                                <input type="radio" class="form-check-input" id="female">
-                                <label class="form-check-label" for="Female">Female</label>
-                            </div>
-                        </div>
-                        <a href="/account"><button type="submit" class="btn btn-primary py-3 w-100 mb-4">Update</button></a>
-                    </div>
+                        <div class="form-floating mb-4">
+                            <input type="text" value="<?= $user['gender'] ?>" class="form-control" id="floatingPassword" placeholder="gender" style="background-color: rgba(0, 0, 0, 0.5);" name="gender">
+                            <label for="floatingPassword">Gender</label>
+                        </div>                       
+                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Update</button>                       
+                    </form>
+                    <?php endforeach ?>
                 </div>
             </div>
         </div>
-        <!-- Sign In End -->
     </div>
+    <!-- Sign In End -->
+</div>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

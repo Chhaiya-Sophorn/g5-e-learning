@@ -7,6 +7,7 @@ $routes = [
     '/student' => 'controllers/student/student.controller.php',
     '/student_profile' => 'controllers/student/profile.controller.php',
     '/edit' => 'controllers/edit.view.php/edit.controller.php',
+    '/get_edit' => 'controllers/edit.view.php/get.edit.controller.php',
     '/create_student' => 'controllers/signup/create.user.controller.php',
     '/access' => 'controllers/signin/access.controller.php',
 

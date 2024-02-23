@@ -311,7 +311,7 @@
 			<input type="hidden" name="id" value=<?=$user['user_id'] ?>>
 			<button type="submit" class="btn btn-primary py-1 w-100 mb-4">My Profile</button>                                                                
 		</form>
-		<form action="#" method="post">  
+		<form action="/edit" method="post">  
 			<input type="hidden" name="id" value=<?=$user['user_id'] ?>>
 			<button type="submit" class="btn btn-primary py-1 w-100 mb-4">Edit Profile</button>                                                                
 		</form>
