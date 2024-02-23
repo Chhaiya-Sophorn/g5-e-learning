@@ -8,6 +8,7 @@ $routes = [
     '/student_profile' => 'controllers/student/profile.controller.php',
     '/' => 'controllers/home/home.controller.php',
     '/edit' => 'controllers/edit.view.php/edit.controller.php',
+    '/create_student' => 'controllers/signup/create.user.controller.php',
 
     // '/trainer-review' => 'controllers/reviews/review.controller.php',
     // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',

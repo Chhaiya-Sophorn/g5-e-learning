@@ -288,30 +288,37 @@
         </li>
       </ul>
       <?php 
-	  	// require 'database/database.php';
+	  	require 'database/database.php';
 	  
-		//   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		// 	$email = $_POST['email'];
+		  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$email = $_POST['email'];
 
-		// 	$statement = $connection->prepare("SELECT* FROM users WHERE email LIKE :email");
-		// 	$statement->execute([
-		// 		':email' => $email
-		// 	]);
-		// 	$user = $statement->fetchAll();
-		// }
-		
+			$statement = $connection->prepare("SELECT* FROM users WHERE email LIKE :email");
+			$statement->execute([
+				':email' => $email
+			]);
+			$users = $statement->fetchAll();
+		}
+		foreach ($users as $user):
 		?>
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-        <img class="rounded-circle me-lg-2" src="studentprofile/yaya.png" alt="" style="width: 50px; height:50px;">
-        <span class="d-none d-lg-inline-flex">Chhaiya Sophorn</span>
+        <img class="rounded-circle me-lg-2" src="../../uploading/<?=$user['profile_image']?>" alt="" style="width: 50px; height:50px;">
+        <span class="d-none d-lg-inline-flex"><?=$user['name']?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
-        <a href="/student_profile" class="dropdown-item">My Profile</a>
-        <a href="/edit" class="dropdown-item">Edit profile</a>
-        <a href="/" class="dropdown-item">Log Out</a>
+		<form action="#" method="post">  
+			<input type="hidden" name="id" value=<?=$user['user_id'] ?>>
+			<button type="submit" class="btn btn-primary py-1 w-100 mb-4">My Profile</button>                                                                
+		</form>
+		<form action="#" method="post">  
+			<input type="hidden" name="id" value=<?=$user['user_id'] ?>>
+			<button type="submit" class="btn btn-primary py-1 w-100 mb-4">Edit Profile</button>                                                                
+		</form>
+        <a href="#" class="dropdown-item">Log Out</a>
         </div>
         </div>
+		<?php endforeach ?>
     </div>
     </div>
   </nav>
@@ -1445,3 +1452,6 @@ Action box END -->
 <?php require 'layouts/footer.php' ?>
 </body>
 </html>
+
+
+
