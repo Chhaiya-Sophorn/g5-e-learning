@@ -41,7 +41,6 @@
     </div>
     <!-- Spinner End -->
 
-
     <!-- Sign In Start -->
     <div class="container-fluid">
         <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
@@ -53,23 +52,24 @@
                         </a>
                         <h3>Sign In</h3>
                     </div>
-                    <div class="form-floating mb-3 " >
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.5);" name='email'>
-                        <label for="floatingInput">Email address</label>
-                    </div>
-                    <div class="form-floating mb-4">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="background-color: rgba(0, 0, 0, 0.5);" name='password'>
-                        <label for="floatingPassword">Password</label>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" style="background-color: rgba(0, 0, 0, 0.5);">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <form action="/access" method='post'>
+                        <div class="form-floating mb-3 " >
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.5);" name='email'>
+                            <label for="floatingInput">Email address</label>
                         </div>
-                        <a href="">Forgot Password</a>
-                    </div>
-                    <a href="/student"><button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button></a>
-                    
+                        <div class="form-floating mb-3 " >
+                            <input type="password" class="form-control" id="floatingInput" placeholder="password" style="background-color: rgba(0, 0, 0, 0.5);" name='password'>
+                            <label for="floatingInput">Password</label>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1" style="background-color: rgba(0, 0, 0, 0.5);">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>
+                            <a href="">Forgot Password</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button>
+                    </form>
                     <p class="text-center mb-0">Don't have an Account? <a href="/signup">Create Account</a></p>
                 </div>
             </div>
