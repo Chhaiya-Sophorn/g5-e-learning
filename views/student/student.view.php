@@ -315,7 +315,7 @@
 			<input type="hidden" name="id" value=<?=$user['user_id'] ?>>
 			<button type="submit" class="btn btn-primary py-1 w-100 mb-4">Edit Profile</button>                                                                
 		</form>
-        <a href="#" class="dropdown-item">Log Out</a>
+        <a href="/" class="dropdown-item">Log Out</a>
         </div>
         </div>
 		<?php endforeach ?>

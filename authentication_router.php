@@ -9,6 +9,7 @@ $routes = [
     '/' => 'controllers/home/home.controller.php',
     '/edit' => 'controllers/edit.view.php/edit.controller.php',
     '/create_student' => 'controllers/signup/create.user.controller.php',
+    '/access' => 'controllers/signin/access.controller.php',
 
     // '/trainer-review' => 'controllers/reviews/review.controller.php',
     // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
