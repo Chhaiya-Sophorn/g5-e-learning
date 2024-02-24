@@ -1,4 +1,11 @@
-
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Feb 23, 2024 at 04:44 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -84,8 +91,21 @@ CREATE TABLE `users` (
   `email` varchar(300) NOT NULL,
   `password` varchar(200) NOT NULL,
   `gender` varchar(50) NOT NULL,
-  `roles_id` int(11) NOT NULL
+  `roles_id` int(11) NOT NULL,
+  `phone` varchar(200) NOT NULL,
+  `profile_image` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `gender`, `roles_id`, `phone`, `profile_image`) VALUES
+(1, 'Chhaiya Sophorn', 'chhaiya.sophorn@student.passerellesnumeriques.org', '123', 'Male', 3, '0969678884', 'image-removebg-preview (1).png'),
+(2, 'Chhaiya Sophorn', 'chhaiya.sophorn@student.asserellesnumeriques.org', '1234', 'Female', 3, '0969678884', '015a0c9e6538e8bdd8f415276a92a926 (1).jpg'),
+(3, 'Chhaiya Sophorn', 'chhaiya.sophon@student.passerellesnumeriques.org', '123', 'Male', 3, '0969678884', 'photo_2022-08-25_07-50-15.jpg'),
+(4, 'Yaya', 'chhaiya.sophor@student.passerellesnumeriques.org', '123', 'Male', 3, '0969678884', 'photo_2023-09-28_21-13-43.jpg'),
+(5, 'Yaa', 'chhaiya.sophorn@studnt.passerellesnumeriques.org', '123', 'Male', 3, '0969678884', '017c63b8db235aab10210f8164aa4623.jpg');
 
 --
 -- Indexes for dumped tables
@@ -159,7 +179,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
