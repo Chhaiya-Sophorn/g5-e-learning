@@ -3,17 +3,17 @@
 
 <!-- =======================
 Page Banner START -->
-<section class="py-0">
-	<div class="container">
+<section class="py-23">
+	<div class="container mt-7">
 		<div class="row">
 			<div class="col-12">
-				<div class="bg-dark p-4 text-center rounded-3">
-					<h1 class="text-white m-0">Instructors list</h1>
+				<div class="bg-dark p-5 text-center rounded-3">
+					<h1 class="text-white pt-4">Instructors list</h1>
 					<!-- Breadcrumb -->
 					<div class="d-flex justify-content-center">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb breadcrumb-dark breadcrumb-dots mb-0">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
+								<li class="breadcrumb-item"><a href="/">Home</a></li>
 								<li class="breadcrumb-item active" aria-current="page">instructor list</li>
 							</ol>
 						</nav>
@@ -47,7 +47,7 @@ Inner part START -->
 				<form class="bg-body shadow rounded p-2 input-borderless">
 					<select class="form-select form-select-sm js-choice" aria-label=".form-select-sm">
 						<option value="">Category</option>
-						<option>All</option>
+						<option><a href="/admin">All</a></option>
 						<option>Development</option>
 						<option>Design</option>
 						<option>Accounting</option>
@@ -101,7 +101,8 @@ Inner part START -->
 										<h5 class="card-title mb-0"><a href="/trainer-classroom">Dennis Barrett</a></h5>
 										<p class="small mb-2 mb-sm-0">Professor at Sigma College</p>
 									</div>
-									<span class="h6 fw-light">4.3<i class="fas fa-star text-warning ms-1"></i></span>
+									<a href="#" class="btn shadow" >$45</a>
+									
 								</div>
 								<!-- Content -->
 								<p class="text-truncate-2 mb-3">Perceived end knowledge certainly day sweetness why cordially. Ask a quick six seven offer see among.</p>
@@ -109,22 +110,7 @@ Inner part START -->
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
 									<!-- Title -->
 									<h6 class="text-orange mb-0">Digital Marketing</h6>
-
-									<!-- Social button -->
-									<ul class="list-inline mb-0 mt-3 mt-sm-0">
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-instagram-gradient" href="#"><i class="fab fa-fw fa-instagram"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 text-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> 
-										</li>
-									</ul>
+									<a href="#" class="btn btn-dark text-white" >Join Course</a>
 								</div>
 							</div>
 						</div>
@@ -151,7 +137,8 @@ Inner part START -->
 										<h5 class="card-title mb-0"><a href="#">Jacqueline Miller</a></h5>
 										<p class="small mb-2 mb-sm-0">Professor at Eastbay College</p>
 									</div>
-									<span class="h6 fw-light">4.0<i class="fas fa-star text-warning ms-1"></i></span>
+									<a href="#" class="btn shadow" >$45</a>
+									
 								</div>
 								<!-- Content -->
 								<p class="text-truncate-2 mb-3">Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs.</p>
@@ -159,22 +146,8 @@ Inner part START -->
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
 									<!-- Title -->
 									<h6 class="text-orange mb-0">Graphic Designer</h6>
+									<a href="#" class="btn btn-dark text-white" >Join Course</a>
 
-									<!-- Social button -->
-									<ul class="list-inline mb-0 mt-3 mt-sm-0">
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-instagram-gradient" href="#"><i class="fab fa-fw fa-instagram"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 text-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> 
-										</li>
-									</ul>
 								</div>
 							</div>
 						</div>
@@ -198,10 +171,11 @@ Inner part START -->
 								<!-- Title -->
 								<div class="d-sm-flex justify-content-sm-between mb-2 mb-sm-3">
 									<div>
-										<h5 class="card-title mb-0"><a href="#">Louis Ferguson</a></h5>
+										<h5 class="card-title mb-0" name='name'><a href="#">Louis Ferguson</a></h5>
 										<p class="small mb-2 mb-sm-0">Professor at Cambridge College</p>
 									</div>
-									<span class="h6 fw-light">3.8<i class="fas fa-star text-warning ms-1"></i></span>
+									<a href="#" class="btn shadow text-danger"  >Free</a>
+
 								</div>
 								<!-- Content -->
 								<p class="text-truncate-2 mb-3">Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs.</p>
@@ -209,22 +183,8 @@ Inner part START -->
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
 									<!-- Title -->
 									<h6 class="text-orange mb-0">Engineering Physics</h6>
+									<a href="#" class="btn btn-dark text-white" >Join Course</a>
 
-									<!-- Social button -->
-									<ul class="list-inline mb-0 mt-3 mt-sm-0">
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-instagram-gradient" href="#"><i class="fab fa-fw fa-instagram"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 text-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> 
-										</li>
-									</ul>
 								</div>
 							</div>
 						</div>
@@ -251,7 +211,7 @@ Inner part START -->
 										<h5 class="card-title mb-0"><a href="#">Frances Guerrero</a></h5>
 										<p class="small mb-2 mb-sm-0">Professor at LPU College</p>
 									</div>
-									<span class="h6 fw-light">4.5<i class="fas fa-star text-warning ms-1"></i></span>
+									<a href="#" class="btn shadow" >$45</a>
 								</div>
 								<!-- Content -->
 								<p class="text-truncate-2 mb-3">As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant the expense</p>
@@ -259,22 +219,10 @@ Inner part START -->
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
 									<!-- Title -->
 									<h6 class="text-orange mb-0">Graphic Designer</h6>
+									<a href="#" class="btn btn-dark text-white" >Join Course</a>
 
 									<!-- Social button -->
-									<ul class="list-inline mb-0 mt-3 mt-sm-0">
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-instagram-gradient" href="#"><i class="fab fa-fw fa-instagram"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 text-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> 
-										</li>
-									</ul>
+									
 								</div>
 							</div>
 						</div>
@@ -301,7 +249,7 @@ Inner part START -->
 										<h5 class="card-title mb-0"><a href="#">Amanda Reed</a></h5>
 										<p class="small mb-2 mb-sm-0">Professor at NIT College</p>
 									</div>
-									<span class="h6 fw-light">4.8<i class="fas fa-star text-warning ms-1"></i></span>
+									<a href="#" class="btn shadow" >$45</a>
 								</div>
 								<!-- Content -->
 								<p class="text-truncate-2 mb-3">Contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant the expense</p>
@@ -309,22 +257,10 @@ Inner part START -->
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
 									<!-- Title -->
 									<h6 class="text-orange mb-0">Web Designer</h6>
+									<a href="#" class="btn btn-dark text-white" >Join Course</a>
 
 									<!-- Social button -->
-									<ul class="list-inline mb-0 mt-3 mt-sm-0">
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-instagram-gradient" href="#"><i class="fab fa-fw fa-instagram"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 text-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> 
-										</li>
-									</ul>
+									
 								</div>
 								
 							</div>
@@ -352,7 +288,7 @@ Inner part START -->
 										<h5 class="card-title mb-0"><a href="#">Lori Stevens</a></h5>
 										<p class="small mb-2 mb-sm-0">Professor at Oxford University</p>
 									</div>
-									<span class="h6 fw-light">4.2<i class="fas fa-star text-warning ms-1"></i></span>
+									<a href="#" class="btn shadow text-danger" >Free</a>
 								</div>
 								<!-- Content -->
 								<p class="text-truncate-2 mb-3">Yet no jokes worse her why. Bed one supposing breakfast day fulfilled off depending questions. Whatever boy her exertion his extended. Ecstatic followed handsome drawings</p>
@@ -360,22 +296,10 @@ Inner part START -->
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
 									<!-- Title -->
 									<h6 class="text-orange mb-0">Medical Science</h6>
+									<a href="#" class="btn btn-dark text-white" >Join Course</a>
 
 									<!-- Social button -->
-									<ul class="list-inline mb-0 mt-3 mt-sm-0">
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-instagram-gradient" href="#"><i class="fab fa-fw fa-instagram"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 text-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> 
-										</li>
-									</ul>
+									
 								</div>
 							</div>
 						</div>
@@ -402,7 +326,7 @@ Inner part START -->
 										<h5 class="card-title mb-0"><a href="#">Samuel Bishop</a></h5>
 										<p class="small mb-2 mb-sm-0">Professor at VNSGU College</p>
 									</div>
-									<span class="h6 fw-light">4.5<i class="fas fa-star text-warning ms-1"></i></span>
+									<a href="#" class="btn shadow" >$45</a>
 								</div>
 								<!-- Content -->
 								<p class="text-truncate-2 mb-3">As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant the expense</p>
@@ -410,22 +334,9 @@ Inner part START -->
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
 									<!-- Title -->
 									<h6 class="text-orange mb-0">Digital Marketing</h6>
-
+									<a href="#" class="btn btn-dark text-white" >Join Course</a>
 									<!-- Social button -->
-									<ul class="list-inline mb-0 mt-3 mt-sm-0">
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-instagram-gradient" href="#"><i class="fab fa-fw fa-instagram"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 text-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> 
-										</li>
-									</ul>
+									
 								</div>
 							</div>
 						</div>
@@ -452,7 +363,7 @@ Inner part START -->
 										<h5 class="card-title mb-0"><a href="#">Joan Wallace</a></h5>
 										<p class="small mb-2 mb-sm-0">Professor at LPU College</p>
 									</div>
-									<span class="h6 fw-light">4.6<i class="fas fa-star text-warning ms-1"></i></span>
+									<a href="#" class="btn shadow text-danger" >Free</a>
 								</div>
 								<!-- Content -->
 								<p class="text-truncate-2 mb-3">Tt so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant the expense</p>
@@ -460,22 +371,9 @@ Inner part START -->
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
 									<!-- Title -->
 									<h6 class="text-orange mb-0">Graphic Designer</h6>
-
+									<a href="#" class="btn btn-dark text-white" >Join Course</a>
 									<!-- Social button -->
-									<ul class="list-inline mb-0 mt-3 mt-sm-0">
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-instagram-gradient" href="#"><i class="fab fa-fw fa-instagram"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 me-1 text-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a> 
-										</li>
-										<li class="list-inline-item"> 
-											<a class="mb-0 text-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> 
-										</li>
-									</ul>
+									
 								</div>
 							</div>
 						</div>
