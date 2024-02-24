@@ -311,7 +311,6 @@
         <a href="/" class="dropdown-item">Log Out</a>
         </div>
         </div>
-		<?php endforeach ?>
     </div>
     </div>
   </nav>
@@ -392,42 +391,100 @@ Category START -->
 						<!-- Icon -->
 						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
 						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Math &amp; Logic</a></h5>
-							<span>89 Courses</span>
+							<form action="/course" method="post">
+								<button type='sumit' class="btn btn-outline-none">
+									<input type="text" name='email' value='<?=$user['email']?>' hidden>
+									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
+									<span>89 Courses</span>
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 
+			<!-- Category item -->
 			<!-- Category item -->
 			<div class="col-sm-6 col-lg-4 col-xl-3">
 				<div class="card card-body shadow rounded-3">
 					<div class="d-flex align-items-center">
 						<!-- Icon -->
-						<div class="icon-lg bg-danger bg-opacity-10 rounded-circle text-danger"><i class="fas fa-heartbeat"></i></div>
+						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
 						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Health &amp; Fitness</a></h5>
-							<span>95 Courses</span>
+							<form action="/course" method="post">
+								<button type='sumit' class="btn btn-outline-none">
+									<input type="text" name='email' value='<?=$user['email']?>' hidden>
+									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
+									<span>89 Courses</span>
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 
+			<!-- Category item -->
 			<!-- Category item -->
 			<div class="col-sm-6 col-lg-4 col-xl-3">
 				<div class="card card-body shadow rounded-3">
 					<div class="d-flex align-items-center">
 						<!-- Icon -->
-						<div class="icon-lg bg-blue bg-opacity-10 rounded-circle text-blue"><i class="fas fa-photo-video"></i></div>
+						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
 						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Photography</a></h5>
-							<span>38 Courses</span>
+							<form action="/course" method="post">
+								<button type='sumit' class="btn btn-outline-none">
+									<input type="text" name='email' value='<?=$user['email']?>' hidden>
+									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
+									<span>89 Courses</span>
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- Category item -->
+			<!-- Category item -->
+			<div class="col-sm-6 col-lg-4 col-xl-3">
+				<div class="card card-body shadow rounded-3">
+					<div class="d-flex align-items-center">
+						<!-- Icon -->
+						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
+						<div class="ms-3">
+							<form action="/course" method="post">
+								<button type='sumit' class="btn btn-outline-none">
+									<input type="text" name='email' value='<?=$user['email']?>' hidden>
+									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
+									<span>89 Courses</span>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Category item -->
+			<!-- Category item -->
+			<div class="col-sm-6 col-lg-4 col-xl-3">
+				<div class="card card-body shadow rounded-3">
+					<div class="d-flex align-items-center">
+						<!-- Icon -->
+						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
+						<div class="ms-3">
+							<form action="/course" method="post">
+								<button type='sumit' class="btn btn-outline-none">
+									<input type="text" name='email' value='<?=$user['email']?>' hidden>
+									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
+									<span>89 Courses</span>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Category item -->
+
 			<div class="col-sm-6 col-lg-4 col-xl-3">
 				<div class="card card-body shadow rounded-3">
 					<div class="d-flex align-items-center">
@@ -1203,6 +1260,7 @@ Action box END -->
 
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
+<?php endforeach ?>
 <?php require 'layouts/footer.php' ?>
 </body>
 </html>

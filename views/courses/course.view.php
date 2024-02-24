@@ -1,35 +1,17 @@
+<?php 
+require "layouts/header.php";
+?>
+
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
-
-<!-- =======================
-Page Banner START -->
-<section class="py-23">
-	<div class="container mt-7">
-		<div class="row">
-			<div class="col-12">
-				<div class="bg-dark p-5 text-center rounded-3">
-					<h1 class="text-white pt-4">Instructors list</h1>
-					<!-- Breadcrumb -->
-					<div class="d-flex justify-content-center">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb breadcrumb-dark breadcrumb-dots mb-0">
-								<li class="breadcrumb-item"><a href="/">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">instructor list</li>
-							</ol>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- =======================
-Page Banner END -->
-
 <!-- =======================
 Inner part START -->
 <section class="pt-4">
 	<div class="container">
+	<form class="container-fluid justify-content-start" action='/student' method='post'>
+	<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
+	<button type="summit" class="btn btn-primary btn-sm">Back</button>
+  	</form>
 		<!-- Search option START -->
 		<div class="row mb-4 align-items-center">
 			<!-- Search bar -->
@@ -448,3 +430,8 @@ Action box END -->
 
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
+
+
+<?php require "layouts/footer.php";?>
+
+<!-- Back to up -->

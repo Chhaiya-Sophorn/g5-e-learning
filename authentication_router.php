@@ -10,6 +10,7 @@ $routes = [
     '/get_edit' => 'controllers/edit.view.php/get.edit.controller.php',
     '/create_student' => 'controllers/signup/create.user.controller.php',
     '/access' => 'controllers/signin/access.controller.php',
+    '/course' => 'controllers/courses/course.controller.php',
 
     // '/trainer-review' => 'controllers/reviews/review.controller.php',
     // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
