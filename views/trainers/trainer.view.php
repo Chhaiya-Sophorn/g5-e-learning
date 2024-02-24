@@ -82,15 +82,20 @@ Inner part START -->
 
 		<!-- Instructor list START -->
 		<div class="row g-4 justify-content-center">
-
+		<?php 
+		$get_courses = get_courses();?>
+		<?php foreach($get_courses as  $course): ?>
 			<!-- Card item START -->
 			<div class="col-lg-10 col-xl-6">
 				<div class="card shadow p-2">
 					<div class="row g-0">
 						<!-- Image -->
-						<div class="col-md-4">
-							<img src="assets/images/instructor/01.jpg" class="rounded-3" alt="...">
+
+						<div class="col-md-4" style="background-image: url('uploading/<?=$course['image_courses']?>'); background-size: cover;">
+    							<!-- Your content goes here -->
 						</div>
+
+
 
 						<!-- Card body -->
 						<div class="col-md-8">
@@ -98,14 +103,14 @@ Inner part START -->
 								<!-- Title -->
 								<div class="d-sm-flex justify-content-sm-between mb-2 mb-sm-3">
 									<div>
-										<h5 class="card-title mb-0"><a href="/trainer-classroom">Dennis Barrett</a></h5>
+										<h5 class="card-title mb-0"><a href="/trainer-classroom"><?=  $course['title'] ?></a></h5>
 										<p class="small mb-2 mb-sm-0">Professor at Sigma College</p>
 									</div>
-									<a href="#" class="btn shadow" >$45</a>
+									<a href="#" class="btn shadow" > <?=$course['price']?></a>
 									
 								</div>
 								<!-- Content -->
-								<p class="text-truncate-2 mb-3">Perceived end knowledge certainly day sweetness why cordially. Ask a quick six seven offer see among.</p>
+								<p class="text-truncate-2 mb-3"><?=  $course['description'] ?></p>
 								<!-- Info -->
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
 									<!-- Title -->
@@ -118,271 +123,8 @@ Inner part START -->
 				</div>
 			</div>
 			<!-- Card item END -->
-
-			<!-- Card item START -->
-			<div class="col-lg-10 col-xl-6">
-				<div class="card shadow p-2">
-					<div class="row g-0">
-						<!-- Image -->
-						<div class="col-md-4">
-							<img src="assets/images/instructor/02.jpg" class="rounded-3" alt="...">
-						</div>
-
-						<!-- Card body -->
-						<div class="col-md-8">
-							<div class="card-body">
-								<!-- Title -->
-								<div class="d-sm-flex justify-content-sm-between mb-2 mb-sm-3">
-									<div>
-										<h5 class="card-title mb-0"><a href="#">Jacqueline Miller</a></h5>
-										<p class="small mb-2 mb-sm-0">Professor at Eastbay College</p>
-									</div>
-									<a href="#" class="btn shadow" >$45</a>
-									
-								</div>
-								<!-- Content -->
-								<p class="text-truncate-2 mb-3">Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs.</p>
-								<!-- Info -->
-								<div class="d-sm-flex justify-content-sm-between align-items-center">
-									<!-- Title -->
-									<h6 class="text-orange mb-0">Graphic Designer</h6>
-									<a href="#" class="btn btn-dark text-white" >Join Course</a>
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
-
-			<!-- Card item START -->
-			<div class="col-lg-10 col-xl-6">
-				<div class="card shadow p-2">
-					<div class="row g-0">
-						<!-- Image -->
-						<div class="col-md-4">
-							<img src="assets/images/instructor/03.jpg" class="rounded-3" alt="...">
-						</div>
-
-						<!-- Card body -->
-						<div class="col-md-8">
-							<div class="card-body">
-								<!-- Title -->
-								<div class="d-sm-flex justify-content-sm-between mb-2 mb-sm-3">
-									<div>
-										<h5 class="card-title mb-0" name='name'><a href="#">Louis Ferguson</a></h5>
-										<p class="small mb-2 mb-sm-0">Professor at Cambridge College</p>
-									</div>
-									<a href="#" class="btn shadow text-danger"  >Free</a>
-
-								</div>
-								<!-- Content -->
-								<p class="text-truncate-2 mb-3">Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs.</p>
-								<!-- Info -->
-								<div class="d-sm-flex justify-content-sm-between align-items-center">
-									<!-- Title -->
-									<h6 class="text-orange mb-0">Engineering Physics</h6>
-									<a href="#" class="btn btn-dark text-white" >Join Course</a>
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
-
-			<!-- Card item START -->
-			<div class="col-lg-10 col-xl-6">
-				<div class="card shadow p-2">
-					<div class="row g-0">
-						<!-- Image -->
-						<div class="col-md-4">
-							<img src="assets/images/instructor/04.jpg" class="rounded-3" alt="...">
-						</div>
-
-						<!-- Card body -->
-						<div class="col-md-8">
-							<div class="card-body">
-								<!-- Title -->
-								<div class="d-sm-flex justify-content-sm-between mb-2 mb-sm-3">
-									<div>
-										<h5 class="card-title mb-0"><a href="#">Frances Guerrero</a></h5>
-										<p class="small mb-2 mb-sm-0">Professor at LPU College</p>
-									</div>
-									<a href="#" class="btn shadow" >$45</a>
-								</div>
-								<!-- Content -->
-								<p class="text-truncate-2 mb-3">As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant the expense</p>
-								<!-- Info -->
-								<div class="d-sm-flex justify-content-sm-between align-items-center">
-									<!-- Title -->
-									<h6 class="text-orange mb-0">Graphic Designer</h6>
-									<a href="#" class="btn btn-dark text-white" >Join Course</a>
-
-									<!-- Social button -->
-									
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
-
-			<!-- Card item START -->
-			<div class="col-lg-10 col-xl-6">
-				<div class="card shadow p-2">
-					<div class="row g-0">
-						<!-- Image -->
-						<div class="col-md-4">
-							<img src="assets/images/instructor/06.jpg" class="rounded-3" alt="...">
-						</div>
-
-						<!-- Card body -->
-						<div class="col-md-8">
-							<div class="card-body">
-								<!-- Title -->
-								<div class="d-sm-flex justify-content-sm-between mb-2 mb-sm-3">
-									<div>
-										<h5 class="card-title mb-0"><a href="#">Amanda Reed</a></h5>
-										<p class="small mb-2 mb-sm-0">Professor at NIT College</p>
-									</div>
-									<a href="#" class="btn shadow" >$45</a>
-								</div>
-								<!-- Content -->
-								<p class="text-truncate-2 mb-3">Contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant the expense</p>
-								<!-- Info -->
-								<div class="d-sm-flex justify-content-sm-between align-items-center">
-									<!-- Title -->
-									<h6 class="text-orange mb-0">Web Designer</h6>
-									<a href="#" class="btn btn-dark text-white" >Join Course</a>
-
-									<!-- Social button -->
-									
-								</div>
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
-
-			<!-- Card item START -->
-			<div class="col-lg-10 col-xl-6">
-				<div class="card shadow p-2">
-					<div class="row g-0">
-						<!-- Image -->
-						<div class="col-md-4">
-							<img src="assets/images/instructor/07.jpg" class="rounded-3" alt="...">
-						</div>
-
-						<!-- Card body -->
-						<div class="col-md-8">
-							<div class="card-body">
-								<!-- Title -->
-								<div class="d-sm-flex justify-content-sm-between mb-2 mb-sm-3">
-									<div>
-										<h5 class="card-title mb-0"><a href="#">Lori Stevens</a></h5>
-										<p class="small mb-2 mb-sm-0">Professor at Oxford University</p>
-									</div>
-									<a href="#" class="btn shadow text-danger" >Free</a>
-								</div>
-								<!-- Content -->
-								<p class="text-truncate-2 mb-3">Yet no jokes worse her why. Bed one supposing breakfast day fulfilled off depending questions. Whatever boy her exertion his extended. Ecstatic followed handsome drawings</p>
-								<!-- Info -->
-								<div class="d-sm-flex justify-content-sm-between align-items-center">
-									<!-- Title -->
-									<h6 class="text-orange mb-0">Medical Science</h6>
-									<a href="#" class="btn btn-dark text-white" >Join Course</a>
-
-									<!-- Social button -->
-									
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
-
-			<!-- Card item START -->
-			<div class="col-lg-10 col-xl-6">
-				<div class="card shadow p-2">
-					<div class="row g-0">
-						<!-- Image -->
-						<div class="col-md-4">
-							<img src="assets/images/instructor/08.jpg" class="rounded-3" alt="...">
-						</div>
-
-						<!-- Card body -->
-						<div class="col-md-8">
-							<div class="card-body">
-								<!-- Title -->
-								<div class="d-sm-flex justify-content-sm-between mb-2 mb-sm-3">
-									<div>
-										<h5 class="card-title mb-0"><a href="#">Samuel Bishop</a></h5>
-										<p class="small mb-2 mb-sm-0">Professor at VNSGU College</p>
-									</div>
-									<a href="#" class="btn shadow" >$45</a>
-								</div>
-								<!-- Content -->
-								<p class="text-truncate-2 mb-3">As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant the expense</p>
-								<!-- Info -->
-								<div class="d-sm-flex justify-content-sm-between align-items-center">
-									<!-- Title -->
-									<h6 class="text-orange mb-0">Digital Marketing</h6>
-									<a href="#" class="btn btn-dark text-white" >Join Course</a>
-									<!-- Social button -->
-									
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
-
-			<!-- Card item START -->
-			<div class="col-lg-10 col-xl-6">
-				<div class="card shadow p-2">
-					<div class="row g-0">
-						<!-- Image -->
-						<div class="col-md-4">
-							<img src="assets/images/instructor/09.jpg" class="rounded-3" alt="...">
-						</div>
-
-						<!-- Card body -->
-						<div class="col-md-8">
-							<div class="card-body">
-								<!-- Title -->
-								<div class="d-sm-flex justify-content-sm-between mb-2 mb-sm-3">
-									<div>
-										<h5 class="card-title mb-0"><a href="#">Joan Wallace</a></h5>
-										<p class="small mb-2 mb-sm-0">Professor at LPU College</p>
-									</div>
-									<a href="#" class="btn shadow text-danger" >Free</a>
-								</div>
-								<!-- Content -->
-								<p class="text-truncate-2 mb-3">Tt so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant the expense</p>
-								<!-- Info -->
-								<div class="d-sm-flex justify-content-sm-between align-items-center">
-									<!-- Title -->
-									<h6 class="text-orange mb-0">Graphic Designer</h6>
-									<a href="#" class="btn btn-dark text-white" >Join Course</a>
-									<!-- Social button -->
-									
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
-
-		</div>
+			<?php endforeach; ?>
+			
 		<!-- Instructor list END -->
 
 		<!-- Pagination START -->
