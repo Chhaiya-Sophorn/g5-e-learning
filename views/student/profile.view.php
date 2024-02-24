@@ -17,7 +17,7 @@
     <p>Gender: Male</p>
     <p>Role: Student</p>
     <p>About Me:</p>
-    <p>I am a good student</p> -->
+    <p>I am a good student</p>
     <div class="row text-center">
     <div class="col-6 gap-2">
       <div class="p-1 mb-2 border bg-light">Phone: </div>
@@ -33,7 +33,6 @@
     </div>
   </div>
   </div>
-  <?php endforeach ?>
   <!-- Bootstrap JS -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
