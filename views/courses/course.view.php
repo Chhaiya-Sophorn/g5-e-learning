@@ -65,6 +65,7 @@ Inner part START -->
 		<!-- Instructor list START -->
 		<div class="row g-4 justify-content-center">
 		<?php 
+		require 'models/admin.model.php';
 		$get_courses = get_courses();?>
 		<?php foreach($get_courses as  $course): ?>
 			<!-- Card item START -->
