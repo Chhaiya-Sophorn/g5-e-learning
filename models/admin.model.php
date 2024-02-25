@@ -1,13 +1,15 @@
 <?php
 
-function createPost(string $title, string $description) : bool
+function create_course(string $title, string $description,int $category, string $fileImg,string $price) : bool
 {
     global $connection;
-    $statement = $connection->prepare("insert into posts (title, description) values (:title, :description)");
-    $statement->execute([
+    $statement = $connection->prepare("insert into courses (title, description, category_id, image_courses, price) values (:title, :description, :category, :fileImg, :price)");
+    $statement->execute ([
         ':title' => $title,
-        ':description' => $description
-
+        ':description' => $description,
+        ':category' => $category,
+        ':fileImg' => $fileImg,
+        ':price' => $price,
     ]);
 
     return $statement->rowCount() > 0;
@@ -21,10 +23,10 @@ function getPost(int $id) : array
     return $statement->fetch();
 }
 
-function getPosts() : array
+function get_courses() : array
 {
     global $connection;
-    $statement = $connection->prepare("select * from posts");
+    $statement = $connection->prepare("select * from courses");
     $statement->execute();
     return $statement->fetchAll();
 }
@@ -43,10 +45,10 @@ function updatePost(string $title, string $description, int $id) : bool
     return $statement->rowCount() > 0;
 }
 
-function deletePost(int $id) : bool
+function deleteCourse(int $id) : bool
 {
     global $connection;
-    $statement = $connection->prepare("delete from posts where id = :id");
+    $statement = $connection->prepare("delete from course where course_id = :course_id");
     $statement->execute([':id' => $id]);
     return $statement->rowCount() > 0;
 }
