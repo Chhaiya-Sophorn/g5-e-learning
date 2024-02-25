@@ -6,7 +6,6 @@ $routes = [
     '/signup' => 'controllers/signup/signup.controller.php',
     '/student' => 'controllers/student/student.controller.php',
     '/student_profile' => 'controllers/student/profile.controller.php',
-    '/' => 'controllers/home/home.controller.php',
     '/edit' => 'controllers/edit.view.php/edit.controller.php',
     '/get_edit' => 'controllers/edit.view.php/get.edit.controller.php',
     '/create_student' => 'controllers/signup/create.user.controller.php',
