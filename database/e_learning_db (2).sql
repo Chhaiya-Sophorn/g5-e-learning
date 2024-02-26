@@ -1,4 +1,11 @@
-
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Feb 24, 2024 at 09:30 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,6 +33,13 @@ CREATE TABLE `categories` (
   `description` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`category_id`, `title`, `description`) VALUES
+(1, 'English', 'English');
+
 -- --------------------------------------------------------
 
 --
@@ -37,8 +51,39 @@ CREATE TABLE `courses` (
   `title` varchar(100) NOT NULL,
   `description` varchar(300) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `category_id` int(11) NOT NULL
+  `category_id` int(11) NOT NULL,
+  `price` varchar(100) DEFAULT NULL,
+  `image_courses` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_id`, `title`, `description`, `user_id`, `category_id`, `price`, `image_courses`) VALUES
+(70, 'Dyna', 'Haha', NULL, 1, '525 $', 'koeuk_7.jpg'),
+(71, 'Odit consequatur pe', 'Id facilis voluptatu', NULL, 1, '706', 'background_1.webp'),
+(72, 'Chhaiya', 'I love you', NULL, 1, '147 $', 'koeuk_10.jpg'),
+(73, 'jaja', 'hh', NULL, 1, '125 $', 'koeuk_4.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cs`
+--
+
+CREATE TABLE `cs` (
+  `course_id` int(11) NOT NULL,
+  `title` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `cs`
+--
+
+INSERT INTO `cs` (`course_id`, `title`) VALUES
+(1, 'test'),
+(2, 'Ea ut voluptatibus d');
 
 -- --------------------------------------------------------
 
@@ -84,8 +129,26 @@ CREATE TABLE `users` (
   `email` varchar(300) NOT NULL,
   `password` varchar(200) NOT NULL,
   `gender` varchar(50) NOT NULL,
-  `roles_id` int(11) NOT NULL
+  `roles_id` int(11) NOT NULL,
+  `phone` varchar(200) NOT NULL,
+  `profile_image` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `gender`, `roles_id`, `phone`, `profile_image`) VALUES
+(1, 'Chhaiya Sophorn', 'chhaiya.sophorn@student.passerellesnumeriques.org', '123', 'Male', 3, '0969678884', 'image-removebg-preview (1).png'),
+(2, 'Chhaiya Sophorn', 'chhaiya.sophorn@student.asserellesnumeriques.org', '1234', 'Female', 3, '0969678884', '015a0c9e6538e8bdd8f415276a92a926 (1).jpg'),
+(3, 'Chhaiya Sophorn', 'chhaiya.sophon@student.passerellesnumeriques.org', '123', 'Male', 3, '0969678884', 'photo_2022-08-25_07-50-15.jpg'),
+(4, 'Yaya', 'chhaiya.sophor@student.passerellesnumeriques.org', '123', 'Male', 3, '0969678884', 'photo_2023-09-28_21-13-43.jpg'),
+(5, 'Yaa', 'chhaiya.sophorn@studnt.passerellesnumeriques.org', '123', 'Male', 3, '0969678884', '017c63b8db235aab10210f8164aa4623.jpg'),
+(6, 'fuck you', 'him@gmail.com', 'him', 'Male', 3, '0982456', 'Screenshot 2024-02-22 142549.png'),
+(7, 'vuvimebeku@mailinator.com', 'codiz@mailinator.com', 'Pa$$w0rd!', 'Female', 3, 'veqe@mailinator.com', 'Screenshot 2024-02-22 152631.png'),
+(8, 'fuck you', 'codiz@maiinator.com', 'Pa$$w0d!', 'Male', 3, 'sdf', 'koeuk_4.jpg'),
+(9, 'tynyfy@mailinator.com', 'gamag@mailinator.com', 'Pa$$w0rd!', 'Male', 3, 'fobulyw@mailinator.com', 'koeuk_4.jpg'),
+(10, 'Colt Kinney', 'naqywbi@mailinator.com', '7876', 'Male', 3, '0973329000', 'koeuk_4.jpg');
 
 --
 -- Indexes for dumped tables
@@ -104,6 +167,12 @@ ALTER TABLE `courses`
   ADD PRIMARY KEY (`course_id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `category_id` (`category_id`);
+
+--
+-- Indexes for table `cs`
+--
+ALTER TABLE `cs`
+  ADD PRIMARY KEY (`course_id`);
 
 --
 -- Indexes for table `enrollments`
@@ -135,13 +204,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+
+--
+-- AUTO_INCREMENT for table `cs`
+--
+ALTER TABLE `cs`
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `enrollments`
@@ -159,7 +234,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

@@ -5,11 +5,17 @@ $routes = [
     '/admin' => 'controllers/admin/admin.controller.php',
     '/trainer-review' => 'controllers/reviews/review.controller.php',
     '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
+
+    //This is for category page
+    '/categories' => 'controllers/category/category.controller.php',
+    '/editCategory' => 'controllers/category/category_edit.controller.php',
+    '/deleteCategory' => 'controllers/category/category_delete.controller.php',
 ];
 
 if (array_key_exists($uri, $routes)) {
     $page = $routes[$uri];
-} else {
+}
+ else {
    http_response_code(404);
    $page = 'views/errors/404.php';
 }
