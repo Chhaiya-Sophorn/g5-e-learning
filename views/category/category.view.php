@@ -32,8 +32,8 @@ require "models/admin.model.php";
 
         <!-- input search -->
         <div class="d-flex align-items-center"> <!-- Wrap label and input in a flex container -->
-            <label for="search" class="me-4">Search Category :</label> <!-- Add margin to the label -->
-            <input class="border-radious: 5px" type="search" id="search" name="search">
+            <label for="search" class="me-4">Search:</label> <!-- Add margin to the label -->
+            <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" type="search" placeholder="Search" aria-label="Search">
         </div>
 
         <!-- Button trigger modal -->
