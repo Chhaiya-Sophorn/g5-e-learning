@@ -1,8 +1,7 @@
 
 <div class="container mt-5">
      <!-- <a href="/create_staffs" class="btn btn-outline-primary"> <i class="fas fa-user-plus"></i> Add new course</a> -->
-     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
-          lesson</button>
+     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add lesson</button>
      <!-- <a href="" class="btn btn-primary align-items-center p-3 data-bs-toggle="modal" data-bs-target="#exampleModal" ">Add Lesson</a> -->
      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
