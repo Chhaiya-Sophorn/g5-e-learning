@@ -5,12 +5,66 @@ require "layouts/header.php";
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
 <!-- =======================
+
+
+
 Inner part START -->
+<!-- Payment Modal -->
+<div class="container mt-5">
+     <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+               <div class="modal-content">
+                    <div class="modal-body">
+					<form action="#" method="post" enctype="multipart/form-data" class="border border-success p-4">
+						<div class="text-center"> 
+							<img src="studentprofile/download.png" alt="Profile Image" class="rounded-circle mb-3" style="width: 130px; height: 130px; object-fit: cover;">
+						</div>
+						<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
+						<h5 class="text-center">Course payment</h5>
+						<div class="text-center">Course:<h5 class="text-info">HTML</h5></div>
+						<div class="text-center">Price:<h5 class="text-success">9000$</h5></div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal">Pay</button>
+						</div>
+					</form>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="container mt-5">
+     <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+               <div class="modal-content">
+                    <div class="modal-body">
+					<form action="#" method="post" enctype="multipart/form-data" class="border border-success p-4">
+						<div class="text-center"> 
+						<img src="studentprofile/check.png" alt="Profile Image" class="rounded-circle mb-3" style="width: 130px; height: 130px; object-fit: cover;">
+							<box-icon name='check-circle' animation='tada' color='rgba(18,154,232,0.55)'></box-icon>	
+						</div>
+						<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
+						<h5 class="text-center">Your payment success!</h5>
+						<p class="text-center">Injoy your learning </p>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+							<button type="submit" class="btn btn-primary">Join course</button>
+						</div>
+					</form>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+
+
 <section class="pt-4">
 	<div class="container">
 	<form class="container-fluid justify-content-start" action='/student' method='post'>
-	<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
-	<button type="summit" class="btn btn-primary btn-sm">Back</button>
+		<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
+		<button type="summit" class="btn btn-primary btn-sm">Back</button>
   	</form>
 		<!-- Search option START -->
 		<div class="row mb-4 align-items-center">
@@ -77,9 +131,6 @@ Inner part START -->
 						<div class="col-md-4" style="background-image: url('uploading/<?=$course['image_courses']?>'); background-size: cover;">
     							<!-- Your content goes here -->
 						</div>
-
-
-
 						<!-- Card body -->
 						<div class="col-md-8">
 							<div class="card-body">
@@ -89,16 +140,21 @@ Inner part START -->
 										<h5 class="card-title mb-0"><a href="/trainer-classroom"><?=  $course['title'] ?></a></h5>
 										<p class="small mb-2 mb-sm-0">Professor at Sigma College</p>
 									</div>
-									<a href="#" class="btn shadow" > <?=$course['price']?></a>
+									<h5 class="text-success mb-0"><?=$course['price']?></h5>
 									
 								</div>
 								<!-- Content -->
 								<p class="text-truncate-2 mb-3"><?=  $course['description'] ?></p>
 								<!-- Info -->
+
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
 									<!-- Title -->
-									<h6 class="text-orange mb-0">Digital Marketing</h6>
-									<a href="#" class="btn btn-dark text-white" >Join Course</a>
+									<h6 class="text-info mb-0">Digital Marketing</h6>
+									<li class="list-inline-item d-flex justify-content-center align-items-center">
+										<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
+										<span class="h6 fw-light mb-0 ms-2">9.1k</span>
+									</li>
+									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">Join coures</button>
 								</div>
 							</div>
 						</div>

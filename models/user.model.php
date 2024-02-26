@@ -14,3 +14,13 @@ function accountExist(string $email): array{
         return [];
     }
 }
+
+
+function payments(int $user_id,int $course_id){
+    global $connection;
+    $statement = $connection->prepare("INSERT INTO payments(user_id, course_id) VALUES (:user_id, :course_id)");
+    $statement->execute([
+        ':user_id' => $user_id,
+        ':course_id' => $course_id
+    ]);
+}
