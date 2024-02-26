@@ -2,6 +2,7 @@
 
 function createCategory(string $title, string $description) : bool
                                                         // it will return true or false
+// it will return true or false
 {
     global $connection;
     $statement = $connection->prepare("insert into categories (title, description) values (:title, :description)");
@@ -17,8 +18,8 @@ function createCategory(string $title, string $description) : bool
 function getCategory(int $id) : array
 {
     global $connection;
-    $statement = $connection->prepare("select * from categories where id = :id");
-    $statement->execute([':id' => $id]);
+    $statement = $connection->prepare("select * from categories where category_id = :category_id");
+    $statement->execute([':category_id' => $id]);
     return $statement->fetch();
 }
 
@@ -30,14 +31,15 @@ function getCategories() : array
     return $statement->fetchAll();
 }
 
-function updateCategory(string $title, string $description, int $id) : bool
+function updateCategory(string $title, string $description, int $id) :bool
 {
     global $connection;
-    $statement = $connection->prepare("update categories set title = :title, description = :description where id = :id");
+
+    $statement = $connection->prepare("update categories set title = :title, description = :description where category_id = :category_id");
     $statement->execute([
         ':title' => $title,
         ':description' => $description,
-        ':id' => $id
+        ':category_id' => $id
 
     ]);
 
@@ -47,7 +49,7 @@ function updateCategory(string $title, string $description, int $id) : bool
 function deleteCategory(int $id) : bool
 {
     global $connection;
-    $statement = $connection->prepare("delete from categories where id = :id");
-    $statement->execute([':id' => $id]);
+    $statement = $connection->prepare("delete from categories where category_id = :category_id");
+    $statement->execute([':category_id' => $id]);
     return $statement->rowCount() > 0;
 }
