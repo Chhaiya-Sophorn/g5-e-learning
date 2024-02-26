@@ -18,10 +18,10 @@
             ':id' => $_POST['id']
         ]);
         $users = $statement->fetchAll();
-    }
+      }
 
     foreach ($users as $user):
-    ?>
+    ?>;
     
     <div class="container text-center mt-5 shadow-lg">
       <img src="uploading/<?= $user['profile_image']?>" alt="Profile Image" class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
@@ -50,3 +50,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>
+<?php endforeach ?>
