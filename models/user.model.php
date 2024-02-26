@@ -24,3 +24,13 @@ function payments(int $user_id,int $course_id){
         ':course_id' => $course_id
     ]);
 }
+
+function getStudent(int $id){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM users WHERE user_id = :id');
+    $statement->execute([
+        ':id' => $id
+    ]);
+
+    return $statement->fetch();
+}

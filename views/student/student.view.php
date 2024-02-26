@@ -299,7 +299,7 @@
 		}
 		foreach ($users as $user):
 		?>
-      <div class="nav-item dropdown">
+      <div class="nav-item dropdown ">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
         <img class="rounded-circle me-lg-2" src="../../uploading/<?=$user['profile_image']?>" alt="" style="width: 50px; height:50px;">
         <span class="d-none d-lg-inline-flex"><?=$user['name']?></span>
@@ -313,9 +313,11 @@
 			<input type="hidden" name="id" value=<?=$user['user_id'] ?>>
 			<button type="submit" class="btn btn-primary py-1 w-100 mb-4">Edit Profile</button>                                                                
 		</form>
-        <a href="/" class="dropdown-item">Log Out</a>
-        </div>
-        </div>
+		<div class=' d-flex justify-content-center'>
+       		 <a href="/"><button class="btn btn-danger-soft mb-0"><i class="fas fa-sign-in-alt me-2"></i>Log Out</button></a> 
+      	</div>
+   		 </div>
+    	</div>
     </div>
     </div>
   </nav>
