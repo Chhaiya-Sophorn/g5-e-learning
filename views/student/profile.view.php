@@ -4,36 +4,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="views/student/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <link href='https://unpkg.com/boxicons@2.1.4/dist/boxicons.js' rel='stylesheet'>
+  
   <title>Student Profile</title>
 </head>
 <body>
-  <div class="container text-center mt-5 shadow-lg">
-    <img src="studentprofile/yaya.png" alt="Profile Image" class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
-    <h2 class="mt-3">Chhaiya Sophorn</h2>
-    <p>Email: chhaiya.sophorn@student.passerellesnumeriq</p>
-    <p>Phone: 0969678884</p>
-    <p>Gender: Male</p>
-    <p>Role: Student</p>
-    <p>About Me:</p>
-    <p>I am a good student</p>
-    <div class="row text-center">
-    <div class="col-6 gap-2">
-      <div class="p-1 mb-2 border bg-light">Phone: </div>
+
+<?php
+require "layouts/header.php";
+require 'database/database.php';
+require 'models/user.model.php';
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  $student = getStudent($_POST['id']);
+}
+ ?>
+<!-- student_profile -->
+<form action="/student" method="post">
+    <input type="text" name="email" value="<?= $student['email'] ?>" hidden>
+    <div class="pl-5 mt-5">
+        <button type="submit" class="btn btn-link" style="border: none; outline: none;">
+            <i class="bx bx-arrow-back" style="font-size: 40px;"></i>
+        </button>
     </div>
-    <div class="col-6">
-      <div class="p-1 border bg-light">Gender: </div>
+</form>
+
+<div class="container pt-2 shadow-lg " style="width:730px; height: 550px;margin-top: -40px;" >
+
+<!-- start_top -->
+  <div class="top-form border " >
+    <div class="gd-profile text-center" style="background-color: rgba(0, 0, 255, 0.3);">
+      <div class="p-1 bg-info text-dark rounded-circle ml-3" style="width: 160px; height: 160px;">
+        <img src="uploading/<?= $student['profile_image']?>" alt="Profile Image" class="rounded-circle mb-2" style="width: 150px; height: 150px;">
+      </div>
+      <h5 class='m-2'><?= $student['name']?></h5>
+      <button type="button" class="btn btn-orange p-1 mt-1" style="width: 70px;"><i class='fas fa-edit'></i>Edit</button>
+
     </div>
-    <div class="col-6">
-      <div class="p-1 border bg-light">Role :</div>
-    </div>
-    <div class="col-6">
-      <div class="p-1  border bg-light">Personal Profile</div>
+    <div class="form-student">
+      <h3>My Profile</h3>
+      <div class="row  ">
+        <div class="col-6">
+        <label for="fname">Role:</label><br>  
+          <div class="p-1 border bg-light">Student</div>
+        </div>
+        <div class="col-6">
+        <label for="fname">Phone:</label><br>  
+          <div class="p-1 border bg-light"><?= $student['phone']?></div>
+        </div>
+        <div class="col-6 mt-2">
+        <label for="fname">Email Address:</label><br>  
+        <div class="p-1  border bg-light" style="width: 220%;"><?= $student['email']?></div>
+      </div>
     </div>
   </div>
-  </div>
+</div>
+<!-- end  -->
+
+<!-- start_bottom -->
+<!-- <div class="bottom-form ">
+    <button type="button" class="btn btn-danger " style="width: 90px;">Cancle</button>
+    <button type="button" class="btn btn-success" style="width: 90px;">Save</button>
+</div>
+</div> -->
+<!-- end -->
+
   <!-- Bootstrap JS -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<!-- ends -->
 </body>
 </html>

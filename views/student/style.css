@@ -1,0 +1,44 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+}
+.top-form{
+    display: flex;
+    background-color: rgb(239, 245, 245);
+    border-radius: 20px 20px 0 0;
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+
+}
+.top-form h3{
+    margin-left: 20px;
+    margin-top: 5px;
+
+}
+.gd-profile{
+    padding: 40px;
+    justify-content: center;
+    flex: 1.9;
+
+}
+.gd-profile h6{
+    margin-top: 10px;
+}
+.form-student{
+    flex: 4;
+}
+.row{
+   padding: 20px;
+}
+.bottom-form{
+   background-color: rgb(217, 214, 217);
+   display: flex;
+   justify-content: space-around;
+   padding: 18px;
+   margin-bottom: 30px;
+   border-radius:0 0 20px 20px;
+
+}
+
