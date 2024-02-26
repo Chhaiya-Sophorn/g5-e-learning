@@ -1,5 +1,10 @@
 
-<?php require 'layouts/header.php' ?>
+<?php 
+	require 'layouts/header.php' ;
+    require 'database/database.php';
+    // require 'models/user.model.php';
+?>
+
 <!-- Header START -->
 <header class="navbar-light navbar-sticky navbar-transparent">
   <!-- Logo Nav START -->
@@ -321,6 +326,8 @@
 <!-- **************** MAIN CONTENT START **************** -->
 <!-- =======================
 Main Banner START -->
+<?php require 'views/payments/payment.view.php' ?>
+<!-- ......................................................................... -->
 <section class="bg-light">
 	<div class="container pt-5 mt-0 mt-lg-5">
 
@@ -572,20 +579,25 @@ Featured course START -->
 		</div>
 
 		<div class="row g-4">
+			<?php
+				require 'models/admin.model.php';
+				$courses = get_courses();
+				foreach ($courses as $course):
+
+			?>
 			<!-- Card Item START -->
 			<div class="col-md-6 col-lg-4 col-xxl-3">
+				
 				<div class="card p-2 shadow h-100">
 					<div class="rounded-top overflow-hidden">
 						<div class="card-overlay-hover">
 							<!-- Image -->
-							<img src="assets/images/courses/4by3/17.jpg" class="card-img-top" alt="course image">
+							<img src="uploading/<?=$course['image_courses'] ?>" class="card-img-top" alt="course image">
 						</div>
 						<!-- Hover element -->
 						<div class="card-img-overlay">
 							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
+      							<button class="icon-md bg-white rounded-circle border border-orange text-orange show-popup" data-user='<?=$user['user_id']?>' data-course='<?=$course['course_id']?>' data-title="<?=$course['title'] ?>" data-price="<?=$course['price'] ?>"><i class="fas fa-shopping-cart text-danger"></i></button>
 							</div>
 						</div>
 					</div>
@@ -608,23 +620,24 @@ Featured course START -->
 							</ul>
 							<!-- Avatar -->
 							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/09.jpg" alt="avatar">
+								<img class="avatar-img rounded-circle" src="studentprofile/yaya.png" alt="avatar">
 							</div>
 						</div>
 						<!-- Divider -->
 						<hr>
 						<!-- Title -->
-						<h6 class="card-title"><a href="#">The Complete Digital Marketing Course - 12 Courses in 1</a></h6>
+						<h6 class="card-title"><a href="#"><?=$course['title'] ?></a></h6>
 						<!-- Badge and Price -->
 						<div class="d-flex justify-content-between align-items-center mb-0">
 							<div><a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Personal Development </a></div>
 							<!-- Price -->
-							<h5 class="text-success mb-0">$140</h5>
+							<h5 class="text-success mb-0"><?=$course['price'] ?></h5>
 						</div>
 					</div>
 				</div>
 			</div>	
 			<!-- Card Item END -->
+			<?php endforeach ?>
 
 			<!-- Card Item START -->
 			<div class="col-md-6 col-lg-4 col-xxl-3">
@@ -1261,6 +1274,63 @@ Action box END -->
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
 <?php endforeach ?>
+
+<!-- Bootstrap JavaScript (optional, only needed for certain features like modals) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- JavaScript to trigger modal on button click -->
+<?php 
+    // require 'models/user.model.php';
+?>
+<script>
+$(document).ready(function() {
+  $('.show-popup').click(function() {
+    var title = $(this).data('title');
+    var price = $(this).data('price');
+    var user = $(this).data('user');
+    var course = $(this).data('course');
+    
+    $('#modalTitle').text(title);
+    $('#modalPrice').text(price);
+    $('#modalUser').val(user);
+    $('#modalCourse').val(course);
+    $('#popupModal').modal('show');
+
+    $('#paymentModal').modal('show');
+
+	 // Speak the title and price
+	//  speak('You selected course ' + title + ', price ' + price);
+
+
+	// Function to handle the button click on the initial modal
+	$('#pay').click(function() {
+    // Show the second modal
+    $('#paymentModal').modal('hide'); // Hide the initial modal
+    $('#confirmationModal').modal('show');
+    $('#modaluser').val(user);
+    $('#modalcourse').val(course);
+
+    // Play music for the notification
+    playNotificationMusic();
+  });
+  });
+});
+
+function speak(text) {
+  var synth = window.speechSynthesis;
+  var utterThis = new SpeechSynthesisUtterance(text);
+  synth.speak(utterThis);
+}
+
+// Function to play music for the notification
+function playNotificationMusic() {
+  var audio = new Audio('uploading/click-124467.mp3'); // Replace 'path_to_your_audio_file.mp3' with the path to your audio file
+  audio.play();
+}
+</script>
+
 <?php require 'layouts/footer.php' ?>
 </body>
 </html>
