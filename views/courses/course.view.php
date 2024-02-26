@@ -1,4 +1,5 @@
 
+<!-- Form pop up create form -->
 <div class="container mt-5">
      <!-- <a href="/create_staffs" class="btn btn-outline-primary"> <i class="fas fa-user-plus"></i> Add new course</a> -->
      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
@@ -12,16 +13,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div> -->
                     <div class="modal-body">
-                         <form action="controllers/admin/add.course.controller.php" method="post"  enctype="multipart/form-data">
+                         <form action="controllers/courses/insert_course.controller.php" method="post" enctype="multipart/form-data">
                               <div class="mb-3">
-                                   <label for="recipient-name" class="col-form-label">Title:</label>
+                                   <label for="recipient-name" class="col-form-label">Course:</label>
                                    <input type="text" name="title" class="form-control bg-white" id="Course">
                               </div>
                               <div class="mb-3">
                                    <label for="recipient-name" class="col-form-label">Description:</label>
                                    <textarea class="form-control color-danger bg-white " name="description"
                                         id="description"></textarea>
-
                               </div>
                               <div class="mb-3">
                                    <label for="message-text" class="col-form-label">Category_id:</label>
@@ -51,6 +51,7 @@
      </div>
 </div>
 
+<!-- Table get the course and create the course -->
 <div class="container mt-4">
      <table class="table" style="font-size: 14px">
           <thead class="bg-primary text-white">
@@ -72,8 +73,8 @@
           
           <?php
           require 'models/admin.model.php';
-          $get_courses = get_courses();
-          foreach ($get_courses as $course) :?>
+          $getCourses = getCourses();
+          foreach ($getCourses as $course) :?>
                
         <tr>
             <td scope="row" class="text-center "><?=$course['course_id']?></td>
@@ -89,18 +90,22 @@
                </div>
           </td>
             <td class="text-center"><?=$course['price']?></td>
-            <td class="text-center g-5">
-               <form action="controllers/admin/delete.course.controller.php" method="post" >
+            <td class="text-center d-sm-flex gap-3 align-items-center p-3">
+               <form action="controllers/courses/course_delete.controller.php" method="post" >
                     <input type="text" hidden value="<?=$course['course_id']?>" name='course_id'>
-                    <button type='sumit'class="btn btn-sm btn-danger" onclick="deleteCourse(1)" style="font-size: 10px">
+                    <button type='sumit'class="btn btn-sm btn-danger" style="font-size: 10px">
                          <i class="fas fa-trash">Delete</i> 
                     </button> 
-                    <a href="/update_staff">
-                    <button class="btn btn-sm btn-success ml-3" onclick="updateStaff(1)" style="font-size: 10px">
-                        <i class="fas fa-edit">Update</i> 
+                  
+               </form>
+
+               <form action="controllers/courses/course_edit.controller.php" method="post" >
+                    <a href="controllers/courses/course_edit.controller.php?id=<?= $course['course_id'] ?>">
+                    <button class="btn btn-sm btn-success ml-3"  style="font-size: 10px">
+                        <i class="fas fa-edit">Edit</i> 
                     </button>
                     </a>
-                    </form>
+               </form>
                   
                 
             </td>

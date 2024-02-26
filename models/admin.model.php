@@ -1,29 +1,29 @@
 <?php
 
-function create_course(string $title, string $description,int $category, string $fileImg,string $price) : bool
+function createCourse(string $title, string $description,int $category, string $fileImg, int $user_id, string $price) : bool
 {
     global $connection;
-    $statement = $connection->prepare("insert into courses (title, description, category_id, image_courses, price) values (:title, :description, :category, :fileImg, :price)");
+    $statement = $connection->prepare("insert into courses (title, description, category_id, image_courses, user_id, price) values (:title, :description, :category, :fileImg, :user_id, :price)");
     $statement->execute ([
         ':title' => $title,
         ':description' => $description,
         ':category' => $category,
         ':fileImg' => $fileImg,
+        ':user_id' => $user_id,
         ':price' => $price,
     ]);
-
     return $statement->rowCount() > 0;
 }
 
-function getPost(int $id) : array
+function getCourse(int $id)
 {
     global $connection;
-    $statement = $connection->prepare("select * from posts where id = :id");
-    $statement->execute([':id' => $id]);
+    $statement = $connection->prepare("select * from courses where course_id = :course_id");
+    $statement->execute([':course_id' => $id]);
     return $statement->fetch();
 }
 
-function get_courses() : array
+function getCourses() : array
 {
     global $connection;
     $statement = $connection->prepare("select * from courses");
@@ -31,14 +31,18 @@ function get_courses() : array
     return $statement->fetchAll();
 }
 
-function updatePost(string $title, string $description, int $id) : bool
+function updateCourse(int $id, string $title, string $description, int $user_id, int $category, string $price, string $image_course ) : bool
 {
     global $connection;
-    $statement = $connection->prepare("update posts set title = :title, description = :description where id = :id");
+    $statement = $connection->prepare("update courses set title = :title, description = :description,user_id= :user_id, category_id= :category_id, price= :price, image_course= :image_course  where course_id = :course_id");
     $statement->execute([
+        ':course_id' => $id,
         ':title' => $title,
         ':description' => $description,
-        ':id' => $id
+        ':user_id' => $user_id,
+        ':category_id' => $category,
+        ':price' => $price,
+        ':image_course' => $image_course
 
     ]);
 
