@@ -99,13 +99,13 @@
                   
                </form>
 
-               <form action="controllers/courses/course_edit.controller.php" method="post" >
-                    <a href="controllers/courses/course_edit.controller.php?id=<?= $course['course_id'] ?>">
+               <!-- <form action="controllers/courses/course_edit.controller.php" method="post" > -->
+                    <a href="/courseEdit">
                     <button class="btn btn-sm btn-success ml-3"  style="font-size: 10px">
                         <i class="fas fa-edit">Edit</i> 
                     </button>
                     </a>
-               </form>
+               <!-- </form> -->
                   
                 
             </td>
