@@ -1,7 +1,6 @@
 <?php
 
 function createCategory(string $title, string $description) : bool
-                                                        // it will return true or false
 // it will return true or false
 {
     global $connection;
