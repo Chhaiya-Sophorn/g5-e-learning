@@ -7,9 +7,7 @@
                     $course = getCourse($_POST['id']);
                 }
             ?>
-            <div class="form-group mt-2 justify-content-center">
-                <input type="number" placeholder="course_id" class="form-control w-100 bg-white  p-2  " name="course_id" value="<?= $course['course_id']?>">
-            </div> 
+            <input type="number" placeholder="course_id" class="form-control w-100 bg-white  p-2  " name="course_id" value="<?= $course['course_id']?>" hidden>
             <div class="form-group mt-2"> 
                 <input type="text " placeholder="course" class="form-control w-100 bg-white  p-2" name="title" value="<?= $course['title']?>">
             </div> 
@@ -23,7 +21,7 @@
                 <input type="number" placeholder="user_id" class="form-control w-100 bg-white p-2" name="user_id" value="<?= $course['user_id']?>">
             </div> 
             <div class="form-group mt-2"> 
-                <input type="file" placeholder="input file" class="form-control w-100 bg-white  p-2" name="image_course" value="<?= $course['image_courses']?>">
+                <input type="file" placeholder="input file" class="form-control w-100 bg-white  p-2" name="image" value="<?= $course['image_courses']?>">
             </div> 
             <div class="form-group mt-2"> 
                 <input type="text" placeholder="price" class="form-control w-100 bg-white  p-2" name="price" value="<?= $course['price']?>">

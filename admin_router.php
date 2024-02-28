@@ -5,10 +5,12 @@ $routes = [
     '/admin' => 'controllers/admin/admin.controller.php',
 
     // This is for Courses page
-    '/courses' => 'controllers/courses/course.controller.php',
-    '/courseEdit' => 'controllers/courses/course_edit.controller.php',
+    '/courses_as_admin' => 'controllers/courses_as_admin/course.controller.php',
+    '/courseEdit' => 'controllers/courses_as_admin/course_edit.controller.php',
     // '/trainer-review' => 'controllers/reviews/review.controller.php',
-    '/createCourse' => 'controllers/courses/insert_course.controller.php',
+    '/createCourse' => 'controllers/courses_as_admin/create_course.controller.php',
+    '/viewCourse' => 'views/courses_as_admin/course.view.php',
+    '/updateCourse' => 'controllers/courses_as_admin/update_course.controller.php',
     // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
 
     //This is for category page

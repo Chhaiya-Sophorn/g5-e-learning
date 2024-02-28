@@ -1,6 +1,6 @@
 <?php
 
-function createCourse(string $title, string $description,int $category, string $fileImg, int $user_id, string $price) : bool
+function createCourse(string $title, string $description,int $category, string $fileImg, int $user_id, string $price):bool
 {
     global $connection;
     $statement = $connection->prepare("insert into courses (title, description, category_id, image_courses, user_id, price) values (:title, :description, :category, :fileImg, :user_id, :price)");
@@ -13,6 +13,7 @@ function createCourse(string $title, string $description,int $category, string $
         ':price' => $price,
     ]);
     return $statement->rowCount() > 0;
+
 }
 
 function getCourse(int $id)
@@ -34,7 +35,7 @@ function getCourses() : array
 function updateCourse(int $id, string $title, string $description, int $user_id, int $category, string $price, string $image_course ) : bool
 {
     global $connection;
-    $statement = $connection->prepare("update courses set title = :title, description = :description,user_id= :user_id, category_id= :category_id, price= :price, image_course= :image_course  where course_id = :course_id");
+    $statement = $connection->prepare("update courses set title = :title, description = :description,user_id= :user_id, category_id= :category_id, price= :price, image_courses= :image_course  where course_id = :course_id");
     $statement->execute([
         ':course_id' => $id,
         ':title' => $title,

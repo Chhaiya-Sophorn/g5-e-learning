@@ -9,7 +9,7 @@
           $statement = $connection->prepare("DELETE FROM courses WHERE course_id = :id;");
           $statement->execute(['id' => $id]);
 
-          header("Location:/courses");
+          header("Location:/viewCourse");
 
      }
 
