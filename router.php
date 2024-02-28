@@ -4,6 +4,7 @@ $page = "";
 $routes = [
     '/' => 'controllers/home/home.controller.php',
     '/trainers' => 'controllers/trainers/trainer.controller.php',
+    
 
 
 ];

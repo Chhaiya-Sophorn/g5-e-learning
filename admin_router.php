@@ -3,10 +3,15 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $page = "";
 $routes = [
     '/admin' => 'controllers/admin/admin.controller.php',
-    '/addCourse' => 'controllers/admin/admin.add.controller.php',
-    '/trainer-review' => 'controllers/reviews/review.controller.php',
-    '/add.course' => 'controllers/admin/add.course.controller.php',
-    '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
+
+    // This is for Courses page
+    '/courses_as_admin' => 'controllers/courses_as_admin/course.controller.php',
+    '/courseEdit' => 'controllers/courses_as_admin/course_edit.controller.php',
+    // '/trainer-review' => 'controllers/reviews/review.controller.php',
+    '/createCourse' => 'controllers/courses_as_admin/create_course.controller.php',
+    '/viewCourse' => 'views/courses_as_admin/course.view.php',
+    '/updateCourse' => 'controllers/courses_as_admin/update_course.controller.php',
+    // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
 
     //This is for category page
     '/categories' => 'controllers/category/category.controller.php',

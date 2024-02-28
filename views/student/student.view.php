@@ -427,7 +427,7 @@ Featured course START -->
 		<div class="row g-4">
 			<?php
 				require 'models/admin.model.php';
-				$courses = get_courses();
+				$courses = getCourses();
 				foreach ($courses as $course):
 
 			?>

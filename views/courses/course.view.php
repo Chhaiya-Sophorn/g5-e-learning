@@ -120,7 +120,7 @@ Inner part START -->
 		<div class="row g-4 justify-content-center">
 		<?php 
 		require 'models/admin.model.php';
-		$get_courses = get_courses();?>
+		$get_courses = getCourses();?>
 		<?php foreach($get_courses as  $course): ?>
 			<!-- Card item START -->
 			<div class="col-lg-10 col-xl-6">
