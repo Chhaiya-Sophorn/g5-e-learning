@@ -4,6 +4,8 @@ require "layouts/header.php";
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
+
+
 <!-- =======================
 
 
@@ -60,6 +62,9 @@ Inner part START -->
 </div>
 
 
+
+<!-- =======================
+Inner part START -->
 <section class="pt-4">
 	<div class="container">
 	<form class="container-fluid justify-content-start" action='/student' method='post'>

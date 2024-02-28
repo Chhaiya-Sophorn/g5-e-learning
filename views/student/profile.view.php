@@ -12,7 +12,6 @@
   <title>Student Profile</title>
 </head>
 <body>
-
 <?php
 require "layouts/header.php";
 require 'database/database.php';
@@ -40,9 +39,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       <div class="p-1 bg-info text-dark rounded-circle ml-3" style="width: 160px; height: 160px;">
         <img src="uploading/<?= $student['profile_image']?>" alt="Profile Image" class="rounded-circle mb-2" style="width: 150px; height: 150px;">
       </div>
-      <h5 class='m-2'><?= $student['name']?></h5>
-      <button type="button" class="btn btn-orange p-1 mt-1" style="width: 70px;"><i class='fas fa-edit'></i>Edit</button>
-
     </div>
     <div class="form-student">
       <h3>My Profile</h3>
