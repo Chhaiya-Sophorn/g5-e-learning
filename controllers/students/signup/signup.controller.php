@@ -1,0 +1,1 @@
+<?php require 'views/students/signup.view.php';
