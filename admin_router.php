@@ -5,18 +5,18 @@ $routes = [
     '/admin' => 'controllers/admin/admin.controller.php',
 
     // This is for Courses page
-    '/courses_as_admin' => 'controllers/courses_as_admin/course.controller.php',
-    '/courseEdit' => 'controllers/courses_as_admin/course_edit.controller.php',
+    '/courses_as_admin' => 'controllers/admin/courses/course.controller.php',
+    '/courseEdit' => 'controllers/admin/courses/course_edit.controller.php',
     // '/trainer-review' => 'controllers/reviews/review.controller.php',
-    '/createCourse' => 'controllers/courses_as_admin/create_course.controller.php',
-    '/viewCourse' => 'views/courses_as_admin/course.view.php',
-    '/updateCourse' => 'controllers/courses_as_admin/update_course.controller.php',
+    '/createCourse' => 'controllers/admin/courses/create_course.controller.php',
+    '/viewCourse' => 'views/admin/courses/course.view.php',
+    '/updateCourse' => 'controllers/admin/courses/update_course.controller.php',
     // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
 
     //This is for category page
-    '/categories' => 'controllers/category/category.controller.php',
-    '/editCategory' => 'controllers/category/category_edit.controller.php',
-    '/deleteCategory' => 'controllers/category/category_delete.controller.php',
+    '/categories' => 'controllers/admin/category/category.controller.php',
+    '/editCategory' => 'controllers/admin/category/category_edit.controller.php',
+    '/deleteCategory' => 'controllers/admin/category/category_delete.controller.php',
 ];
 
 if (array_key_exists($uri, $routes)) {

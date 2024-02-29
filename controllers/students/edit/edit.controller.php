@@ -1,0 +1,1 @@
+<?php require 'views/students/edit.view.php';

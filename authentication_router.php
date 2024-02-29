@@ -2,14 +2,14 @@
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $page = "";
 $routes = [
-    '/signin' => 'controllers/signin/signin.controller.php',
-    '/signup' => 'controllers/signup/signup.controller.php',
-    '/student' => 'controllers/student/student.controller.php',
-    '/student_profile' => 'controllers/student/profile.controller.php',
-    '/edit' => 'controllers/edit.view.php/edit.controller.php',
-    '/get_edit' => 'controllers/edit.view.php/get.edit.controller.php',
-    '/create_student' => 'controllers/signup/create.user.controller.php',
-    '/access' => 'controllers/signin/access.controller.php',
+    '/signin' => 'controllers/students/signin/signin.controller.php',
+    '/signup' => 'controllers/students/signup/signup.controller.php',
+    '/student' => 'controllers/students/home.controller.php',
+    '/student_profile' => 'controllers/students/profile.controller.php',
+    '/edit' => 'controllers/students/edit/edit.controller.php',
+    '/get_edit' => 'controllers/students/edit/get.edit.controller.php',
+    '/create_student' => 'controllers/students/signup/create.user.controller.php',
+    '/access' => 'controllers/students/signin/access.controller.php',
     '/course' => 'controllers/courses/course.controller.php',
 
     // '/trainer-review' => 'controllers/reviews/review.controller.php',
