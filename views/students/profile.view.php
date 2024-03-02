@@ -15,7 +15,7 @@
 <?php
 require "layouts/header.php";
 require 'database/database.php';
-require 'models/user.model.php';
+require 'models/student.model.php';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $student = getStudent($_POST['id']);

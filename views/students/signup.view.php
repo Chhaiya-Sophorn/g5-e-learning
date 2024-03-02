@@ -33,59 +33,78 @@
 
 <body style="background-image: url('assets/images/bg/02.jpg'); background-size: cover; background-repeat: no-repeat;">
 <div class="container-fluid position-relative d-flex p-0">
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-    <!-- Spinner End -->
-
 
     <!-- Sign In Start -->
-    <div class="container-fluid">
-        <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-            <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-lg-4">
-                <div class="rounded p-4 p-sm-5 my-4 mx-3 shadhow-lg" style="background-color: rgba(0, 0, 0, 0.3);">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <a href="index.html" class="">
-                            <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
-                        </a>
-                        <h3>Create Account</h3>
+    <div class="container-fluid ">
+        <div class="row h-100 align-items-center justify-content-center " style="min-height: 90vh;">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-lg-4 ">
+                <div class="rounded p-2 p-sm-5 my-4 mx-3 shadhow-lgbd" style="background-color: rgba(255, 255, 255,0.1);">
+                    <div class="d-flex align-items-center justify-content-between mb-1">
+                        <h3 class="text-info">Create Account</h3>
                     </div>
-                    <form action="/create_student" method="post" enctype="multipart/form-data">                          
-                        <div class="form-floating mb-3 " >
-                            <input type="name" class="form-control" id="floatingInput" placeholder="name" style="background-color: rgba(0, 0, 0, 0.5);" name='name'>
-                            <label for="floatingInput">Name</label>
+                    <?php
+
+                    $input =false;
+                    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                        $input = true;
+                        $require = requireInformation($_POST['name'], $_POST['email'], $_POST['password'], $_POST['phone'],$_POST['password_comfirm']);  
+                    }
+                    ?>
+                    <form action="/create_student" method="post" class='bd bd-info' enctype="multipart/form-data">                          
+                        <div class="form-floating mb-2 border-info rounded">
+                            <input type="text" name='refrash' hidden>
+                            <small class="form-text text-danger">
+                                <?php if($input==true){echo $require['name'];} ?>
+                            </small>
+                            <input type="name" class="form-control bd-primary form-control-sm" id="floatingInput" placeholder="Name" style="background-color: rgba(0,0,0,0.3); <?php if($input==true){if(strlen($require['name'])>0){echo 'border: 1px solid lightcoral;'; }}?>" name='name' value='<?php if($input==true){echo $_POST['name'];} ?>'>
+                            <label for="floatingInput" class="text-info" <?php if($input){if(strlen($require['name'])>0){echo 'hidden';}}?>>Name</label>
                         </div>
-                      <div class="form-floating mb-3 " >
-                            <input type="text" class="form-control" id="floatingInput" placeholder="phone" style="background-color: rgba(0, 0, 0, 0.5);" name='phone'>
-                            <label for="floatingInput">Phone</label>
+                        <div class="form-floating mb-2 border-info rounded">
+                            <small class="form-text text-danger">
+                                <?php if($input){echo $require['phone'];} ?>
+                            </small>
+                            <input type="text" class="form-control form-control-sm" id="floatingInput" placeholder="Phone" style="background-color: rgba(0, 0, 0, 0.3);<?php if($input){ if(strlen($require['phone'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='phone' value="<?php if($input){echo $_POST['phone'];} ?>">
+                            <label for="floatingInput" class="text-info" <?php if($input){if(strlen($require['phone'])>0){echo 'hidden';}}?>>Phone</label>
                         </div>
-                        <div class="form-floating mb-3 " >
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.5);" name='email'>
-                            <label for="floatingInput">Email address</label>
+                        <div class="form-floating mb-2 border-info rounded">
+                            <small class="form-text text-danger">
+                                <?php if($input){echo $require['email'];} ?>
+                            </small>
+                            <input type="email" class="form-control form-control-sm" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.3);<?php if($input){if(strlen($require['email'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='email' value=' <?php if($input){echo $_POST['email'];} ?>'>
+                            <label for="floatingInput" class="text-info" <?php if($input){if(strlen($require['email'])>0){echo 'hidden';}}?>>Email address</label>
                         </div>
-                        <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="background-color: rgba(0, 0, 0, 0.5);" name='password'> 
-                            <label for="floatingPassword">Password</label>
+                        <div class="form-floating mb-2 border-info rounded">
+                            <small class="form-text text-danger">
+                                <?php if($input){echo $require['password'];} ?>
+                            </small>
+                            <input type="password" class="form-control form-control-sm" id="floatingPassword" placeholder="Password" style="background-color: rgba(0, 0, 0, 0.3);<?php if($input){if(strlen($require['password'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='password' value='<?php if($input){echo $_POST['password'];} ?>'> 
+                            <label for="floatingPassword" class="text-info" <?php if($input){if(strlen($require['password'])>0){echo 'hidden'; } }?>>Password</label>
                         </div>
-                  
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="form-check">
-                                <input type="radio" class="form-check-input" id="exampleCheck1" style="background-color: rgba(0, 0, 0, 0.5);" name='gender' value='Male'>
-                                <label class="form-check-label" for="exampleCheck1">Male</label>
+                        <div class="form-floating mb-2 border-info rounded">
+                            <small class="form-text text-danger">
+                                <?php if($input){echo $require['password_comfirm'];} ?>
+                            </small>
+                            <input type="password" class="form-control form-control-sm " id="floatingPassword" placeholder="password_comfirm" style="background-color: rgba(0, 0, 0, 0.3);<?php if($input){if(strlen($require['password_comfirm'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='password_comfirm' value='<?php if($input){echo $_POST['password_comfirm'];} ?>'> 
+                            <label for="floatingPassword" class="text-info" <?php if($input){if(strlen($require['password_comfirm'])>0){echo 'hidden'; } }?>>ComfirmPassword</label>
+                        </div>
+                        <div class="d-flex align-items-center mb-2 gab-1">
+                            <div class="form-check me-4">
+                                <input type="radio" class="form-check-input border-info" id="maleRadio" name='gender' value='Male' style="background-color: rgba(0, 0, 0, 0.3);" <?php if($input){if($_POST['gender']=='Male'){echo 'checked';}} ?>>
+                                <label class="form-check-label text-info" for="maleRadio">Male</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" class="form-check-input m-1" id="exampleCheck1" style="background-color: rgba(0, 0, 0, 0.5);" name='gender' value='Female'>
-                                <label class="form-check-label" for="exampleCheck1">Female</label>
+                                <input type="radio" class="form-check-input border-info" id="femaleRadio" name='gender' value='Female' style="background-color: rgba(0, 0, 0, 0.3);" <?php if($input){if($_POST['gender']=='Female'){echo 'checked';}} ?>>
+                                <label class="form-check-label text-info" for="femaleRadio">Female</label>
                             </div>
                         </div>
-                        <div class="mb-3" style="background-color: rgba(0, 0, 0, 0.5);" >
-                            <label class="form-check-label" for="exampleCheck1">Add profile image</label>
-                            <input type="file" name='image' class="form-control" aria-label="file example" style="background-color: rgba(0, 0, 0, 0.1);">
+                        <div class="mb-2">
+                            <label class="form-check-label text-info " for="exampleCheck1">Add profile image</label>
+                            <input type="file" name='image' class="form-control form-control-sm" aria-label="file example" style="background-color: rgba(0, 0, 0, 0.1);">
                         </div>
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Create Account</button>                       
+                        <div class="d-flex justify-content-between">
+                            <div class='btn h-10 w-20 mb-2 border-info' style="background-color: rgba(0, 0, 0, 0.5);"><a href="/signin" style="color: blue;" >Sign in Account</a></div>
+                            <button type="submit" class="btn h-10 w-20 mb-2 border-info text-info" style="background-color: rgba(0, 0, 0, 0.5);color: orange;">Create Account</button>
+                        </div>
                     </form>
 
                 </div>

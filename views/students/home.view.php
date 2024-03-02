@@ -165,7 +165,6 @@
 <!-- **************** MAIN CONTENT START **************** -->
 <!-- =======================
 Main Banner START -->
-<?php require 'views/students/payments/payment.view.php' ?>
 <!-- ......................................................................... -->
 <section class="bg-light">
 	<div class="container pt-5 mt-0 mt-lg-5">

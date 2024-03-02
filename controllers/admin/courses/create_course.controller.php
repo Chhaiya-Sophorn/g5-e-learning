@@ -1,7 +1,7 @@
 
 <?php 
-     require '../../models/admin.model.php';
-     require '../../database/database.php';
+     require '../../../models/admin.model.php';
+     require '../../../database/database.php';
      if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
           $title = htmlspecialchars($_POST["title"]);
