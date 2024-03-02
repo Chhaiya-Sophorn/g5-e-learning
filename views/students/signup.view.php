@@ -89,11 +89,11 @@
                         </div>
                         <div class="d-flex align-items-center mb-2 gab-1">
                             <div class="form-check me-4">
-                                <input type="radio" class="form-check-input border-info" id="maleRadio" name='gender' value='Male' style="background-color: rgba(0, 0, 0, 0.3);" <?php if($input){if($_POST['gender']=='Male'){echo 'checked';}} ?>>
+                                <input type="radio" class="form-check-input border-info" id="maleRadio" name='gender' value='Male' style="background-color: rgba(0, 0, 0, 0.3);" <?php if($input){if(isset($_POST['gender']) && $_POST['gender']=='Male'){echo 'checked';}} ?>>
                                 <label class="form-check-label text-info" for="maleRadio">Male</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" class="form-check-input border-info" id="femaleRadio" name='gender' value='Female' style="background-color: rgba(0, 0, 0, 0.3);" <?php if($input){if($_POST['gender']=='Female'){echo 'checked';}} ?>>
+                                <input type="radio" class="form-check-input border-info" id="femaleRadio" name='gender' value='Female' style="background-color: rgba(0, 0, 0, 0.3);" <?php if($input){if(isset($_POST['gender']) && $_POST['gender']=='Female'){echo 'checked';}} ?>>
                                 <label class="form-check-label text-info" for="femaleRadio">Female</label>
                             </div>
                         </div>
