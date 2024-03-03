@@ -87,7 +87,7 @@
                <div class="position-relative">
                     <img class="rounded-circle" src="uploading/<?=$course['image_courses']?>" alt="" style="width: 40px; height: 40px;">
                </div>
-          </td>
+            </td>
             <td class="text-center"><?=$course['price']?></td>
             <td class="text-center d-sm-flex gap-3 align-items-center p-3">
                <form action="controllers/admin/courses/course_delete.controller.php" method="post" >
