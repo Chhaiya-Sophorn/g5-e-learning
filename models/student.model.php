@@ -62,7 +62,7 @@ function requireInformation(string $name, string $email, string $password, strin
     "email" => "",
     "password" => "",
     "password_comfirm" => "",
-    "phone" => ""
+    "phone" => "",
     ];
     
     if($name==""){
@@ -76,6 +76,10 @@ function requireInformation(string $name, string $email, string $password, strin
     }
     if($phone==""){
         $information['phone'] = 'phone is required';
+    }else{
+        if(!preg_match('/^(0|\+855)(\d{9})$/', $phone)){
+            $information['phone'] = 'Invalid phone number format.';
+        }
     }
     if($comfirm_password==""){
         $information['password_comfirm'] = 'Comfirm your password';
@@ -85,9 +89,45 @@ function requireInformation(string $name, string $email, string $password, strin
         $information['password_comfirm'] = 'Your password is not feed!';
     }
 
-    if($name !='' && $email != '' && $password !='' && $phone !='' && $comfirm_password !=''){
+    if($name !='' && $email != '' && $password !='' && $phone !='' && $comfirm_password !='' && preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{5,7}$/', $password) && $password ==$comfirm_password){
         $information['email'] = 'This email already exist!';
+    }else{
+        if (!preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{5,7}$/', $password) && $password !='') {
+            $information['password'] = 'Password must contain at least one letter, one digit, one special character, and be 5 to 7 characters long.';
+        }
     }
+
     
     return $information;
+    }
+
+
+
+
+    function applySignin(string $email ,string $password){
+        $applys = [
+            "email" => "",
+            "password" => ""
+        ];
+        global $connection;
+
+        if($email==""){
+            $applys['email'] = 'Input email !';
+        }
+        if($password==""){
+            $applys['password'] = 'Input password !';
+        }
+
+        if($email !='' && $password !=''){
+            if(count(accountExist($email))>0){
+                $hashedPassword = password_hash(accountExist($email)['password'], PASSWORD_DEFAULT);
+                if (!password_verify($password, $hashedPassword)) {
+                    $applys['password'] = 'Password incorrect !';  
+                }
+            }else{
+                $applys['email'] = 'No account feet this email';
+            }
+        }
+
+        return $applys;
     }
