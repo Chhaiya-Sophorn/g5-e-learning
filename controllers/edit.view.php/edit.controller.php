@@ -1,1 +1,0 @@
-<?php require 'views/edit/edit.view.php';

@@ -13,4 +13,5 @@ if (array_key_exists($uri, $routes)) {
    $page = 'views/errors/404.php';
 }
 require $page;
+
 require "layouts/header.php";

@@ -7,12 +7,12 @@
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="d-flex mb-5">
                                 <h1 class="mb-0">👨🏼‍💻 Welcome New Admin </h1> 
-                              </div>
-                              <a href="/signin"class="btn btn-danger">LOG IN </a>
+                            </div>
+                            <a href="/signin"class="btn btn-danger">LOG IN </a>
                         </div>
                     </div>
                 </div>
             </div>
-          </div>
         </div>
+</div>
 <!--  End -->

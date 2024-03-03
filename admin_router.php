@@ -3,15 +3,20 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $page = "";
 $routes = [
     '/admin' => 'controllers/admin/admin.controller.php',
-    '/addCourse' => 'controllers/admin/admin.add.controller.php',
-    '/trainer-review' => 'controllers/reviews/review.controller.php',
-    '/add.course' => 'controllers/admin/add.course.controller.php',
-    '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
+
+    // This is for Courses page
+    '/courses_as_admin' => 'controllers/admin/courses/course.controller.php',
+    '/courseEdit' => 'controllers/admin/courses/course_edit.controller.php',
+    // '/trainer-review' => 'controllers/reviews/review.controller.php',
+    '/createCourse' => 'controllers/admin/courses/create_course.controller.php',
+    '/viewCourse' => 'views/admin/courses/course.view.php',
+    '/updateCourse' => 'controllers/admin/courses/update_course.controller.php',
+    // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
 
     //This is for category page
-    '/categories' => 'controllers/category/category.controller.php',
-    '/editCategory' => 'controllers/category/category_edit.controller.php',
-    '/deleteCategory' => 'controllers/category/category_delete.controller.php',
+    '/categories' => 'controllers/admin/category/category.controller.php',
+    '/editCategory' => 'controllers/admin/category/category_edit.controller.php',
+    '/deleteCategory' => 'controllers/admin/category/category_delete.controller.php',
 ];
 
 if (array_key_exists($uri, $routes)) {
