@@ -38,6 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':gender' => $gender,
         ]);
     }
-    require 'views/students/home.view.php';
+    require 'views/students/profile.view.php';
 }
 ?>
