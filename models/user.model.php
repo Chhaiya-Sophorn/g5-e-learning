@@ -34,3 +34,22 @@ function getStudent(int $id){
 
     return $statement->fetch();
 }
+
+
+function getTrainer () :array {
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM users WHERE roles_id = 2');
+    $statement->execute();
+
+    return $statement->fetchAll();
+}
+
+// function getTrainerNames(string $name){
+//     global $connection;
+//     $statement = $connection->prepare("SELECT*FROM users WHERE  users = 'name'");
+//     $statement->execute([':id' => $name]);
+//     return $statement-> fetch();
+// }
+
+
+

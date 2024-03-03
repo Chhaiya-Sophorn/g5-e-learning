@@ -9,7 +9,7 @@ $routes = [
     '/courseEdit' => 'controllers/admin/courses/course_edit.controller.php',
     // '/trainer-review' => 'controllers/reviews/review.controller.php',
     '/createCourse' => 'controllers/admin/courses/create_course.controller.php',
-    '/viewCourse' => 'views/admin/courses/course.view.php',
+    '/viewCourse' => 'controllers/admin/courses/course.controller.php',
     '/updateCourse' => 'controllers/admin/courses/update_course.controller.php',
     // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
 
