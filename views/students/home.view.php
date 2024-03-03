@@ -123,8 +123,7 @@
         </li>
       </ul>
       <?php 
-	  	require 'database/database.php';
-	  
+		
 		  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$email = $_POST['email'];
 
@@ -144,11 +143,7 @@
         <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
 		<form action="/student_profile" method="post">  
 			<input type="hidden" name="id" value=<?=$user['user_id'] ?>>
-			<button type="submit" class="btn btn-primary py-1 w-100 mb-4">My Profile</button>                                                                
-		</form>
-		<form action="/edit" method="post">  
-			<input type="hidden" name="id" value=<?=$user['user_id'] ?>>
-			<button type="submit" class="btn btn-primary py-1 w-100 mb-4">Edit Profile</button>                                                                
+			<button type="submit" class="btn btn-primary py-1 w-100 mb-4"> View Profile</button>                                                                
 		</form>
 		<div class=' d-flex justify-content-center'>
        		 <a href="/"><button class="btn btn-danger-soft mb-0"><i class="fas fa-sign-in-alt me-2"></i>Log Out</button></a> 
@@ -165,7 +160,6 @@
 <!-- **************** MAIN CONTENT START **************** -->
 <!-- =======================
 Main Banner START -->
-<?php require 'views/students/payments/payment.view.php' ?>
 <!-- ......................................................................... -->
 <section class="bg-light">
 	<div class="container pt-5 mt-0 mt-lg-5">

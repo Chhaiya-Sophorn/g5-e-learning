@@ -53,3 +53,19 @@ function deleteCategory(int $id) : bool
     $statement->execute([':category_id' => $id]);
     return $statement->rowCount() > 0;
 }
+
+// modify  data in database from integer to  string for display on web page.
+function getCategoryName(int $id){
+    global $connection;
+    $statement = $connection->prepare("SELECT*FROM categories WHERE  category_id=:id");
+    $statement->execute([':id' => $id]);
+    return $statement-> fetch();
+}
+
+
+function getIdCategory(string $title){
+    global $connection;
+    $statement = $connection->prepare("SELECT*FROM categories WHERE title=:title ");
+    $statement->execute([':title' => $title]);
+    return $statement-> fetch();
+}
