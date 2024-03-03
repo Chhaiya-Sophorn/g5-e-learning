@@ -51,5 +51,3 @@ function getTrainer () :array {
 //     return $statement-> fetch();
 // }
 
-
-
