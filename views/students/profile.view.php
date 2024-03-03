@@ -37,9 +37,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   <div class="top-form border " >
     <div class="gd-profile text-center p-2 d-flex" style="background-color: rgba(0, 0, 255, 0.3);">
       <div class="p-1 bg-info text-dark rounded-circle ml-3" style="width: 160px; height: 160px;">
-        <img src="../uploading/<?= $student['profile_image']?>" alt="Profile Image" class="rounded-circle mb-2" style="width: 150px; height: 150px;">
+        <img src="../../uploading/<?= $student['profile_image']?>" alt="Profile Image" class="rounded-circle mb-2" style="width: 150px; height: 150px;">
       </div>
-      <div class=""></div>
     </div>
     <div class="form-student p-2 ">
       <div class="d-flex align-items-center">
