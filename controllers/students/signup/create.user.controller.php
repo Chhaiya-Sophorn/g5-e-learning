@@ -16,8 +16,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if($name==""){
         require 'views/students/signup.view.php';
-    }
-    else if($email==""){
+
+    }else if(!preg_match('/^(0|\+855)(\d{9})$/', $phone)){
+        require 'views/students/signup.view.php';
+    }else if($email==""){
         require 'views/students/signup.view.php';
     }
     else if($password==""){
@@ -28,6 +30,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }else if($passwor_comfirm==''){
         require 'views/students/signup.view.php';
     }else if($passwor_comfirm != $password){
+        require 'views/students/signup.view.php';
+
+    }else if(!preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{5,7}$/', $password)){
         require 'views/students/signup.view.php';
     }else{
 
