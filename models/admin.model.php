@@ -93,7 +93,7 @@ function getTrainerName(int $id){
 
 function getIdTrainer(string $name){
     global $connection;
-    $statement = $connection->prepare("SELECT*FROM users WHERE name=:name AND name = :name");
+    $statement = $connection->prepare("SELECT*FROM users WHERE name=:name AND roles_id=2");
     $statement->execute([':name' => $name]);
     return $statement-> fetch();
 }
@@ -124,3 +124,12 @@ function getIdTrainer(string $name){
 //     } 
 // }
 // $statement = $connection->prepare("update courses set title = :title, description = :description,user_id= :user_id, category_id= :category_id, price= :price, image_courses= :image_course  where course_id = :course_id");
+
+
+function getTeacher(int $id){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM users WHERE user_id = :id');
+    $statement->execute([':id' => $id]);
+
+    return $statement->fetchAll();
+}

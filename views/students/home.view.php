@@ -421,6 +421,7 @@ Featured course START -->
 		<div class="row g-4">
 			<?php
 				require 'models/admin.model.php';
+				// require 'models/user.model.php';
 				$courses = getCourses();
 				foreach ($courses as $course):
 
@@ -460,7 +461,11 @@ Featured course START -->
 							</ul>
 							<!-- Avatar -->
 							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="studentprofile/yaya.png" alt="avatar">
+								<img class="avatar-img rounded-circle" src="uploading/<?php $haha= getTeacher($course['user_id']);
+								foreach ($haha as $ha){
+									echo $ha['profile_image'];
+								};
+								?>" alt="avatar">
 							</div>
 						</div>
 						<!-- Divider -->
@@ -1174,6 +1179,5 @@ function playNotificationMusic() {
 <?php require 'layouts/footer.php' ?>
 </body>
 </html>
-
 
 
