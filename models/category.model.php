@@ -69,3 +69,17 @@ function getIdCategory(string $title){
     $statement->execute([':title' => $title]);
     return $statement-> fetch();
 }
+
+function getNumberOfCourseInCategory(int $id){
+    global $connection;
+    $statement = $connection->prepare("SELECT COUNT(*) FROM courses WHERE category_id = :id");
+    $statement->execute([':id' => $id]);
+    return $statement->fetchColumn();
+}
+
+function getCoursesOnCategory(int $id){
+    global $connection;
+    $statement = $connection->prepare("SELECT* FROM courses WHERE category_id = :id");
+    $statement->execute([':id' => $id]);
+    return $statement->fetchAll();
+}

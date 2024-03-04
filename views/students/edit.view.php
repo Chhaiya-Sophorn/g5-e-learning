@@ -44,13 +44,15 @@
 
 
     <!-- Sign In Start -->
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
             <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-lg-4">
-                <div class="rounded p-4 p-sm-5 my-4 mx-3 shadhow-lg" style="background-color: rgba(0, 0, 0, 0.3);">
+                <div class="rounded p-2 p-sm-5 my-4 mx-2 shadhow-lg" style="background-color: rgba(0, 0, 0,0.4);">
                     
                     <?php
                         require 'database/database.php';    
+                        require 'models/student.model.php';   
+                        $input =false; 
                         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $id = $_POST['id'];
                         $statement = $connection->prepare("SELECT* FROM users WHERE user_id LIKE :id");
@@ -59,41 +61,47 @@
                         ]);
                         $users = $statement->fetchAll();
                         }
+                        if(isset($_POST['password'])){
+                            $input =true;
+                            $strongpassword= strongPassword($_POST['password']);
+                        }
+                        
+                        
                         foreach ($users as $user):
 
                     ?>
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <img class="rounded-circle me-lg-2" src="../../uploading/<?=$user['profile_image']?>" alt="" style="width: 110px; height:110px;">
-                        <h3>Edit profile</h3>
+                        <img class="rounded-circle me-lg-2" src="../../uploading/<?=$user['profile_image']?>" alt="" style="width: 100px; height:100px;">
+                        <h3 class="text-info">Edit profile</h3>
                     </div>
-                    <form action="/get_edit" method="post" enctype="multipart/form-data">   
-                        <div class="mb-3" style="background-color: rgba(0, 0, 0, 0.5);" >
+                    <form action="/get_edit" method="post" enctype="multipart/form-data">
+                        <div class="mb-2">
                             <label class="form-check-label" for="exampleCheck1">Choose Profile image</label>
-                            <input type="file" name='image' class="form-control" aria-label="file example" style="background-color: rgba(0, 0, 0, 0.1);">
+                            <input type="file" name='image' class="form-control form-control-sm" aria-label="file example" style="background-color: rgba(0, 0, 0, 0.1);">
                         </div>
-                        <div class="form-floating mb-3 " >
+                        <div class="form-floating mb-2 border-info rounded">
                             <input type="hidden" value='<?= $user['user_id']?>' class="form-control" id="floatingInput" placeholder="id" style="background-color: rgba(0, 0, 0, 0.5);" name='id'>
-                            <input type="name" value='<?= $user['name']?>' class="form-control" id="floatingInput" placeholder="name" style="background-color: rgba(0, 0, 0, 0.5);" name='name'>
-                            <label for="floatingInput">Name</label>
-                        </div>
-                        <div class="form-floating mb-3 " >
-                            <input type="text" value='<?= $user['phone']?>'  class="form-control" id="floatingInput" placeholder="phone" style="background-color: rgba(0, 0, 0, 0.5);" name='phone'>
-                            <label for="floatingInput">Phone</label>
-                        </div>
-                        <div class="form-floating mb-3 " >
-                            <input type="email" value='<?= $user['email']?>'  class="form-control" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.5);" name='email'>
-                            <label for="floatingInput">Email address</label>
-                        </div>
-                        <div class="form-floating mb-4">
-                            <input type="text" value='<?= $user['password']?>'  class="form-control" id="floatingPassword" placeholder="Password" style="background-color: rgba(0, 0, 0, 0.5);" name='password'> 
-                            <label for="floatingPassword">Password</label>
-                        </div>
-                        <div class="form-floating mb-4">
-                            <input type="text" value="<?= $user['gender'] ?>" class="form-control" id="floatingPassword" placeholder="gender" style="background-color: rgba(0, 0, 0, 0.5);" name="gender">
-                            <label for="floatingPassword">Gender</label>
-                        </div>                       
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Update</button>                       
+                            <input type="name" class="form-control bd-primary form-control-sm text-info" value='<?= $user['name']?>' id="floatingInput" placeholder="Name" style="background-color: rgba(0,0,0,0.3);" name='name'>
+                            <label for="floatingInput" class="text-info">Name</label>
+                        </div>  
+                        <div class="form-floating mb-2 border-info rounded">
+                            <input type="name" class="form-control bd-primary form-control-sm text-info" value='<?= $user['phone']?>' id="floatingInput" placeholder="Name" style="background-color: rgba(0,0,0,0.3);" name='phone'>
+                            <label for="floatingInput" class="text-info">Phone</label>
+                        </div>  
+                        <div class="form-floating mb-2 border-info rounded">
+                            <input type="name" class="form-control bd-primary form-control-sm text-info" value='<?= $user['email']?>' id="floatingInput" placeholder="Name" style="background-color: rgba(0,0,0,0.3);" name='email'>
+                            <label for="floatingInput" class="text-info">Email</label>
+                        </div>  
+                        <div class="form-floating mb-2 border-info rounded">
+                            <small class="form-text text-danger">
+                                <?php if($input){echo $strongpassword['password'];} ?>
+                            </small>
+                            <input type="name" class="form-control bd-primary form-control-sm text-info" value='<?= $user['password']?>' id="floatingInput" placeholder="Name" style="background-color: rgba(0,0,0,0.3);<?php if($input){if(strlen($strongpassword['password'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='password' value='<?php if($input){echo $_POST['password'];} ?>'>
+                            <label for="floatingInput" class="text-info" <?php if($input){if(strlen($strongpassword['password'])>0){echo 'hidden'; } }?>>Password</label>
+                        </div>     
+                        <button type="submit" class="btn py-2 w-100 mb-3 border-info" style="background-color: rgba(0, 0, 0, 0.5); color: orange;">Update</button>
                     </form>
+
                     <?php endforeach ?>
                 </div>
             </div>

@@ -131,3 +131,14 @@ function requireInformation(string $name, string $email, string $password, strin
 
         return $applys;
     }
+
+function strongPassword(string $password){
+    $passwords = [
+        "password" => ""
+    ];
+    if (!preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{5,7}$/', $password) && $password !='') {
+        $passwords['password'] = 'Password must contain at least one letter, one digit, one special character, and be 5 to 7 characters long.';
+    }
+
+    return $passwords;
+}
