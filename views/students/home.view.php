@@ -33,42 +33,33 @@
           </a>
 		
           <ul class="dropdown-menu z-index-unset" aria-labelledby="categoryMenu">
-			
+				<?php 
+					require 'database/database.php';
+					require 'models/category.model.php';
+					$categories = getCategories();
+					
+					foreach ($categories as $category):	
+				?>		
             <!-- Dropdown submenu -->
             <li class="dropdown-submenu dropend">
-			<?php 
-
-				require 'database/database.php';
-				require 'models/category.model.php';
-				$categories = getCategories();
-				
-				foreach ($categories as $category):
-				
-			?>
-              <a class="dropdown-item dropdown-toggle" href="#"><?=$category['title']?></a>
-			  <?php endforeach ?>
-              <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-                <!-- dropdown submenu open right -->
-                <li class="dropdown-submenu dropend z-index-unset">
-                  <a class="dropdown-item dropdown-toggle" href="#">Web development</a>
-                  <ul class="dropdown-menu" data-bs-popper="none">
-                    <li> <a class="dropdown-item" href="#">Css</a> </li>
-                    <li> <a class="dropdown-item" href="#">Java script</a> </li>
-                    <li> <a class="dropdown-item" href="#">Angular</a> </li>
-                    <li> <a class="dropdown-item" href="#">Php</a> </li>
-                    <li> <a class="dropdown-item" href="#">HTML</a> </li>
-                    <li> <a class="dropdown-item" href="#">React</a> </li>
-                  </ul>
-                </li>
-                <li> <a class="dropdown-item" href="#">Data science</a> </li>
-                <li> <a class="dropdown-item" href="#">Mobile development</a> </li>
-                <li> <a class="dropdown-item" href="#">Programing language</a> </li>
-                <li> <a class="dropdown-item" href="#">Software testing</a> </li>
-                <li> <a class="dropdown-item" href="#">Software engineering</a> </li>
-                <li> <a class="dropdown-item" href="#">Software development tools</a> </li>
-              </ul>
+				<form action="/course" method='post'>
+					<input type="text" name='id' value='<?=$category['category_id']?>' hidden>
+					<input type="text" name='email' value='<?= $_POST['email']?>' hidden>
+						
+					<button class='btn bd-0'><img class="rounded-circle me-lg-2" src="uploading/<?=$category['image']?>" alt="" style="width: 30px; height: 30px;"><?=$category['title']?></button>
+				</form>
+				<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
+	
+					<?php 
+					$courses= getCoursesOnCategory($category['category_id']);
+					foreach ($courses as $course):
+					?>
+					<li><a class="dropdown-item" href="#"><?=$course['title']?></a></li>
+					<?php endforeach ?>
+				</ul>
             </li>
-            <li> <a class="dropdown-item bg-primary text-primary bg-opacity-10 rounded-2 mb-0" href="#">View all categories</a></li>
+			<?php endforeach ?>
+            <li><a class="dropdown-item bg-primary text-primary bg-opacity-10 rounded-2 mb-0" href="#categories_blog">View all categories</a></li>
           </ul>
         </li>
       </ul>
@@ -220,8 +211,13 @@ Video END -->
 
 <!-- =======================
 Category START -->
-<section>
+<section id='categories_blog'>
 	<div class="container">
+		<div class="row mb-4">
+			<div class="col-lg-8 text-center mx-auto">
+				<p class="mb-0">All the Categories </p>
+			</div>
+		</div>
 		<div class="row g-4">
 		<?php 
 
@@ -234,14 +230,15 @@ Category START -->
 			<div class="col-sm-6 col-lg-4 col-xl-3">
 				<div class="card card-body shadow rounded-3">
 					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
+						<img class="rounded-circle me-lg-2" src="uploading/<?=$cate['image']?>" alt="" style="width: 70px; height: 70px;">
+
 						<div class="ms-3">
 							<form action="/course" method="post">
 								<button type='sumit' class="btn btn-outline-none">
 									<input type="text" name='email' value='<?=$user['email']?>' hidden>
+									<input type="text" name='id' value='<?=$cate['category_id']?>' hidden>
 									<h5 class="mb-0"><a class="stretched-link"><?=$cate['title']?></a></h5>
-									<span>89 Courses</span>
+									<span><?=getNumberOfCourseInCategory($cate['category_id'])?> Courses</span>
 								</button>
 							</form>
 						</div>
@@ -250,158 +247,6 @@ Category START -->
 			</div>
 			<?php endforeach ?>
 			<!-- Category item -->
-
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
-						<div class="ms-3">
-							<form action="/course" method="post">
-								<button type='sumit' class="btn btn-outline-none">
-									<input type="text" name='email' value='<?=$user['email']?>' hidden>
-									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
-									<span>89 Courses</span>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
-						<div class="ms-3">
-							<form action="/course" method="post">
-								<button type='sumit' class="btn btn-outline-none">
-									<input type="text" name='email' value='<?=$user['email']?>' hidden>
-									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
-									<span>89 Courses</span>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
-						<div class="ms-3">
-							<form action="/course" method="post">
-								<button type='sumit' class="btn btn-outline-none">
-									<input type="text" name='email' value='<?=$user['email']?>' hidden>
-									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
-									<span>89 Courses</span>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
-						<div class="ms-3">
-							<form action="/course" method="post">
-								<button type='sumit' class="btn btn-outline-none">
-									<input type="text" name='email' value='<?=$user['email']?>' hidden>
-									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
-									<span>89 Courses</span>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-success bg-opacity-10 rounded-circle text-success"><i class="fas fa-laptop-code"></i></div>
-						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Development</a></h5>
-							<span>105 Courses</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-orange bg-opacity-10 rounded-circle text-orange"><i class="fas fa-crop-alt"></i></div>
-						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Design</a></h5>
-							<span>72 Courses</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-primary bg-opacity-10 rounded-circle text-primary"><i class="fas fa-business-time"></i></div>
-						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Business</a></h5>
-							<span>68 Courses</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-info bg-opacity-10 rounded-circle text-info"><i class="fas fa-music"></i></div>
-						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Music</a></h5>
-							<span>51 Courses</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-warning bg-opacity-15 rounded-circle text-warning"><i class="fas fa-palette"></i></div>
-						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Painting</a></h5>
-							<span>69 Courses</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </section>
 <!-- =======================
 Category END -->
