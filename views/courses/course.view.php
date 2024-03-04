@@ -1,16 +1,10 @@
 <?php 
 require "layouts/header.php";
+require 'models/category.model.php';
 ?>
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
-
-
-<!-- =======================
-
-
-
-Inner part START -->
 <!-- Payment Modal -->
 <div class="container mt-5">
      <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
@@ -38,6 +32,12 @@ Inner part START -->
 
 <!-- Confirmation Modal -->
 <div class="container mt-5">
+		<div class="row mb-4">
+			<div class="col-lg-8 text-center mx-auto">
+				<h2 class="fs-1">The Courses for <span class='text-orange'><?=getCategoryName($_POST['id'])['title']?>  </span><img class="rounded-circle me-lg-2" src="uploading/<?=getCategoryName($_POST['id'])['image']?>" alt="" style="width: 70px; height: 70px;"></h2>
+				<p class="mb-0">Information Technology Courses to expand your skills and boost your career & salary</p>
+			</div>
+		</div>
      <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
           <div class="modal-dialog">
                <div class="modal-content">
@@ -124,8 +124,7 @@ Inner part START -->
 		<!-- Instructor list START -->
 		<div class="row g-4 justify-content-center">
 		<?php 
-		require 'models/admin.model.php';
-		$get_courses = getCourses();?>
+		$get_courses = getCoursesOnCategory($_POST['id']);?>
 		<?php foreach($get_courses as  $course): ?>
 			<!-- Card item START -->
 			<div class="col-lg-10 col-xl-6">
