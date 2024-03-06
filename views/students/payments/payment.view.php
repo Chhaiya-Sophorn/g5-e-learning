@@ -18,7 +18,6 @@
 						<form action="controllers/payments/payment.controller.php" method='post'>
 							<input type="text" id="modalUser" value='' name='user_id' hidden>
 							<input type="text" id="modalCourse" value='' name='course_id' hidden>					
-							
 						</form>   
 					</div>
                     </div>
