@@ -163,8 +163,13 @@
                     </button> 
                   
                </form>
+               <form action="/courseEdit" method="post" >
+                    <input type="text" name='id' value='<?=$course['course_id']?>' hidden>
+                    <button class="btn btn-sm btn-success ml-3"  style="font-size: 10px">
+                        <i class="fas fa-edit">Edit</i> 
+                    </button>
+               </form>
 
-<<<<<<< HEAD
                          </td>
                     </tr>
                     <?php endforeach;?>
@@ -191,22 +196,3 @@
           
      })
 </script>
-=======
-               <form action="#" method="post" >
-                    <input type="text" name='id' value='<?=$course['course_id']?>' hidden>
-                    <button class="btn btn-sm btn-success ml-3"  style="font-size: 10px">
-                        <i class="fas fa-edit">Edit</i> 
-                    </button>
-               </form>
-            </td>
-        </tr>
-          <?php
-               endforeach;
-          ?>
-
-          </tbody>
-          <tbody>
-          </tbody>
-     </table>
-</div>
->>>>>>> develop
