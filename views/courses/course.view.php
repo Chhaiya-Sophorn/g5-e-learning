@@ -5,25 +5,24 @@ require 'models/category.model.php';
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
+
 <!-- Payment Modal -->
 <div class="container mt-5">
      <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
           <div class="modal-dialog">
                <div class="modal-content">
-                    <div class="modal-body">
-					<form action="#" method="post" enctype="multipart/form-data" class="border border-success p-4">
-						<div class="text-center"> 
-							<img src="studentprofile/download.png" alt="Profile Image" class="rounded-circle mb-3" style="width: 130px; height: 130px; object-fit: cover;">
-						</div>
-						<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
-						<h5 class="text-center">Course payment</h5>
-						<div class="text-center">Course:<h5 class="text-info">HTML</h5></div>
-						<div class="text-center">Price:<h5 class="text-success">9000$</h5></div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal">Pay</button>
-						</div>
-					</form>
+                    <div class="modal-body border border-success p-4 m-4">
+					<div class="text-center"> 
+						<img src="studentprofile/download.png" alt="Profile Image" class="rounded-circle mb-3" style="width: 130px; height: 130px; object-fit: cover;">
+					</div>
+					<h5 class="text-center">Course payment</h5>
+					<div class="text-center">Course:<h5 class="text-info" id="modalTitle"></h5></div>
+					<div class="text-center">Price:<h5 class="text-success" id="modalPrice"></h5></div>
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+						<button id='pay' class="btn btn-primary success-popup">Pay</button>
+					</div>
                     </div>
                </div>
           </div>
@@ -32,44 +31,39 @@ require 'models/category.model.php';
 
 <!-- Confirmation Modal -->
 <div class="container mt-5">
-		<div class="row mb-4">
-			<div class="col-lg-8 text-center mx-auto">
-				<h2 class="fs-1">The Courses for <span class='text-orange'><?=getCategoryName($_POST['id'])['title']?>  </span><img class="rounded-circle me-lg-2" src="uploading/<?=getCategoryName($_POST['id'])['image']?>" alt="" style="width: 70px; height: 70px;"></h2>
-				<p class="mb-0">Information Technology Courses to expand your skills and boost your career & salary</p>
-			</div>
-		</div>
      <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
           <div class="modal-dialog">
                <div class="modal-content">
                     <div class="modal-body">
-					<form action="#" method="post" enctype="multipart/form-data" class="border border-success p-4">
 						<div class="text-center"> 
 						<img src="studentprofile/check.png" alt="Profile Image" class="rounded-circle mb-3" style="width: 130px; height: 130px; object-fit: cover;">
 							<box-icon name='check-circle' animation='tada' color='rgba(18,154,232,0.55)'></box-icon>	
 						</div>
-						<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
 						<h5 class="text-center">Your payment success!</h5>
 						<p class="text-center">Injoy your learning </p>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-							<button type="submit" class="btn btn-primary">Join course</button>
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+							<form action="/blog_learning" method='post'>
+								<input type="text" id="modaluser" value='' name='email' hidden>
+								<input type="text" id="modalcourse" value='' name='course_id' hidden>
+								<input type="text" id="modalcategory" value='' name='id' hidden>
+								<button type="sumite" class="btn btn-primary" data-bs-toggle="modal">Join course</button>
+							</form>	
 						</div>
-					</form>
+						
                     </div>
                </div>
           </div>
      </div>
 </div>
 
-
-
 <!-- =======================
 Inner part START -->
 <section class="pt-4">
 	<div class="container">
 	<form class="container-fluid justify-content-start" action='/student' method='post'>
-		<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
-		<button type="summit" class="btn btn-primary btn-sm">Back</button>
+		<input type="text" name='email' value='<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>' hidden>
+		<button type="submit" class="btn btn-primary btn-sm">Back</button>
   	</form>
 		<!-- Search option START -->
 		<div class="row mb-4 align-items-center">
@@ -124,8 +118,8 @@ Inner part START -->
 		<!-- Instructor list START -->
 		<div class="row g-4 justify-content-center">
 		<?php 
-		$get_courses = getCoursesOnCategory($_POST['id']);?>
-		<?php foreach($get_courses as  $course): ?>
+		$get_courses = isset($_POST['id']) ? getCoursesOnCategory($_POST['id']) : array();
+		foreach($get_courses as  $course): ?>
 			<!-- Card item START -->
 			<div class="col-lg-10 col-xl-6">
 				<div class="card shadow p-2">
@@ -133,7 +127,7 @@ Inner part START -->
 						<!-- Image -->
 
 						<div class="col-md-4" style="background-image: url('uploading/<?=$course['image_courses']?>'); background-size: cover;">
-    							<!-- Your content goes here -->
+    							 <!-- Your content goes here -->
 						</div>
 						<!-- Card body -->
 						<div class="col-md-8">
@@ -148,7 +142,7 @@ Inner part START -->
 									
 								</div>
 								<!-- Content -->
-								<p class="text-truncate-2 mb-3"><?=  $course['description'] ?></p>
+								<p class="text-truncate-2 mb-3"><?=$course['description'] ?></p>
 								<!-- Info -->
 
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
@@ -158,7 +152,7 @@ Inner part START -->
 										<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
 										<span class="h6 fw-light mb-0 ms-2">9.1k</span>
 									</li>
-									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">Join coures</button>
+									<button class="icon-md bg-white rounded-circle border border-orange text-orange show-popup" data-bs-toggle="modal" data-bs-target="#paymentModal" data-user='<?=$_POST['email']?>' data-course='<?=$course['course_id']?>' data-title="<?=$course['title'] ?>" data-id="<?=$_POST['id'] ?>"  data-price="<?=$course['price'] ?>"><i class="fas fa-shopping-cart text-danger"></i></button>
 								</div>
 							</div>
 						</div>
@@ -167,7 +161,6 @@ Inner part START -->
 			</div>
 			<!-- Card item END -->
 			<?php endforeach; ?>
-			
 		<!-- Instructor list END -->
 
 		<!-- Pagination START -->
@@ -195,10 +188,7 @@ Action box START -->
 		<!-- SVG -->
 		<figure class="position-absolute top-50 start-50 translate-middle ms-2">
 			<svg>
-				<path d="m496 22.999c0 10.493-8.506 18.999-18.999 18.999s-19-8.506-19-18.999 8.507-18.999 19-18.999 18.999 8.506 18.999 18.999z" fill="#fff" fill-rule="evenodd" opacity=".502"></path>
-				<path d="m775 102.5c0 5.799-4.701 10.5-10.5 10.5-5.798 0-10.499-4.701-10.499-10.5 0-5.798 4.701-10.499 10.499-10.499 5.799 0 10.5 4.701 10.5 10.499z" fill="#fff" fill-rule="evenodd" opacity=".102"></path>
-				<path d="m192 102c0 6.626-5.373 11.999-12 11.999s-11.999-5.373-11.999-11.999c0-6.628 5.372-12 11.999-12s12 5.372 12 12z" fill="#fff" fill-rule="evenodd" opacity=".2"></path>
-				<path d="m20.499 10.25c0 5.66-4.589 10.249-10.25 10.249-5.66 0-10.249-4.589-10.249-10.249-0-5.661 4.589-10.25 10.249-10.25 5.661-0 10.25 4.589 10.25 10.25z" fill="#fff" fill-rule="evenodd" opacity=".2"></path>
+				<path d="M140.520,70.258 C140.520,109.064 109.062,140.519 70.258,140.519 C31.454,140.519 -0.004,109.064 -0.004,70.258 C-0.004,31.455 31.454,-0.003 70.258,-0.003 C109.062,-0.003 140.520,31.455 140.520,70.258 Z"></path>
 			</svg>
 		</figure>
 		
@@ -228,13 +218,44 @@ Action box START -->
 		</div>
 	</div>
 </section>
+
 <!-- =======================
 Action box END -->
 
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
 
+<!-- JavaScript Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  $('.show-popup').click(function() {
+    var title = $(this).data('title');
+    var price = $(this).data('price');
+    var user = $(this).data('user'); // Change to data-user
+    var course = $(this).data('course'); // Change to data-course
+    var category = $(this).data('id');
+    
+    $('#modalTitle').text(title);
+    $('#modalPrice').text(price);
+    $('#modalUser').val(user);
+    $('#modalCourse').val(course);
+    
+    $('#paymentModal').modal('show'); // Change to #paymentModal
+
+    // Function to handle the button click on the initial modal
+    $('#pay').click(function() {
+      // Show the second modal
+      $('#paymentModal').modal('hide'); // Hide the initial modal
+      $('#confirmationModal').modal('show');
+      $('#modaluser').val(user);
+      $('#modalcourse').val(course);
+	  $('#modalcategory').val(category);
+    });
+  });
+});
+</script>
 
 <?php require "layouts/footer.php";?>
-
 <!-- Back to up -->
