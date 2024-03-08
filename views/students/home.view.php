@@ -2,7 +2,7 @@
 <?php 
 	require 'layouts/header.php' ;
     require 'database/database.php';
-    // require 'models/user.model.php';
+    require 'views/students/payments/payment.view.php';
 ?>
 
 <!-- Header START -->
@@ -36,16 +36,14 @@
 				<?php 
 					require 'database/database.php';
 					require 'models/category.model.php';
-					$categories = getCategories();
-					
+					$categories = getCategories();	
 					foreach ($categories as $category):	
 				?>		
             <!-- Dropdown submenu -->
             <li class="dropdown-submenu dropend">
 				<form action="/course" method='post'>
 					<input type="text" name='id' value='<?=$category['category_id']?>' hidden>
-					<input type="text" name='email' value='<?= $_POST['email']?>' hidden>
-						
+					<input type="text" name='email' value='<?= $_POST['email']?>' hidden>	
 					<button class='btn bd-0'><img class="rounded-circle me-lg-2" src="uploading/<?=$category['image']?>" alt="" style="width: 30px; height: 30px;"><?=$category['title']?></button>
 				</form>
 				<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
@@ -231,7 +229,6 @@ Category START -->
 				<div class="card card-body shadow rounded-3">
 					<div class="d-flex align-items-center">
 						<img class="rounded-circle me-lg-2" src="uploading/<?=$cate['image']?>" alt="" style="width: 70px; height: 70px;">
-
 						<div class="ms-3">
 							<form action="/course" method="post">
 								<button type='sumit' class="btn btn-outline-none">
@@ -283,7 +280,7 @@ Featured course START -->
 						<!-- Hover element -->
 						<div class="card-img-overlay">
 							<div class="card-element-hover d-flex justify-content-end">
-      							<button class="icon-md bg-white rounded-circle border border-orange text-orange show-popup" data-user='<?=$user['user_id']?>' data-course='<?=$course['course_id']?>' data-title="<?=$course['title'] ?>" data-price="<?=$course['price'] ?>"><i class="fas fa-shopping-cart text-danger"></i></button>
+      							<button class="icon-md bg-white rounded-circle border border-orange text-orange show-popup" data-user='<?=$user['email']?>' data-course='<?=$course['course_id']?>' data-title="<?=$course['title'] ?>" data-price="<?=$course['price'] ?>"><i class="fas fa-shopping-cart text-danger"></i></button>
 							</div>
 						</div>
 					</div>
