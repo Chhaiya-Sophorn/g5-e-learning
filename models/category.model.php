@@ -83,3 +83,4 @@ function getCoursesOnCategory(int $id){
     $statement->execute([':id' => $id]);
     return $statement->fetchAll();
 }
+
