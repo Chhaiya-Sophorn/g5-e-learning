@@ -1116,7 +1116,7 @@ Action box START -->
 				</div>
 			</div>
 		</div> <!-- Row END -->
-	</div>i
+	</div>
 </section>
 <!-- =======================
 Action box END -->
