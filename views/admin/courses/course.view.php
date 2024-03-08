@@ -31,14 +31,15 @@
 
                <!-- input search -->
                <div class="d-flex align-items-center">
-                    <!-- Wrap label and input in a flex container -->
-                    <label for="search" class="me-4">Search:</label> <!-- Add margin to the label -->
-                    <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" type="search"
-                         placeholder="Search" aria-label="Search">
+                    <!-- <form action="controllers/admin/courses/courseSearching.controller.php" method="post" > -->
+                  <label for="search" class="me-4">Search:</label> <!-- Add margin to the label -->
+                    <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" id="searchCourse"  name="searchCourse" type="text"
+                         placeholder="Search" aria-label="Search" >
+                         <!-- </form> -->
                </div>
 
                <!-- Button trigger modal -->
-               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+               <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                          class="fa fa-plus-square"></i> Create Course</button>
 
           </div>
@@ -77,10 +78,10 @@
                                    </div>
 
                                    <div class="mb-3">
-                                        <!-- call database -->
                                         <label for="message-text" class="col-form-label">Trainer :</label>
                                         <select class="form-select bg-white" id="sell1" name="user_id"
-                                             aria-label="Default select example">
+                                        aria-label="Default select example">
+                                        <!-- call database -->
                                              <?php 
                                         require 'database/database.php';
                                         require 'models/admin.model.php';
@@ -119,7 +120,7 @@
      <div class="container mt-4">
           <table class="table text-start align-middle table-bordered table-dark table-hover mb-0 mt-3">
                <thead class="bg-primary text-white">
-                    <tr>
+                    <tr >
                          <th class="text-center">ID</th>
                          <th class="text-center">Title </th>
                          <th class="text-center">Description</th>
@@ -136,11 +137,11 @@
                <tbody>
 
                     <?php
-          $getCourses = getCourses();
-          foreach ($getCourses as $key => $course) :?>
+                         $getCourses = getCourses();
+                         foreach ($getCourses as $key => $course) :?>
 
                     <tr>
-                         <td scope="row" class="text-center "><?= $key + 1?></td>
+                         <td scope="row" class="text-center " ><?= $key + 1?></td>
                          <td class="text-center"><?= $course['title'] ?></td>
                          <td class="text-center"><?= $course["description"] ?></td>
                          <td class="text-center"><?=getCategoryName($course['category_id'])['title']?></td>
@@ -162,21 +163,36 @@
                     </button> 
                   
                </form>
-
-               <form action="#" method="post" >
+               <form action="/courseEdit" method="post" >
                     <input type="text" name='id' value='<?=$course['course_id']?>' hidden>
                     <button class="btn btn-sm btn-success ml-3"  style="font-size: 10px">
                         <i class="fas fa-edit">Edit</i> 
                     </button>
                </form>
-            </td>
-        </tr>
-          <?php
-               endforeach;
-          ?>
 
-          </tbody>
-          <tbody>
-          </tbody>
-     </table>
-</div>
+                         </td>
+                    </tr>
+                    <?php endforeach;?>
+               </tbody>
+               <tbody>
+               </tbody>
+          </table>
+     </div>
+     
+     <!-- Javascrip for Searching  -->
+<script>
+     const searchCourses=document.querySelector("#searchCourse")
+     const tbodyChild=document.querySelector("tbody");
+     searchCourses.addEventListener("keyup",()=>{
+          const children=tbodyChild.children
+          console.log(searchCourses.value);
+          for(let i=0;i<children.length;i++){
+               if(children[i].children[1].textContent.includes(searchCourses.value)){
+                    children[i].style.display="table-row"
+               }else{
+                    children[i].style.display="none"
+               }
+          }
+          
+     })
+</script>

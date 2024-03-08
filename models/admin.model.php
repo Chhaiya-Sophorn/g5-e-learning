@@ -98,6 +98,25 @@ function getIdTrainer(string $name){
     return $statement-> fetch();
 }
 
+function searchCourse(string $title) {
+    global $connection;
+
+    // Use '%' around the bind value for a partial match in the LIKE clause
+    $statement = $connection->prepare("select * from courses where title like '%$title%' or title like '%$title%'");
+    $statement->execute([':title' => '%' . $title . '%']);
+
+    return $statement->fetchAll(); 
+
+    // $stmt = $con->prepare("");
+// $stmt->execute();
+// $CoursDdetails = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+
+
+
+
 
 // function getTrainerNames(int $id){
 //     global $connection;
