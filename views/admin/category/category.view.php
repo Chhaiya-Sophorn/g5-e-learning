@@ -28,7 +28,7 @@ require "models/admin.model.php";
         <!-- input search -->
         <div class="d-flex align-items-center"> <!-- Wrap label and input in a flex container -->
             <label for="search" class="me-4">Search:</label> <!-- Add margin to the label -->
-            <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" type="search" placeholder="Search" id="searchCategory" aria-label="Search">
         </div>
 
         <!-- Button trigger modal -->
@@ -62,8 +62,8 @@ require "models/admin.model.php";
                         </div>
                     </td>
                     <td>
-                        <a class="btn btn-sm btn-primary" href="" data-bs-toggle="modal" data-bs-target="#deleteCategory<?= $category['category_id'] ?>"><i class="fas fa-trash"></i> Delete</a>
                         <button type='button' class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#edit-modal<?= $category['category_id'] ?>"><i class="fas fa-edit"></i>Edit</button>
+                        <a class="btn btn-sm btn-primary" href="" data-bs-toggle="modal" data-bs-target="#deleteCategory<?= $category['category_id'] ?>"><i class="fas fa-trash"></i> Delete</a>
                     </td>
                 </tr>
 
@@ -161,3 +161,24 @@ require "models/admin.model.php";
         </div>
     </div>
 </div>
+
+<!--Search category in list by JavaScript-->
+<script>
+     const searchCategories = document.querySelector("#searchCategory");
+     const tbodyChild = document.querySelector("tbody");
+
+     searchCategories.addEventListener("keyup", () => {
+          const children = tbodyChild.children;
+          const searchCate = searchCategories.value.toLowerCase(); // Convert search input to lowercase
+
+          for (let i = 0; i < children.length; i++) {
+               const contentToSearch = children[i].children[1].textContent.toLowerCase(); // Convert content to lowercase
+               
+               if (contentToSearch.includes(searchCate)) {
+                    children[i].style.display = "table-row";
+               } else {
+                    children[i].style.display = "none";
+               }
+          }
+     });
+</script>
