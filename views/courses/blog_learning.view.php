@@ -5,9 +5,45 @@ require 'models/admin.model.php';
 ?>
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
+<!-- Payment Modal -->
+<div class="container mt-5">
+     <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+               <div class="modal-content">
+                    <div class="modal-body border border-success p-4 m-4">
+					<div class="text-center"> 
+						<img src="assets/images/quiz.png" alt="Profile Image" class="mb-3" style="width: 180px; height: 70px; object-fit: cover;">
+					</div>	
+					<span class='d-flex justify-content-center'>Screenshort your result and sumit</span>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link"><button id='pay' class="btn btn-primary success-popup">Start Quiz</button></a>
+					</div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+<!-- ------------------------------ -->
+<div class="container mt-1">
+     <div class="modal fade" id="lesson" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg"> <!-- Changed modal-dialog class to modal-lg for a wider modal -->
+               <div class="modal-content">
+                    <div class="modal-body border border-success p-2 m-4">
+						<iframe width="730" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">"></iframe>	
+						<h5 class='m-1'>Lesson1: What is the love ?</h5>		
+						<span class='d-flex justify-content-center'>I love this lesson so much</span>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+						</div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
 
 <div class="container mt-5">
-	<form class="container-fluid justify-content-start" action='/course' method='post'>
+	<form class="container-fluid justify-content-start" action='<?php if(isset($_POST['home'])){echo '/student';}else{echo '/course';}; ?>' method='post'>
 		<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
 		<input type="text" name='id' value='<?=$_POST['id']?>' hidden>
 		<button type="summit" class="btn btn-primary btn-sm">Back</button>
@@ -19,7 +55,6 @@ require 'models/admin.model.php';
 			</div>
 		</div>
 </div>
-
 <section class="py-2">  
      <div class="container mt-4"> <!-- Reduced margin-top -->
           <div class="col w-100">
@@ -30,7 +65,9 @@ require 'models/admin.model.php';
                               <div class="col-md-4">
                                    <img src="assets/images/instructor/06.jpg" class="rounded-3" alt="...">
                               </div>
-
+								<?php 
+								
+								?>
                               <!-- Card body -->
                               <div class="col-md-8">
                                    <div class="card-body">
@@ -165,7 +202,7 @@ Live courses START -->
 												</ul>
 											</div>
 											<!-- Button -->
-											<button class="btn btn-sm btn-success mb-0"><a href="https://www.youtube.com/embed/tXHviS-4ygo" class="text-white">Let's study</a></button>
+											<button class="btn btn-sm btn-success mb-0" class="text-white" data-bs-toggle="modal" data-bs-target="#lesson">Let's study</button>
 										</div>
 									</div>
 								</div>
@@ -295,6 +332,17 @@ Action box END -->
 			<div class="col-lg-8 text-center mx-auto">
 				<h2 class="fs-1">Test your understanding</h2>
 				<p class="mb-0">Information Technology Courses to expand your skills and boost your career & salary</p>
+				<span class='text-orange'>Screenshort your result and upload here</span>
+				<div class='d-flex gap-2'>	
+					<input type="file" name='image' class="form-control" aria-label="file example" style="background-color: rgba(0, 0, 0, 0.1);">
+						<select class="form-select form-select-lg text-center" aria-label=".form-select-lg example" style="width: 150px; font-size: smaller;">
+							<option selected>Select the lesson</option>
+							<option value="1">One</option>
+							<option value="2">Two</option>
+							<option value="3">Three</option>
+						</select>
+					<button type="sumite" class="btn btn-orange d-flex justify-content-center " data-bs-dismiss="modal">sumite</button>	
+				</div>	
 			</div>
 		</div>	
 	<div class="container">
@@ -305,25 +353,10 @@ Action box END -->
 					<div class="d-flex align-items-center">
 						<img class="rounded-circle me-lg-2" src="assets/images/test.png" alt="" style="width: 70px; height: 70px;">
 						<div class="ms-3">
-								<button type='sumit' class="btn btn-outline-none">
+								<button type='sumit' class="btn btn-outline-none show-popup" data-bs-toggle="modal" data-bs-target="#paymentModal">
 									<input type="text" name='email' value='' hidden>
 									<input type="text" name='id' value='' hidden>
-									<h5 class="mb-0"><a href="https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link">Lesson1</a></h5>
-									<span>Injoy your testing</span>
-								</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<img class="rounded-circle me-lg-2" src="assets/images/test.png" alt="" style="width: 70px; height: 70px;">
-						<div class="ms-3">
-								<button type='sumit' class="btn btn-outline-none">
-									<input type="text" name='email' value='' hidden>
-									<input type="text" name='id' value='' hidden>
-									<h5 class="mb-0"><a href="https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link">Lesson1</a></h5>
+									<h5 class="mb-0">Lesson1</h5>
 									<span>Courses</span>
 								</button>
 						</div>
@@ -360,22 +393,6 @@ Action box END -->
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<img class="rounded-circle me-lg-2" src="assets/images/test.png" alt="" style="width: 70px; height: 70px;">
-						<div class="ms-3">
-								<button type='sumit' class="btn btn-outline-none">
-									<input type="text" name='email' value='' hidden>
-									<input type="text" name='id' value='' hidden>
-									<h5 class="mb-0"><a href="https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link">Lesson1</a></h5>
-									<span>Courses</span>
-								</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Category item -->
 		</div>
 </section>
 
