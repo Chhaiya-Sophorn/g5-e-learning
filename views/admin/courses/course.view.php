@@ -150,51 +150,21 @@
                          <td class="text-center ">
                               <!-- <img class="rounded-circle" src="assets/images/user.jpg" alt="" style="width: 40px; height: 40px;"> 
                -->
-                              <div class="position-relative">
-                                   <img class="rounded-circle" src="uploading/<?=$course['image_courses']?>" alt=""
-                                        style="width: 40px; height: 40px;">
-                              </div>
-                         </td>
-                         <td class="text-center"><?=$course['price']?></td>
-                         <td class="text-center d-sm-flex gap-3 align-items-center p-3 ">
-                              <form id="delete-form" style="display: inline;">
-                                   <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#delete-modal<?= $course['course_id'] ?>"><i
-                                             class="fas fa-trash"></i>Delete</button>
-                                   <button type="submit" form="delete-form-<?= $course['course_id'] ?>"
-                                        class="btn btn-primary" style="display: none;">Confirm Delete</button>
-                              </form>
-                              <!-- Delete Modal -->
-                              <div class="modal fade  " id="delete-modal<?= $course['course_id'] ?>" role="dialog">
-                                   <div class=" p-2"> 
-                                        <div class="modal-dialog modal-content p-2">
-                               
-                                             <div class="modal-body p-3">
-                                                  <p class="text-dark">Are you sure you want to delete this Course ?</p>
-                                             </div>
-                                             <div class="modal-footer w-100  ">
-                                                  <a href="/viewCourse" class="btn btn-sm  btn-dark " >Cancel</a>
-                                                  <form action="controllers/admin/courses/course_delete.controller.php?id<?= $course['course_id'] ?>"
-                                                       method="post">
-                                                       <input type="text" hidden value="<?=$course['course_id']?>"
-                                                            name='course_id'>
-                                                       <button type='submit' class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash">Delete</i>
-                                                       </button>
-                                                  </form>
-                                             </div>
-                                        
-                                        </div>
-                                   </div>
-                                   
-                              </div>
-                              <form action="/courseEdit" method="post">
-                                   <input type="text" name='id' value='<?=$course['course_id']?>' hidden>
-                                   <button class="btn btn-sm btn-success""  >
-                                        <i class=" fas fa-edit">Edit</i>
-                                   </button>
-                              </form>
+               <div class="position-relative">
+                    <img class="rounded-circle" src="uploading/<?=$course['image_courses']?>" alt="" style="width: 40px; height: 40px;">
+               </div>
+          </td>
+            <td class="text-center"><?=$course['price']?></td>
+            <td class="text-center d-sm-flex gap-3 align-items-center p-3">
+               <form action="controllers/admin/courses/course_delete.controller.php" method="post" >
+                    <input type="text" hidden value="<?=$course['course_id']?>" name='course_id'>
+                    <button type='sumit'class="btn btn-sm btn-danger" style="font-size: 10px">
+                         <i class="fas fa-trash">Delete</i> 
+                    </button> 
+                  
+               </form>
 
+<<<<<<< HEAD
                          </td>
                     </tr>
                     <?php endforeach;?>
@@ -221,3 +191,22 @@
           
      })
 </script>
+=======
+               <form action="#" method="post" >
+                    <input type="text" name='id' value='<?=$course['course_id']?>' hidden>
+                    <button class="btn btn-sm btn-success ml-3"  style="font-size: 10px">
+                        <i class="fas fa-edit">Edit</i> 
+                    </button>
+               </form>
+            </td>
+        </tr>
+          <?php
+               endforeach;
+          ?>
+
+          </tbody>
+          <tbody>
+          </tbody>
+     </table>
+</div>
+>>>>>>> develop
