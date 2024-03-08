@@ -3,6 +3,8 @@ require_once 'database/database.php';
 require_once 'models/user.model.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //     $id = $_POST[2];
+    // $ids = $_POST[3];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $user = accountExist($email);

@@ -2,9 +2,24 @@
 
 function accountExist(string $email): array{
     global $connection;
-    $statement =  $connection->prepare('SELECT *FROM users WHERE email = :email');
+    $statement =  $connection->prepare('SELECT * FROM users WHERE email = :email');
     $statement->execute([
         ':email' => $email
+    ]);
+
+    //jenh 0 ber ot mean jenh 1
+    if($statement->rowCount()>0){
+        return $statement->fetch();
+    }else{
+        return [];
+    }
+}
+
+function accountTrainer(string $email): array{
+    global $connection;
+    $statement =  $connection->prepare('SELECT * FROM users WHERE email = :email and roles_id = 2');
+    $statement->execute([
+        ':email' => $email,
     ]);
 
     //jenh 0 ber ot mean jenh 1
@@ -51,5 +66,14 @@ function getTrainer () :array {
 //     return $statement-> fetch();
 // }
 
+function forgetPassword (string $email) {
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM users WHERE email = :email');
+    $statement->execute([
+        ':email' => $email
+    ]);
+
+    return $statement->fetch();
+}
 
 

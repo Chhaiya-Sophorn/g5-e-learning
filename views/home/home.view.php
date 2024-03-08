@@ -1,4 +1,15 @@
 <!-- =======================
+
+<?php
+session_start();
+// Check if the user is not logged in, redirect to the login page
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
+?>
+
 Main Banner START -->
 <section class="bg-light">
 	<div class="container p-6 mt-0 mt-lg-5">
