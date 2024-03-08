@@ -35,14 +35,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <!-- start_top -->
   <div class="top-form border " >
-    <div class="gd-profile text-center p-2 d-flex" style="background-color: rgba(0, 0, 255, 0.3);">
-      <div class="p-1 bg-info text-dark rounded-circle ml-3" style="width: 160px; height: 160px;">
-        <img src="../../uploading/<?= $student['profile_image']?>" alt="Profile Image" class="rounded-circle mb-2" style="width: 150px; height: 150px;">
-      </div>
+    <div class="gd-profile text-center p-2 d-flex" style="background-color: rgba(0, 0, 255, 0.3); height: 150px;">
+    
     </div>
-    <div class="form-student p-2 ">
+    <div class="form-student p-3 ">
+      <img src="../../uploading/<?= $student['profile_image']?>" alt="Profile Image" class="rounded-circle mb-2" style="width: 150px; height: 150px;margin-top: -90px;">
+      <h3><?= $student['name']?></h3>
       <div class="d-flex align-items-center">
-         <h3><?= $student['name']?></h3>
         <form action="/edit" method='post'>
 			      <input type="hidden" name="id" value=<?=$student['user_id'] ?>>
             <button type='submit' class='btn border-0'>
