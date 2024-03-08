@@ -11,6 +11,9 @@ $routes = [
     '/create_student' => 'controllers/students/signup/create.user.controller.php',
     '/access' => 'controllers/students/signin/access.controller.php',
     '/course' => 'controllers/courses/course.controller.php',
+    '/trainerLogin' => 'controllers/trainer/trainerLogin.controller.php',
+    '/trainerAccess' => 'controllers/trainer/trainerLoginProcess.controller.php',
+    '/formChangeNumber' => 'controllers/students/forgetPassword/formChangePassword.controller.php',
 
     // '/trainer-review' => 'controllers/reviews/review.controller.php',
     // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',

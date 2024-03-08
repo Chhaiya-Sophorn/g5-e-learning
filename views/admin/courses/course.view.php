@@ -205,7 +205,7 @@
      </div>
      
      <!-- Javascrip for Searching  -->
-<script>
+<!-- <script>
      const searchCourses=document.querySelector("#searchCourse")
      const tbodyChild=document.querySelector("tbody");
      searchCourses.addEventListener("keyup",()=>{
@@ -220,4 +220,23 @@
           }
           
      })
+</script> -->
+<script>
+     const searchCourses = document.querySelector("#searchCourse");
+     const tbodyChild = document.querySelector("tbody");
+
+     searchCourses.addEventListener("keyup", () => {
+          const children = tbodyChild.children;
+          const searchTerm = searchCourses.value.toLowerCase(); // Convert search input to lowercase
+
+          for (let i = 0; i < children.length; i++) {
+               const contentToSearch = children[i].children[1].textContent.toLowerCase(); // Convert content to lowercase
+               
+               if (contentToSearch.includes(searchTerm)) {
+                    children[i].style.display = "table-row";
+               } else {
+                    children[i].style.display = "none";
+               }
+          }
+     });
 </script>
