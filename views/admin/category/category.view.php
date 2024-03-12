@@ -38,7 +38,7 @@ require "models/admin.model.php";
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal"><i class="fa fa-plus-square"></i> Create Category</button>
-        
+
     </div>
     <table class="table text-start align-middle table-bordered table-dark table-hover mb-0 mt-3">
         <thead>
