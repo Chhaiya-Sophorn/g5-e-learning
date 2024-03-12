@@ -1,35 +1,46 @@
 <?php
-require 'database/database.php';
-require 'models/admin.model.php';
+require '../../../database/database.php';
+require '../../../models/admin.model.php';
+require '../../../models/category.model.php';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
    $id = htmlspecialchars($_POST["course_id"]);
    $title = htmlspecialchars($_POST["title"]);
    $description = htmlspecialchars($_POST["description"]);
-   $category = htmlspecialchars($_POST["category_id"]);
-   $user_id = htmlspecialchars($_POST['user_id']);
+   $category = getIdCategory($_POST['category_id'])['category_id'];
+   $user_id = getIdTrainer($_POST['user_id'])['user_id'];
    $price = htmlspecialchars($_POST['price']);
    $image = $_POST['image'];
 
-   if (isset($_FILES['image']) && $_FILES['image']['name']) {
-      $image = $_FILES['image']['name'];
-      $image_tmp_name = $_FILES['image']['tmp_name'];
-      $image_folder = '../../../uploading' . $image; // Use correct file path
-      $image_size = $_FILES['image']['size'];
+      if ($image !='') {
+         $image_tmp_name = $image;
+         $image_folder = '../../../uploading' . $image; // Use correct file path
+         move_uploaded_file($image_tmp_name, $image_folder);
 
-      $isset = updateCourse( $id,  $title,  $description,  $user_id,  $category,  $price,  $image );
-
-   }else{
-      $isset = updateCourse( $id,  $title,  $description,  $user_id,  $category,  $price,  $image );
-   }
+         $isset = updateCourse( $id,  $title,  $description,  $user_id,  $category,  $price,  $image );
+      }else{
+         $isset = updateCourseNoImg( $id,  $title,  $description,  $user_id,  $category,  $price );
+      }
 
    if($isset){
       header('Location:/viewCourse');
-   }else{
-      echo "haha";
+   }
+   else{
+      header('Location:/viewCourse');
    }
 
-echo $image;
-      
+
 }
 
+// require '../../../database/database.php';
+// require '../../../models/category.model.php';
+
+// if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+//    $isset = updateCategory($_POST['title'],$_POST['description'] ,$_POST['id']) ;
+//    if($isset){
+//       header("location:/categories");
+//    }else{
+//       header("location:/categories");
+//    }
+// }

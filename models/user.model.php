@@ -56,8 +56,8 @@ function addTrainer(string $name, string $email, string $password, string $phone
     return $statement->rowCount() > 0;
 }
 
-function getTrainer()
-{
+
+function getTrainer () :array {
     global $connection;
     $statement =  $connection->prepare('SELECT *FROM users WHERE roles_id = 2');
     $statement->execute();
@@ -90,3 +90,10 @@ function updateTrainer(int $trainer_id, string $name, string $email, string $pas
 
     return $statement->rowCount() > 0;
 }
+// function getTrainerNames(string $name){
+//     global $connection;
+//     $statement = $connection->prepare("SELECT*FROM users WHERE  users = 'name'");
+//     $statement->execute([':id' => $name]);
+//     return $statement-> fetch();
+// }
+

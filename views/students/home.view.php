@@ -2,7 +2,7 @@
 <?php 
 	require 'layouts/header.php' ;
     require 'database/database.php';
-    // require 'models/user.model.php';
+    require 'views/students/payments/payment.view.php';
 ?>
 
 <!-- Header START -->
@@ -33,42 +33,31 @@
           </a>
 		
           <ul class="dropdown-menu z-index-unset" aria-labelledby="categoryMenu">
-			
+				<?php 
+					require 'database/database.php';
+					require 'models/category.model.php';
+					$categories = getCategories();	
+					foreach ($categories as $category):	
+				?>		
             <!-- Dropdown submenu -->
             <li class="dropdown-submenu dropend">
-			<?php 
-
-				require 'database/database.php';
-				require 'models/category.model.php';
-				$categories = getCategories();
-				
-				foreach ($categories as $category):
-				
-			?>
-              <a class="dropdown-item dropdown-toggle" href="#"><?=$category['title']?></a>
-			  <?php endforeach ?>
-              <ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-                <!-- dropdown submenu open right -->
-                <li class="dropdown-submenu dropend z-index-unset">
-                  <a class="dropdown-item dropdown-toggle" href="#">Web development</a>
-                  <ul class="dropdown-menu" data-bs-popper="none">
-                    <li> <a class="dropdown-item" href="#">Css</a> </li>
-                    <li> <a class="dropdown-item" href="#">Java script</a> </li>
-                    <li> <a class="dropdown-item" href="#">Angular</a> </li>
-                    <li> <a class="dropdown-item" href="#">Php</a> </li>
-                    <li> <a class="dropdown-item" href="#">HTML</a> </li>
-                    <li> <a class="dropdown-item" href="#">React</a> </li>
-                  </ul>
-                </li>
-                <li> <a class="dropdown-item" href="#">Data science</a> </li>
-                <li> <a class="dropdown-item" href="#">Mobile development</a> </li>
-                <li> <a class="dropdown-item" href="#">Programing language</a> </li>
-                <li> <a class="dropdown-item" href="#">Software testing</a> </li>
-                <li> <a class="dropdown-item" href="#">Software engineering</a> </li>
-                <li> <a class="dropdown-item" href="#">Software development tools</a> </li>
-              </ul>
+				<form action="/course" method='post'>
+					<input type="text" name='id' value='<?=$category['category_id']?>' hidden>
+					<input type="text" name='email' value='<?= $_POST['email']?>' hidden>	
+					<button class='btn bd-0'><img class="rounded-circle me-lg-2" src="uploading/<?=$category['image']?>" alt="" style="width: 30px; height: 30px;"><?=$category['title']?></button>
+				</form>
+				<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
+	
+					<?php 
+					$courses= getCoursesOnCategory($category['category_id']);
+					foreach ($courses as $course):
+					?>
+					<li><a class="dropdown-item" href="#"><?=$course['title']?></a></li>
+					<?php endforeach ?>
+				</ul>
             </li>
-            <li> <a class="dropdown-item bg-primary text-primary bg-opacity-10 rounded-2 mb-0" href="#">View all categories</a></li>
+			<?php endforeach ?>
+            <li><a class="dropdown-item bg-primary text-primary bg-opacity-10 rounded-2 mb-0" href="#categories_blog">View all categories</a></li>
           </ul>
         </li>
       </ul>
@@ -123,8 +112,7 @@
         </li>
       </ul>
       <?php 
-	  	require 'database/database.php';
-	  
+		
 		  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$email = $_POST['email'];
 
@@ -144,11 +132,7 @@
         <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
 		<form action="/student_profile" method="post">  
 			<input type="hidden" name="id" value=<?=$user['user_id'] ?>>
-			<button type="submit" class="btn btn-primary py-1 w-100 mb-4">My Profile</button>                                                                
-		</form>
-		<form action="/edit" method="post">  
-			<input type="hidden" name="id" value=<?=$user['user_id'] ?>>
-			<button type="submit" class="btn btn-primary py-1 w-100 mb-4">Edit Profile</button>                                                                
+			<button type="submit" class="btn btn-primary py-1 w-100 mb-4"> View Profile</button>                                                                
 		</form>
 		<div class=' d-flex justify-content-center'>
        		 <a href="/"><button class="btn btn-danger-soft mb-0"><i class="fas fa-sign-in-alt me-2"></i>Log Out</button></a> 
@@ -165,7 +149,6 @@
 <!-- **************** MAIN CONTENT START **************** -->
 <!-- =======================
 Main Banner START -->
-<?php require 'views/students/payments/payment.view.php' ?>
 <!-- ......................................................................... -->
 <section class="bg-light">
 	<div class="container pt-5 mt-0 mt-lg-5">
@@ -226,8 +209,13 @@ Video END -->
 
 <!-- =======================
 Category START -->
-<section>
+<section id='categories_blog'>
 	<div class="container">
+		<div class="row mb-4">
+			<div class="col-lg-8 text-center mx-auto">
+				<p class="mb-0">All the Categories </p>
+			</div>
+		</div>
 		<div class="row g-4">
 		<?php 
 
@@ -240,14 +228,14 @@ Category START -->
 			<div class="col-sm-6 col-lg-4 col-xl-3">
 				<div class="card card-body shadow rounded-3">
 					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
+						<img class="rounded-circle me-lg-2" src="uploading/<?=$cate['image']?>" alt="" style="width: 70px; height: 70px;">
 						<div class="ms-3">
 							<form action="/course" method="post">
 								<button type='sumit' class="btn btn-outline-none">
 									<input type="text" name='email' value='<?=$user['email']?>' hidden>
+									<input type="text" name='id' value='<?=$cate['category_id']?>' hidden>
 									<h5 class="mb-0"><a class="stretched-link"><?=$cate['title']?></a></h5>
-									<span>89 Courses</span>
+									<span><?=getNumberOfCourseInCategory($cate['category_id'])?> Courses</span>
 								</button>
 							</form>
 						</div>
@@ -256,158 +244,6 @@ Category START -->
 			</div>
 			<?php endforeach ?>
 			<!-- Category item -->
-
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
-						<div class="ms-3">
-							<form action="/course" method="post">
-								<button type='sumit' class="btn btn-outline-none">
-									<input type="text" name='email' value='<?=$user['email']?>' hidden>
-									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
-									<span>89 Courses</span>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
-						<div class="ms-3">
-							<form action="/course" method="post">
-								<button type='sumit' class="btn btn-outline-none">
-									<input type="text" name='email' value='<?=$user['email']?>' hidden>
-									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
-									<span>89 Courses</span>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
-						<div class="ms-3">
-							<form action="/course" method="post">
-								<button type='sumit' class="btn btn-outline-none">
-									<input type="text" name='email' value='<?=$user['email']?>' hidden>
-									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
-									<span>89 Courses</span>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-purple bg-opacity-10 rounded-circle text-purple"><i class="fas fa-tools"></i></div>
-						<div class="ms-3">
-							<form action="/course" method="post">
-								<button type='sumit' class="btn btn-outline-none">
-									<input type="text" name='email' value='<?=$user['email']?>' hidden>
-									<h5 class="mb-0"><a class="stretched-link">IT</a></h5>
-									<span>89 Courses</span>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-success bg-opacity-10 rounded-circle text-success"><i class="fas fa-laptop-code"></i></div>
-						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Development</a></h5>
-							<span>105 Courses</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-orange bg-opacity-10 rounded-circle text-orange"><i class="fas fa-crop-alt"></i></div>
-						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Design</a></h5>
-							<span>72 Courses</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-primary bg-opacity-10 rounded-circle text-primary"><i class="fas fa-business-time"></i></div>
-						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Business</a></h5>
-							<span>68 Courses</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-info bg-opacity-10 rounded-circle text-info"><i class="fas fa-music"></i></div>
-						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Music</a></h5>
-							<span>51 Courses</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Category item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<div class="card card-body shadow rounded-3">
-					<div class="d-flex align-items-center">
-						<!-- Icon -->
-						<div class="icon-lg bg-warning bg-opacity-15 rounded-circle text-warning"><i class="fas fa-palette"></i></div>
-						<div class="ms-3">
-							<h5 class="mb-0"><a href="#" class="stretched-link">Painting</a></h5>
-							<span>69 Courses</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </section>
 <!-- =======================
 Category END -->
@@ -427,6 +263,7 @@ Featured course START -->
 		<div class="row g-4">
 			<?php
 				require 'models/admin.model.php';
+				// require 'models/user.model.php';
 				$courses = getCourses();
 				foreach ($courses as $course):
 
@@ -443,7 +280,7 @@ Featured course START -->
 						<!-- Hover element -->
 						<div class="card-img-overlay">
 							<div class="card-element-hover d-flex justify-content-end">
-      							<button class="icon-md bg-white rounded-circle border border-orange text-orange show-popup" data-user='<?=$user['user_id']?>' data-course='<?=$course['course_id']?>' data-title="<?=$course['title'] ?>" data-price="<?=$course['price'] ?>"><i class="fas fa-shopping-cart text-danger"></i></button>
+      							<button class="icon-md bg-white rounded-circle border border-orange text-orange show-popup" data-user='<?=$user['email']?>' data-course='<?=$course['course_id']?>' data-title="<?=$course['title'] ?>" data-price="<?=$course['price'] ?>"><i class="fas fa-shopping-cart text-danger"></i></button>
 							</div>
 						</div>
 					</div>
@@ -466,7 +303,11 @@ Featured course START -->
 							</ul>
 							<!-- Avatar -->
 							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="studentprofile/yaya.png" alt="avatar">
+								<img class="avatar-img rounded-circle" src="uploading/<?php $haha= getTeacher($course['user_id']);
+								foreach ($haha as $ha){
+									echo $ha['profile_image'];
+								};
+								?>" alt="avatar">
 							</div>
 						</div>
 						<!-- Divider -->
@@ -1180,6 +1021,5 @@ function playNotificationMusic() {
 <?php require 'layouts/footer.php' ?>
 </body>
 </html>
-
 
 
