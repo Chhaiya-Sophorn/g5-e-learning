@@ -1,6 +1,6 @@
 <?php
 require_once 'database/database.php';
-require_once 'models/user.model.php';
+require_once 'models/student.model.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //     $id = $_POST[2];

@@ -18,7 +18,6 @@
 						<form action="controllers/payments/payment.controller.php" method='post'>
 							<input type="text" id="modalUser" value='' name='user_id' hidden>
 							<input type="text" id="modalCourse" value='' name='course_id' hidden>					
-							
 						</form>   
 					</div>
                     </div>
@@ -41,7 +40,14 @@
 						<p class="text-center">Injoy your learning </p>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal">Join course</button>	
+							<form action="/blog_learning" method='post'>
+								<input type="text" id="modaluser" value='' name='email' hidden>
+								<input type="text" id="modalcourse" value='' name='course_id' hidden>
+								<input type="text"  value='' name='home' hidden>
+								<button type="sumit" class="btn btn-primary" data-bs-toggle="modal">Join course</button>
+								
+							</form>
+								
 						</div>
 						<form action="">
 							<input type="text" id="modaluser" value='' hidden>

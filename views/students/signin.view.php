@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,25 +34,25 @@
 
 <body style="background-image: url('assets/images/bg/02.jpg'); background-size: cover; background-repeat: no-repeat;">
 <div class="container-fluid position-relative d-flex p-0">
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-    <!-- Spinner End -->
-
+    
     <!-- Sign In Start -->
     <div class="container-fluid">
         <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
             <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-lg-4">
-                <div class="rounded p-4 p-sm-5 my-4 mx-3 shadhow-lg" style="background-color: rgba(0, 0, 0, 0.3);">
+                <div class="rounded p-4 p-sm-5 my-4 mx-3 shadhow-lg" style="background-color: rgba(0, 0, 0,0.4);">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <a href="index.html" class="">
-                            <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
-                        </a>
-                        <h3>Sign In</h3>
+                        <h3 class ='text-info'>Sign In</h3>
                     </div>
+
+                    <?php
+                    
+                    $input =false;
+                    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                        $input = true;
+                        $require = applySignin( $_POST['email'], $_POST['password']);  
+                    }
+                    
+                    ?>
                     <form action="/access" method='post'>
                         <div class="form-floating mb-3 " >
                             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.5);" name='email'>

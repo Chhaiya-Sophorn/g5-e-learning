@@ -55,7 +55,6 @@ function getTrainer () :array {
     global $connection;
     $statement =  $connection->prepare('SELECT *FROM users WHERE roles_id = 2');
     $statement->execute();
-
     return $statement->fetchAll();
 }
 

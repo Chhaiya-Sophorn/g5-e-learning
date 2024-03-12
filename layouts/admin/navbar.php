@@ -17,14 +17,14 @@
                 <div class="navbar-nav w-100">
                     <a href="/admin" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="/categories" class="nav-item nav-link"><i class="fa fa-th-large me-2"></i>Categories</a>
-                    <a href="/courses_as_admin" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Add Course</a>
+                    <a href="/courses_as_admin" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Courses</a>
                     <a href="/" class="nav-item nav-link"><i class="fa fa-users me-2"></i>Trainers</a>
                     <a href="/" class="nav-item nav-link"><i class="fa fa-address-card me-2"></i>Students</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Users</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="signin.html" class="dropdown-item">Sign In</a>
-                            <a href="signup.html" class="dropdown-item">Sign Up</a>
+                            <a href="/list_trainer" class="dropdown-item">Trainers</a>
+                            <a href="#" class="dropdown-item">Students</a>
                         </div>
                     </div>
                 </div>
@@ -41,9 +41,9 @@
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
-                <form class="d-none d-md-flex ms-4">
+                <!-- <form class="d-none d-md-flex ms-4">
                     <input class="form-control bg-dark border-0" type="search" placeholder="Search">
-                </form>
+                </form> -->
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">

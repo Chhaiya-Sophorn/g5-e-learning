@@ -83,9 +83,16 @@ function deleteCourse(int $id) : bool
 }
 
 // modify  data in database from integer to  string for display on web page.
-function getTrainerName(int $id){
+function getTrainerName($id){
     global $connection;
     $statement = $connection->prepare("SELECT*FROM users WHERE  user_id=:id");
+    $statement->execute([':id' => $id]);
+    return $statement-> fetch();
+}
+
+function getTitle(int $id){
+    global $connection;
+    $statement = $connection->prepare("SELECT*FROM users WHERE  course_id=:id");
     $statement->execute([':id' => $id]);
     return $statement-> fetch();
 }
@@ -93,7 +100,7 @@ function getTrainerName(int $id){
 
 function getIdTrainer(string $name){
     global $connection;
-    $statement = $connection->prepare("SELECT*FROM users WHERE name=:name AND name = :name");
+    $statement = $connection->prepare("SELECT*FROM users WHERE name=:name AND roles_id=2");
     $statement->execute([':name' => $name]);
     return $statement-> fetch();
 }
@@ -143,3 +150,12 @@ function searchCourse(string $title) {
 //     } 
 // }
 // $statement = $connection->prepare("update courses set title = :title, description = :description,user_id= :user_id, category_id= :category_id, price= :price, image_courses= :image_course  where course_id = :course_id");
+
+
+function getTeacher(int $id){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM users WHERE user_id = :id');
+    $statement->execute([':id' => $id]);
+
+    return $statement->fetchAll();
+}
