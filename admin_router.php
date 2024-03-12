@@ -7,11 +7,9 @@ $routes = [
     // This is for Courses page
     '/courses_as_admin' => 'controllers/admin/courses/course.controller.php',
     '/courseEdit' => 'controllers/admin/courses/course_edit.controller.php',
-    // '/trainer-review' => 'controllers/reviews/review.controller.php',
     '/createCourse' => 'controllers/admin/courses/create_course.controller.php',
     '/viewCourse' => 'controllers/admin/courses/course.controller.php',
     '/updateCourse' => 'controllers/admin/courses/update_course.controller.php',
-    // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
 
     //This is for category page
     '/categories' => 'controllers/admin/category/category.controller.php',

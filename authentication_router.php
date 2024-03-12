@@ -17,8 +17,6 @@ $routes = [
     '/trainer' => 'controllers/trainers/signin/login.controller.php',
     '/trainer_access' => 'controllers/trainers/signin/access.controller.php',
 
-    // '/trainer-review' => 'controllers/reviews/review.controller.php',
-    // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',
 ];
 
 if (array_key_exists($uri, $routes)) {

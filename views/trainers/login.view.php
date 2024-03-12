@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>DarkPan - Bootstrap 5 Admin Template</title>
@@ -90,9 +89,7 @@
     <script src="vendor/tempusdominus/js/moment.min.js"></script>
     <script src="vendor/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="vendor/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
     <!-- Template Javascript -->
     <script src="vendor/js/main.js"></script>
 </body>
-
 </html>
