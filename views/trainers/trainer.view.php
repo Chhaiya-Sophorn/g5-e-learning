@@ -11,9 +11,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if($_POST['quiz_id'] !=''){
             deleteQuiz($_POST['quiz_id']);
         }
-
     }else if(isset($_POST['quiz_edit']) && $_POST['quiz_edit'] !=''){
         editQuiz($_POST['edit_id'],getLessonByTitle($_POST['lesson_select'])['lesson_id'],$_POST['contents']);
+    }else if(isset($_POST['delete_quizResult']) && $_POST['quiz_idResult'] !=''){
+        deleteQuizsumit($_POST['quiz_idResult']);
     }else{
         if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['video']) && isset($_POST['course_id']) && count(lessonExist($_POST['title']))<1){
             if($_POST['title'] !='' && $_POST['description']!='' && $_POST['video']!='' && $_POST['course_id']!='' && count(lessonExist($_POST['title']))<1){
@@ -57,7 +58,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <input type="password" name='password' value='<?=$_POST['password']?>' hidden>
                             <button type="sumit" class="btn btn-orange">Submit</button>
                         </form>
-                        
                     </div>
                </div>
           </div>
@@ -209,7 +209,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
           </div>
      </div>
 </div>
-
+<!-- deleteQuizresult Modal -->
+<div class="container mt-5">
+     <div class="modal fade" id="deleteQuizResultModal" tabindex="-1" aria-labelledby="deleteQuizResultModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+               <div class="modal-content">
+                    <div class="modal-body border border-orange p-4 m-4" style="background-color: #f8f9fa;">
+                        <h5 class="mb-4 text-orange text-center">Do you want to delete this Result?</h5>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <form action="#list_student_join" method='post'>
+                                <input type="text" name='delete_quizResult' hidden>
+                                <input type="text" name='quiz_idResult' id='quiz_idResult' hidden>
+                                <input type="text" name='email' value='<?=$_POST['email']?>' hidden>
+                                <input type="password" name='password' value='<?=$_POST['password']?>' hidden>
+                                <button typ='button' class="btn btn-danger">Delete</button>
+                            </form>
+					</div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
 <!-- editQuiz Modal -->
 <div class="container mt-5">
      <div class="modal fade" id="editQuizModal" tabindex="-1" aria-labelledby="editQuizModalLabel" aria-hidden="true">
@@ -248,6 +269,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
           </div>
      </div>
 </div>
+<!-- -------------quiz result showing----------- -->
+<div class="container mt-1">
+     <div class="modal fade" id="qresultModel" tabindex="-1" aria-labelledby="qresultModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg"> <!-- Changed modal-dialog class to modal-lg for a wider modal -->
+               <div class="modal-content">
+                    <div class="modal-body border border-success p-2 m-4 text-center">
+                        <img src="" id='imgresult'>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+						</div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
 <!-- ----------------------------------------------- -->
 <div class="row mb-4 mt-5">
 	<div class="col-lg-8 text-center mx-auto">
@@ -277,9 +313,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 </section>
 <div class="container ml-5">
 
-    <a href="#lessons"><button type="button" class="btn btn-outline-primary">Lessons</button></a>
-    <a href="#quizzes"><button type="button" class="btn btn-outline-secondary">quiz</button></a>
-    <a href="#list_student_join"> <button type="button" class="btn btn-outline-success">Students</button></a>
+    <a href="#lessons"><button type="button" class="btn btn-outline-orange">Lessons</button></a>
+    <a href="#quizzes"><button type="button" class="btn btn-outline-orange">quiz</button></a>
+    <a href="#list_student_join"> <button type="button" class="btn btn-outline-orange">The result testing of students</button></a>
 </div>
 
 <section id='lessons'>
@@ -358,10 +394,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </thead>
         <tbody>
             <?php 
-            $quizzes =getQuizzes();
-
-            foreach ($quizzes as $quize):
-            
+            $course_id =getCourse($_POST['email'])['course_id'];
+            $lessons = getTheLessons($course_id);
+            foreach ($lessons as $lesson):
+                foreach (getQuizzesbylessonId($lesson['lesson_id']) as $quize):
             ?>
         <tr>
             <td><?=getLessonById($quize['lesson_id'])['title']?></td>
@@ -371,7 +407,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <button type='button' class="btn btn-sm btn-danger deleteQuiz" data-bs-toggle="modal" data-bs-target="#deleteQuizModal" data-quizid='<?=$quize['quiz_id']?>'><i class="fas fa-trash"></i>Delete</button>
             </td>
         </tr>
-        <?php endforeach ?>
+        <?php
+            endforeach ;
+        endforeach;
+         ?>
         </tbody>
     </table>
     </div>
@@ -380,7 +419,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <section id='list_student_join'>
     <div class="container">
     <div class="mt-1 mb-1 d-flex justify-content-between align-items-center">
-    <h3>Students List</h3>
+    <h3>The result testing of students List</h3>
 
     <!-- input search -->
     <div class="d-flex align-items-center">
@@ -391,34 +430,33 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <!-- </form> -->
     </div>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-orange" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-plus-square"></i> Add quiz</button>
-
     </div>        
     <table class="table table-bordered">
         <thead class='text-orange'>
         <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
+            <th>Name</th>
+            <th>Lesson</th>
+            <th>The result</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
+        <?php 
+            $course_id =getCourse($_POST['email'])['course_id'];
+            $lessons = getTheLessons($course_id);
+            foreach ($lessons as $lesson):
+                foreach (getQuizzesSumitbylessonId($lesson['lesson_id']) as $quizeSumit):
+            ?>
         <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
+            <td><?=getStudentById($quizeSumit['user_id'])['name']?></td>
+            <td><?=getLessonById($quizeSumit['lesson_id'])['title']?></td>
+            <td><button type='button' class="quiz border border-0 show-result" data-bs-toggle="modal" data-bs-target="#qresultModel" data-result="<?=$quizeSumit['image']?>"><i class="fas fa-image" style="color:orange;font-size: 30px;"></i></button></td>
+            <td><button type='button' class="btn btn-sm btn-danger deleteQuizResult" data-bs-toggle="modal" data-bs-target="#deleteQuizResultModal" data-quizidresult='<?=$quizeSumit['sumit_id']?>'><i class="fas fa-trash"></i>Delete</button></td>
         </tr>
-        <tr>
-            <td>Mary</td>
-            <td>Moe</td>
-            <td>mary@example.com</td>
-        </tr>
-        <tr>
-            <td>July</td>
-            <td>Dooley</td>
-            <td>july@example.com</td>
-        </tr>
+        <?php
+            endforeach;
+        endforeach;
+        ?>
         </tbody>
     </table>
     </div>
@@ -476,6 +514,15 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+  $('.deleteQuizResult').click(function() {
+    var quizIDresult = $(this).data('quizidresult');
+    
+    $('#quiz_idResult').val(quizIDresult);
+    
+  });
+});
+
+$(document).ready(function() {
   $('.editQuiz').click(function() {
     var lesson_select = $(this).data('lessonselect');
     var content = $(this).data('content');
@@ -488,6 +535,16 @@ $(document).ready(function() {
 
   });
 });
+
+$(document).ready(function() {
+  $('.show-result').click(function() {
+    var result = $(this).data('result');
+    
+    $('#imgresult').attr('src','uploading/'+result);
+    
+  });
+});
+
 </script>
 </main>
 <!-- **************** MAIN CONTENT END **************** -->

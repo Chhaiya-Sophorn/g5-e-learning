@@ -62,6 +62,20 @@ function getQuizzes(){
     return $statement->fetchAll();
 }
 
+function getQuizzesbylessonId(int $id){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM quizzes WHERE lesson_id = :id');
+    $statement->execute([':id' =>$id]);
+    return $statement->fetchAll();
+}
+
+function getQuizzesSumitbylessonId(int $id){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM quiz_sumit WHERE lesson_id = :id');
+    $statement->execute([':id' =>$id]);
+    return $statement->fetchAll();
+}
+
 function getLessonById(int $id){
     global $connection;
     $statement =  $connection->prepare('SELECT *FROM lessons where lesson_id =:id');
@@ -91,6 +105,13 @@ function deleteQuiz(int $id)
     $statement->execute([':id' => $id]);
 }
 
+function deleteQuizsumit(int $id) 
+{
+    global $connection;
+    $statement = $connection->prepare("delete from quiz_sumit where sumit_id = :id");
+    $statement->execute([':id' => $id]);
+}
+
 
 function editQuiz(int $quiz_id, int $lesson_id, string $content)
 {
@@ -102,4 +123,54 @@ function editQuiz(int $quiz_id, int $lesson_id, string $content)
         ':quiz_id' => $quiz_id
 
     ]);
+}
+
+function getTheLessonsbyname(string $title){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM lessons WHERE title =:title');
+    $statement->execute([':title' => $title]);
+    return $statement->fetch();
+}
+
+function addsumit(int $user_id, int $lesson_id, string $img){
+    global $connection;
+    $statement = $connection->prepare("INSERT INTO quiz_sumit (user_id, lesson_id,image) VALUES (:user_id, :lesson_id,:image)");
+    $statement->execute([
+        ':user_id' => $user_id,
+        ':lesson_id' => $lesson_id,
+        ':image' => $img
+    ]);
+}
+
+function getStudent(string $email){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM users WHERE email = :email and roles_id =3');
+    $statement->execute([
+        ':email' => $email
+    ]);
+    return $statement->fetch();
+}
+
+function getStudentById(int $id){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM users WHERE user_id = :id and roles_id =3');
+    $statement->execute([
+        ':id' => $id
+    ]);
+    return $statement->fetch();
+}
+
+function quizResultSumitExist(string $image): array{
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM quiz_sumit WHERE image = :image');
+    $statement->execute([
+        ':image' => $image
+    ]);
+
+    //jenh 0 ber ot mean jenh 1
+    if($statement->rowCount()>0){
+        return $statement->fetch();
+    }else{
+        return [];
+    }
 }
