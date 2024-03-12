@@ -17,7 +17,7 @@
                 <div class="navbar-nav w-100">
                     <a href="/admin" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="/categories" class="nav-item nav-link"><i class="fa fa-th-large me-2"></i>Categories</a>
-                    <a href="/courses_as_admin" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Add Course</a>
+                    <a href="/courses_as_admin" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Courses</a>
                     <a href="/" class="nav-item nav-link"><i class="fa fa-users me-2"></i>Trainers</a>
                     <a href="/" class="nav-item nav-link"><i class="fa fa-address-card me-2"></i>Students</a>
                     <div class="nav-item dropdown">
