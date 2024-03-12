@@ -34,3 +34,25 @@
 
      }
      
+
+
+
+
+
+//     // Display the search results
+//     echo "<h2>Search Results for '$searchCourse':</h2>";
+//     if (empty($results)) {
+//         echo "No results found.";
+//     } else {
+//         echo "<ul>";
+//         foreach ($results as $result) {
+//             echo "<li>$result</li>";
+//         }
+//         echo "</ul>";
+//     }
+// } else {
+//     // If no search term is provided, redirect back to the search form
+//     header("Location:/viewCourse ");
+//     exit();
+// }
+// ?>

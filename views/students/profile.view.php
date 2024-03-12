@@ -15,7 +15,7 @@
 <?php
 require "layouts/header.php";
 require 'database/database.php';
-require 'models/user.model.php';
+require 'models/student.model.php';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $student = getStudent($_POST['id']);
@@ -31,17 +31,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     </div>
 </form>
 
-<div class="container pt-2 shadow-lg" style="width:730px; height: 550px;margin-top: -40px;" >
+<div class="container p-2 shadow-lg" style="width:730px; height: 550px;margin-top: -40px;" >
 
 <!-- start_top -->
   <div class="top-form border " >
-    <div class="gd-profile text-center" style="background-color: rgba(0, 0, 255, 0.3);">
-      <div class="p-1 bg-info text-dark rounded-circle ml-3" style="width: 160px; height: 160px;">
-        <img src="../uploading/<?= $student['profile_image']?>" alt="Profile Image" class="rounded-circle mb-2" style="width: 150px; height: 150px;">
-      </div>
+    <div class="gd-profile text-center p-2 d-flex" style="background-color: rgba(0, 0, 255, 0.3); height: 150px;">
+    
     </div>
-    <div class="form-student">
-      <h3>My Profile</h3>
+    <div class="form-student p-3 ">
+      <img src="../../uploading/<?= $student['profile_image']?>" alt="Profile Image" class="rounded-circle mb-2" style="width: 150px; height: 150px;margin-top: -90px;">
+      <h3><?= $student['name']?></h3>
+      <div class="d-flex align-items-center">
+        <form action="/edit" method='post'>
+			      <input type="hidden" name="id" value=<?=$student['user_id'] ?>>
+            <button type='submit' class='btn border-0'>
+              <i class='bx bxs-edit ml-2 text-orange' style="font-size:40px;"></i>
+            </button>
+        </form>
+      </div>
       <div class="row  ">
         <div class="col-6">
         <label for="fname">Role:</label><br>  
@@ -53,7 +60,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </div>
         <div class="col-6 mt-2">
         <label for="fname">Email Address:</label><br>  
-        <div class="p-1  border bg-light" style="width: 220%;"><?= $student['email']?></div>
+        <div class="p-1  border bg-light" style="width: 210%;"><?= $student['email']?></div>
       </div>
     </div>
   </div>

@@ -36,10 +36,11 @@
 
                <!-- input search -->
                <div class="d-flex align-items-center">
-                    <!-- Wrap label and input in a flex container -->
-                    <label for="search" class="me-4">Search:</label> <!-- Add margin to the label -->
-                    <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" type="search"
-                         placeholder="Search" aria-label="Search">
+                    <!-- <form action="controllers/admin/courses/courseSearching.controller.php" method="post" > -->
+                  <label for="search" class="me-4">Search:</label> <!-- Add margin to the label -->
+                    <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" id="searchCourse"  name="searchCourse" type="text"
+                         placeholder="Search" aria-label="Search" >
+                         <!-- </form> -->
                </div>
 
                <!-- Button trigger modal -->
@@ -82,10 +83,10 @@
                                    </div>
 
                                    <div class="mb-3">
-                                        <!-- call database -->
                                         <label for="message-text" class="col-form-label">Trainer :</label>
-                                        <select class="form-select bg-white " id="sell1" name="user_id" multiple
-                                             aria-label="default select example">
+                                        <select class="form-select bg-white" id="sell1" name="user_id"
+                                        aria-label="Default select example">
+                                        <!-- call database -->
                                              <?php 
                                         require 'database/database.php';
                                         require 'models/admin.model.php';
@@ -135,7 +136,7 @@
      <div class="container p-5 pt-0 ">
           <table class="table text-start align-middle table-bordered table-dark table-hover mb-0 ">
                <thead class="bg-primary text-white">
-                    <tr>
+                    <tr >
                          <th class="text-center">ID</th>
                          <th class="text-center">Title </th>
                          <!-- <th class="text-center">Description</th> -->
@@ -152,11 +153,11 @@
                <tbody>
 
                     <?php
-          $getCourses = getCourses();
-          foreach ($getCourses as $key => $course) :?>
+                         $getCourses = getCourses();
+                         foreach ($getCourses as $key => $course) :?>
 
                     <tr>
-                         <td scope="row" class="text-center "><?= $key + 1?></td>
+                         <td scope="row" class="text-center " ><?= $key + 1?></td>
                          <td class="text-center"><?= $course['title'] ?></td>
                          <!-- <td class="text-center"><?= $course["description"] ?></td> -->
                          <td class="text-center"><?=getCategoryName($course['category_id'])['title']?></td>
@@ -179,15 +180,11 @@
                                    </button>
                               </form>
                               
-                              <button type="button" class="btn btn-sm btn-success show-detail" data-bs-toggle="modal"
+                              <button type="button" class="btn btn-sm btn-warning show-detail" data-bs-toggle="modal"
                                    data-bs-target="#detailModal<?=$course['course_id']?>">
                                    <i class="fas fa-eye">Details</i>
                               </button>
-                              <!-- ... Your other buttons ... -->
-                              <!-- <button
-                                   class="icon-md bg-white rounded-circle border border-orange text-orange show-popup"
-                                   data-bs-toggle="modal" data-bs-target="#detail" data-user='hh' data-course='yy'
-                                   data-title="uuuu"><i class="fas fa-shopping-cart text-danger"></i></button> -->
+                              
                               <form id="delete-form" style="display: inline;">
                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#delete-modal<?= $course['course_id'] ?>"><i
@@ -293,95 +290,25 @@
                <!-- <tbody>
                </tbody> -->
           </table>
+     </div>
+     
+     <!-- Javascrip for Searching  -->
+     <script>
+     const searchCourses = document.querySelector("#searchCourse");
+     const tbodyChild = document.querySelector("tbody");
 
+     searchCourses.addEventListener("keyup", () => {
+          const children = tbodyChild.children;
+          const searchTerm = searchCourses.value.toLowerCase(); // Convert search input to lowercase
 
-          <!-- 
-          <div class="container">
-               <h1 class="text-success">
-                    GeeksforGeeks
-               </h1>
-               <h2>
-                    Multiple Selection Dropdown with Checkbox
-               </h2>
-
-               <div class="dropdown">
-                    <button class="btn btn-success dropdown-toggle" type="button" id="multiSelectDropdown"
-                         data-bs-toggle="dropdown" aria-expanded="false">
-                         Select
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="multiSelectDropdown">
-                         <li>
-                              <label>
-                                   <input type="checkbox" value="Java">
-                                   Java
-                              </label>
-                         </li>
-                         <li>
-                              <label>
-                                   <input type="checkbox" value="C++">
-                                   C++
-                              </label>
-                         </li>
-                         <li>
-                              <label>
-                                   <input type="checkbox" value="Python">
-                                   Python
-                              </label>
-                         </li>
-                    </ul>
-               </div>
-          </div>
-
-          <script>
-          const dropdownButton =
-               document.getElementById('multiSelectDropdown');
-          const dropdownMenu =
-               document.querySelector('.dropdown-menu');
-          let mySelectedItems = [];
-
-          function handleCB(event) {
-               const checkbox = event.target;
-               if (checkbox.checked) {
-                    mySelectedItems.push(checkbox.value);
+          for (let i = 0; i < children.length; i++) {
+               const contentToSearch = children[i].children[1].textContent.toLowerCase(); // Convert content to lowercase
+               
+               if (contentToSearch.includes(searchTerm)) {
+                    children[i].style.display = "table-row";
                } else {
-                    mySelectedItems =
-                         mySelectedItems.filter((item) => item !== checkbox.value);
+                    children[i].style.display = "none";
                }
-
-               dropdownButton.innerText = mySelectedItems.length > 0 ?
-                    mySelectedItems.join(', ') : 'Select Items';
           }
-
-          dropdownMenu.addEventListener('change', handleCB);
-          </script> -->
-          <!-- Payment Modal -->
-
-
-          <!-- <div class="container mt-5">
-               <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                         <div class="modal-content">
-                              <div class="modal-body border border-success p-4 m-4">
-                                   <div class="text-center">
-                                        <img src="studentprofile/download.png" alt="Profile Image"
-                                             class="rounded-circle mb-3"
-                                             style="width: 130px; height: 130px; object-fit: cover;">
-                                   </div>
-                                   <h5 class="text-center">Course payment</h5>
-                                   <div class="text-center">Course:<h5 class="text-info" id="modalTitle"></h5>
-                                   </div>
-                                   <div class="text-center">Price:<h5 class="text-success" id="modalPrice"></h5>
-                                   </div>
-
-                                   <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                             data-bs-dismiss="modal">Cancel</button>
-                                        <button id='pay' class="btn btn-primary success-popup">Pay</button>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-          </div>
-     </div> -->
+     });
+</script>

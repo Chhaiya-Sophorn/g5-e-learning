@@ -100,10 +100,29 @@ function getTitle(int $id){
 
 function getIdTrainer(string $name){
     global $connection;
-    $statement = $connection->prepare("SELECT*FROM users WHERE name=:name AND name = :name");
+    $statement = $connection->prepare("SELECT*FROM users WHERE name=:name AND roles_id=2");
     $statement->execute([':name' => $name]);
     return $statement-> fetch();
 }
+
+function searchCourse(string $title) {
+    global $connection;
+
+    // Use '%' around the bind value for a partial match in the LIKE clause
+    $statement = $connection->prepare("select * from courses where title like '%$title%' or title like '%$title%'");
+    $statement->execute([':title' => '%' . $title . '%']);
+
+    return $statement->fetchAll(); 
+
+    // $stmt = $con->prepare("");
+// $stmt->execute();
+// $CoursDdetails = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+
+
+
 
 
 // function getTrainerNames(int $id){
@@ -131,3 +150,12 @@ function getIdTrainer(string $name){
 //     } 
 // }
 // $statement = $connection->prepare("update courses set title = :title, description = :description,user_id= :user_id, category_id= :category_id, price= :price, image_courses= :image_course  where course_id = :course_id");
+
+
+function getTeacher(int $id){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM users WHERE user_id = :id');
+    $statement->execute([':id' => $id]);
+
+    return $statement->fetchAll();
+}
