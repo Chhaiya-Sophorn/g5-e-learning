@@ -327,7 +327,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="d-flex align-items-center">
         <!-- <form action="controllers/admin/courses/courseSearching.controller.php" method="post" > -->
         <label for="search" class="me-4">Search:</label> <!-- Add margin to the label -->
-        <input class="form-control pe-5 bg-secondary bg-opacity-10 border-info" id="searchCourse"  name="searchCourse" type="text"
+        <input class="form-control pe-5 bg-secondary bg-opacity-10 border-info" id="searchListLisson"  name="searchCourse" type="text"
         placeholder="Search" aria-label="Search" >
         <!-- </form> -->
     </div>
@@ -336,7 +336,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <button type="button" class="btn btn-orange" data-bs-toggle="modal" data-bs-target="#paymentModal"><i class="fa fa-plus-square"></i> Add lesson</button>
 
     </div>        
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="lessonTable" >
         <thead class='text-orange'>
             <tr>
                 <th>Title</th>
@@ -375,7 +375,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="d-flex align-items-center">
         <!-- <form action="controllers/admin/courses/courseSearching.controller.php" method="post" > -->
         <label for="search" class="me-4">Search:</label> <!-- Add margin to the label -->
-        <input class="form-control pe-5 bg-secondary bg-opacity-10 border-info" id="searchCourse"  name="searchCourse" type="text"
+        <input class="form-control pe-5 bg-secondary bg-opacity-10 border-info" id="trainerSearchQuiz"  name="trainerSearchQuiz" type="text"
         placeholder="Search" aria-label="Search" >
         <!-- </form> -->
     </div>
@@ -384,7 +384,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <button type="button" class="btn btn-orange"  data-bs-toggle="modal" data-bs-target="#quizModal"><i class="fa fa-plus-square"></i> Add quiz</button>
 
     </div>        
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="quizTable" >
         <thead class='text-orange'>
         <tr>
             <th>Lesson</th>
@@ -392,7 +392,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <th>Action</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="quizTable" >
             <?php 
             $course_id =getCourse($_POST['email'])['course_id'];
             $lessons = getTheLessons($course_id);
@@ -425,13 +425,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="d-flex align-items-center">
         <!-- <form action="controllers/admin/courses/courseSearching.controller.php" method="post" > -->
         <label for="search" class="me-4">Search:</label> <!-- Add margin to the label -->
-        <input class="form-control pe-5 bg-secondary bg-opacity-10 border-info" id="searchCourse"  name="searchCourse" type="text"
+        <input class="form-control pe-5 bg-secondary bg-opacity-10 border-info" id="searchSubmit"  name="searchSubmit" type="text"
         placeholder="Search" aria-label="Search" >
         <!-- </form> -->
     </div>
 
     </div>        
-    <table class="table table-bordered">
+    <table class="table table-bordered  " id="SubmitTable" >
         <thead class='text-orange'>
         <tr>
             <th>Name</th>
@@ -545,6 +545,65 @@ $(document).ready(function() {
   });
 });
 
+// <!-- Javascript for trainer manage search -->
+
+// trainer search listLesson
+const searchLesson = document.querySelector("#searchListLisson");
+     const tbodyChild = document.querySelector("#lessonTable tbody");
+
+     searchLesson.addEventListener("keyup", () => {
+          const children = tbodyChild.children;
+          const searchTerm = searchLesson.value.toLowerCase(); // Convert search input to lowercase
+
+          for (let i = 0; i < children.length; i++) {
+               const contentToSearch = children[i].children[0].textContent.toLowerCase(); // Convert content to lowercase
+               
+               if (contentToSearch.includes(searchTerm)) {
+                    children[i].style.display = "table-row";
+               } else {
+                    children[i].style.display = "none";
+               }
+          }
+     });
+
+// trainer Search quizzes
+const searchQuiz = document.querySelector("#trainerSearchQuiz");
+const tbodyQuiz = document.querySelector("#quizTable tbody");
+
+searchQuiz.addEventListener("keyup", () => {
+    const children = tbodyQuiz.children;
+    const searchListQuiz = searchQuiz.value.toLowerCase();
+
+    for (let k = 0; k < children.length; k++) {
+        const quizToSearch = children[k].children[0].textContent.toLowerCase();
+        if (quizToSearch.includes(searchListQuiz)) {
+            children[k].style.display = "table-row";
+        } else {
+            children[k].style.display = "none";
+        }
+    }
+});
+
+//  <!-- trainer Search Submit -->
+     const searchSubmit = document.querySelector("#searchSubmit");
+     console.log(searchQuiz)
+     const tbodySubmit = document.querySelector("#SubmitTable tbody");
+
+     searchSubmit.addEventListener("keyup", () => {
+          const children = tbodySubmit.children;
+          const searchListQuiz = searchSubmit.value.toLowerCase(); // Convert search input to lowercase
+
+          for (let k = 0; k < children.length; k++) {
+               const quizToSearch = children[k].children[0].textContent.toLowerCase(); // Convert content to lowercase
+               
+               if (quizToSearch.includes(searchListQuiz)) {
+                    children[k].style.display = "table-row";
+               } else {
+                    children[k].style.display = "none";
+               }
+          }
+     }); 
+
 </script>
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
@@ -553,4 +612,7 @@ $(document).ready(function() {
 <?php require "layouts/footer.php";?>
 
 <!-- Back to up -->
+
+
+
 
