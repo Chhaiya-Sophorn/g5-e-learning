@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			?>
 				<div class="col-sm-6 col-lg-4 col-xl-3">
 					<div class="card card-body shadow rounded-3 text-center">
-						<img class="rounded-circle mx-auto d-block" src="<?=$trainer['profile_image']?>" alt="" style="width: 170px; height: 170px;margin-top: -100px;">
+						<img class="rounded-circle mx-auto d-block" src="uploading/<?=$trainer['profile_image']?>" alt="" style="width: 170px; height: 170px;margin-top: -100px;">
 						<h5 class='m-1'><?=$trainer['name']?></h5>
 						<span>I am here to develop you</span>
 					</div>

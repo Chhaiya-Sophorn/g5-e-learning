@@ -63,6 +63,20 @@ function getCourse(string $email){
     return $statement->fetch();
 }
 
+function courseExis(string $email):array{
+    global $connection;
+    $statement =  $connection->prepare('SELECT c.* FROM courses c INNER JOIN users u ON c.user_id = u.user_id WHERE u.email = :email');
+    $statement->execute([
+        ':email' => $email
+    ]);
+     //jenh 0 ber ot mean jenh 1
+     if($statement->rowCount()>0){
+        return $statement->fetch();
+    }else{
+        return [];
+    }
+}
+
 function selectTrainer(int $id){
     global $connection;
     $statement =  $connection->prepare('SELECT *FROM users where user_id = :id');
@@ -71,6 +85,5 @@ function selectTrainer(int $id){
     ]);
     return $statement->fetchAll();
 }
-
 
 
