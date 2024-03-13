@@ -19,7 +19,8 @@ $routes = [
     '/deleteCategory' => 'controllers/admin/category/category_delete.controller.php',
 
 
-    '/list_trainer' => 'controllers/admin/trainer/trainer.php',
+    '/list_trainer' => 'controllers/admin/trainer/trainer.controller.php',
+    '/add_trainer' => 'controllers/admin/trainer/add.controller.php',
 ];
 
 if (array_key_exists($uri, $routes)) {
