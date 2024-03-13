@@ -14,6 +14,11 @@ $routes = [
     '/trainerLogin' => 'controllers/trainer/trainerLogin.controller.php',
     '/trainerAccess' => 'controllers/trainer/trainerLoginProcess.controller.php',
     '/formChangeNumber' => 'controllers/students/forgetPassword/formChangePassword.controller.php',
+    '/blog_learning' => 'controllers/courses/blog_learning.controller.php',
+    '/trainer_detail' => 'controllers/trainers/trainer.controller.php',
+
+    '/trainer' => 'controllers/trainers/signin/login.controller.php',
+    '/trainer_access' => 'controllers/trainers/signin/access.controller.php',
 
     // '/trainer-review' => 'controllers/reviews/review.controller.php',
     // '/trainer-classroom' => 'controllers/classroom/classroom.controller.php',

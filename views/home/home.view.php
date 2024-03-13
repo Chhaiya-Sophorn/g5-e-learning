@@ -1,16 +1,5 @@
-<!-- =======================
 
-<?php
-session_start();
-// Check if the user is not logged in, redirect to the login page
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
 
-?>
-
-Main Banner START -->
 <section class="bg-light">
 	<div class="container p-6 mt-0 mt-lg-5">
 
@@ -225,7 +214,7 @@ Featured course START -->
 		<div class="row mb-4">
 			<div class="col-lg-8 text-center mx-auto">
 				<h2 class="fs-1 mb-0">Featured Courses</h2>
-				<p class="mb-0">Explore top picks of the week </p>
+				<p class="mb-0">Explore top picks of the week</p>
 			</div>
 		</div>
 
@@ -1127,7 +1116,7 @@ Action box START -->
 				</div>
 			</div>
 		</div> <!-- Row END -->
-	</div>i
+	</div>
 </section>
 <!-- =======================
 Action box END -->

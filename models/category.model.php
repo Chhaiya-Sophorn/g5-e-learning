@@ -1,13 +1,14 @@
 <?php
 
-function createCategory(string $title, string $description) : bool
+function createCategory(string $title, string $description, string $image) : bool
 // it will return true or false
 {
     global $connection;
-    $statement = $connection->prepare("insert into categories (title, description) values (:title, :description)");
+    $statement = $connection->prepare("insert into categories (title, description, image) values (:title, :description, :image)");
     $statement->execute([
         ':title' => $title,
-        ':description' => $description
+        ':description' => $description,
+        ':image' => $image
 
     ]);
 
@@ -30,14 +31,14 @@ function getCategories() : array
     return $statement->fetchAll();
 }
 
-function updateCategory(string $title, string $description, int $id) :bool
+function updateCategory(string $title, string $description, string $image, int $id) :bool
 {
     global $connection;
-
-    $statement = $connection->prepare("update categories set title = :title, description = :description where category_id = :category_id");
+    $statement = $connection->prepare("update categories set title = :title, description = :description, image = :image where category_id = :category_id");
     $statement->execute([
         ':title' => $title,
         ':description' => $description,
+        ':image' => $image,
         ':category_id' => $id
 
     ]);
@@ -68,3 +69,18 @@ function getIdCategory(string $title){
     $statement->execute([':title' => $title]);
     return $statement-> fetch();
 }
+
+function getNumberOfCourseInCategory(int $id){
+    global $connection;
+    $statement = $connection->prepare("SELECT COUNT(*) FROM courses WHERE category_id = :id");
+    $statement->execute([':id' => $id]);
+    return $statement->fetchColumn();
+}
+
+function getCoursesOnCategory(int $id){
+    global $connection;
+    $statement = $connection->prepare("SELECT* FROM courses WHERE category_id = :id");
+    $statement->execute([':id' => $id]);
+    return $statement->fetchAll();
+}
+
