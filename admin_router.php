@@ -20,6 +20,10 @@ $routes = [
 
 
     '/list_trainer' => 'controllers/admin/trainer/trainer.php',
+
+    //This is for student page
+    '/list_student'=>'controllers/admin/students/student_controller.php',
+
 ];
 
 if (array_key_exists($uri, $routes)) {

@@ -24,7 +24,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Users</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="/list_trainer" class="dropdown-item">Trainers</a>
-                            <a href="#" class="dropdown-item">Students</a>
+                            <a href="/list_student" class="dropdown-item">Students</a>
                         </div>
                     </div>
                 </div>

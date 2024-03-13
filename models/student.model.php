@@ -142,3 +142,39 @@ function strongPassword(string $password){
 
     return $passwords;
 }
+
+
+// =======================student in admin==================================
+function getStudents(){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM users WHERE roles_id = 3');
+    $statement->execute();
+    return $statement->fetchAll();
+}
+
+function deleteStudent(int $id)
+{
+    global $connection;
+    $statement =  $connection->prepare('DELETE FROM users WHERE user_id =:id');
+    $statement->execute([
+        ':id' => $id
+    ]);
+}
+
+function addStudent(string $name, string $email, string $password, string $phone, string $gender, string $image): bool
+{
+    global $connection;
+    $statement = $connection->prepare("INSERT INTO users (name, email, password, gender, roles_id, phone, profile_image) VALUES (:name, :email, :password, :gender, :role, :phone, :image)");
+    $statement->execute([
+        ':name' => $name,
+        ':email' => $email,
+        ':password' => $password,
+        ':gender' => $gender,
+        ':role' => 3,
+        ':phone' => $phone,
+        ':image' => $image,
+    ]);
+
+    return $statement->rowCount() > 0;
+}
+
