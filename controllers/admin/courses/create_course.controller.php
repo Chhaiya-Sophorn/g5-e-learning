@@ -7,9 +7,13 @@
           $title = htmlspecialchars($_POST["title"]);
           $description = htmlspecialchars($_POST["description"]);
           $category = getIdCategory($_POST["category_id"])['category_id'];
+
           $user_id = getIdTrainer($_POST['user_id'])['user_id'];
           $price = htmlspecialchars($_POST['price']);
-
+          $gender = 'Male';
+          if (isset($_POST['gender']) && $_POST['gender'] == 'Female') {
+              $gender = 'Female';
+          }
 
           if (isset($_FILES['image']) && $_FILES['image']['name']) {
                $image = $_FILES['image']['name'];

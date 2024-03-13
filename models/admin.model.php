@@ -83,9 +83,16 @@ function deleteCourse(int $id) : bool
 }
 
 // modify  data in database from integer to  string for display on web page.
-function getTrainerName(int $id){
+function getTrainerName($id){
     global $connection;
     $statement = $connection->prepare("SELECT*FROM users WHERE  user_id=:id");
+    $statement->execute([':id' => $id]);
+    return $statement-> fetch();
+}
+
+function getTitle(int $id){
+    global $connection;
+    $statement = $connection->prepare("SELECT*FROM users WHERE  course_id=:id");
     $statement->execute([':id' => $id]);
     return $statement-> fetch();
 }
