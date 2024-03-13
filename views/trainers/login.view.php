@@ -41,7 +41,7 @@
             <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-lg-4">
                 <div class="rounded p-4 p-sm-5 my-4 mx-3 shadhow-lg" style="background-color: rgba(0, 0, 0,0.1);">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h3 class ='text-white'>Sign In</h3>
+                        <h3 class ='text-white'>Sign In to Manage the course</h3>
                     </div>
 
                     <?php
@@ -59,17 +59,17 @@
                             <?php if($input==true){echo $require['email'];} ?>
                         </small>
                         <input type="email" class="form-control form-control-lg bd-info text-white" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.1);<?php if($input){ if(strlen($require['email'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='email' value="<?php if($input){echo $_POST['email'];} ?>">
-                        <label for="floatingInput" class="text-info" <?php if($input){if(strlen($require['email'])>0){echo 'hidden';}}?>>Email</label>
+                        <label for="floatingInput" class="text-white" <?php if($input){if(strlen($require['email'])>0){echo 'hidden';}}?>>Email</label>
                     </div>
                     <div class="form-floating mb-2 border-info rounded">
                         <small class="form-text text-danger">
                             <?php if($input==true){echo $require['password'];} ?>
                         </small>
                         <input type="Password" class="form-control form-control-lg bd-info text-info" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.1);<?php if($input){ if(strlen($require['password'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='password' value="<?php if($input){echo $_POST['password'];} ?>">
-                        <label for="floatingInput" class="text-info " <?php if($input){if(strlen($require['password'])>0){echo 'hidden';}}?>>Password</label>
+                        <label for="floatingInput" class="text-white " <?php if($input){if(strlen($require['password'])>0){echo 'hidden';}}?>>Password</label>
                     </div>
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <a href="" style="color: blue;" >Forgot Password</a>
+                        <a href="" style="color: white;" >Only the trainer assign the course</a>
                     </div>
                     <button type="submit" class="btn py-3 w-100 mb-4 border-info " style="background-color: rgba(0, 0, 0, 0.5);color: orange;">Sign In</button>
                 </form>
