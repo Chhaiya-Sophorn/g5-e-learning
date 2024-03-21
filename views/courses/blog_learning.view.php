@@ -20,13 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
 <section style='height: 300px;background-image: url("assets/images/bg/composition-3288397_1280.jpg");'>
-	<div class="container">
+	<div class="mt-0">
 		<form class="container-fluid justify-content-start" action='<?php if(isset($_POST['home'])){echo '/student';}else{echo '/course';}; ?>' method='post'>
 			<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
 			<input type="text" name='id' value='<?=$_POST['id']?>' hidden>
-			<button type="summit" class="btn btn-orange btn-sm">Back</button>
+			<button type="submit" class="btn btn-orange btn-sm">
+				<i class="bi bi-arrow-left-circle-fill"></i> Back
+			</button>
 		</form>
-		
 	</div>
 	<div class="row mb-4">
 		<div class="col-lg-8 text-center mx-auto">
@@ -35,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</div>
 	</div>
 </section>	
+
 <section>
 
 		<div class="container mt-5 border-info" style="height: 200px;">
@@ -53,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				</div>
 				<?php endforeach ?>
 			</div>
-			<a href="#blog_study"><button class="btn btn-sm btn-orange mb-0" class="text-white">Let's study</button></a>
+			<!-- <a href="#blog_study"><button class="btn btn-sm btn-orange mb-0" class="text-white">Let's study</button></a> -->
 		</div>	
 	</section>
 <!-- =======================
@@ -241,7 +243,7 @@ Action box END -->
      <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
           <div class="modal-dialog">
                <div class="modal-content">
-                    <div class="modal-body border border-success p-4 m-4">
+                    <div class="modal-body p-4 m-4">
 					<div class="text-center"> 
 						<img src="assets/images/quiz.png" alt="Profile Image" class="mb-3" style="width: 180px; height: 70px; object-fit: cover;">
 					</div>	
@@ -261,7 +263,7 @@ Action box END -->
      <div class="modal fade" id="videoModel" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
                <div class="modal-content">
-                    <div class="modal-body border border-success p-2 m-4">
+                    <div class="modal-body p-2 m-4">
 						<iframe width="730" height="345" id="vid" src=""></iframe>	
 						<h5 id='lessontitle' class='m-2'></h5>
 						<div class="modal-footer">
@@ -274,11 +276,11 @@ Action box END -->
 </div>
 
 <!-- ------------------quiz showing popup------------ -->
-<div class="container mt-1">
+<div class="container mt-1 lg-8">
      <div class="modal fade" id="quizModel" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
                <div class="modal-content">
-                    <div class="modal-body border border-success p-2 m-4">
+                    <div class="modal-body p-2 m-4">
 						<iframe width="730" height="345" id="quizz" src=""></iframe>	
 						<h5 id='lessontitle' class='m-2'></h5>
 						<div class="modal-footer">

@@ -86,4 +86,3 @@ function selectTrainer(int $id){
     return $statement->fetchAll();
 }
 
-

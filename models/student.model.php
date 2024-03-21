@@ -52,9 +52,6 @@ function createStudent(string $name,string $email,string $phone,string $gender, 
 
 }
 
-
-
-
 function requireInformation(string $name, string $email, string $password, string $phone, string $comfirm_password){
 
     $information = [
@@ -100,8 +97,6 @@ function requireInformation(string $name, string $email, string $password, strin
     
     return $information;
     }
-
-
 
 
     function applySignin(string $email ,string $password){
