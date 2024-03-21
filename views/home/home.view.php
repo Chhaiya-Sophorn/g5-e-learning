@@ -1,10 +1,4 @@
 
-
-<<<<<<< HEAD
-
-Main Banner START -->
-=======
->>>>>>> master
 <section class="bg-light">
 	<div class="container p-6 mt-0 mt-lg-5">
 

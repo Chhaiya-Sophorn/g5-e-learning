@@ -2,10 +2,10 @@
 <?php 
 	require 'layouts/header.php' ;
     require 'database/database.php';
-    require 'views/students/payments/payment.view.php';
+	require 'models/payment.model.php';
 ?>
 
-<!-- Header START -->
+<!-- Header START --> 
 <header class="navbar-light navbar-sticky navbar-transparent">
   <!-- Logo Nav START -->
   <nav class="navbar navbar-expand-xl">
@@ -76,13 +76,17 @@
   
       <!-- Right header content START -->
       <!-- Add to cart -->
-      <div class="navbar-nav position-relative overflow-visible me-3">
-        <a href="#" class="nav-link">	<i class="fas fa-shopping-cart fs-5"></i></a>
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-success mt-xl-2 ms-n1">5 
-          <span class="visually-hidden">unread messages</span>
-        </span>
-      </div>
   
+	  <div class="navbar-nav position-relative overflow-visible me-3">
+		<form action="/orders" method='post'>
+			<input type="text" name='email' value='<?= $_POST['email']?>' hidden>	
+			<button type='sumit' class='btn border-0'><i class="fas fa-shopping-cart fs-5"></i></button>
+        	<span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-success mt-xl-2 ms-n1"<?php if( count(getTheorder(students($_POST['email'])['user_id'])) === 0){echo 'hidden';}?>><?php echo count(getTheorder(students($_POST['email'])['user_id']))?></span>
+          	<!-- <span class="visually-hidden">unread messages</span> -->
+        	
+		</form>
+       
+      </div>
       <!-- Language -->
       <!-- <div class="dropdown ms-1 ms-lg-0">
         <a class="nav-link" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown"
@@ -204,6 +208,7 @@ Video START -->
 		</div>
 	</div>
 </section>
+
 <!-- =======================
 Video END -->
 
@@ -250,7 +255,7 @@ Category END -->
 
 <!-- =======================
 Featured course START -->
-<section class="pt-0 pt-md-5">
+<section id='courses' class="pt-0 pt-md-5">
 	<div class="container">
 		<!-- Title -->
 		<div class="row mb-4">
@@ -280,7 +285,7 @@ Featured course START -->
 						<!-- Hover element -->
 						<div class="card-img-overlay">
 							<div class="card-element-hover d-flex justify-content-end">
-      							<button class="icon-md bg-white rounded-circle border border-orange text-orange show-popup" data-user='<?=$user['email']?>' data-course='<?=$course['course_id']?>' data-title="<?=$course['title'] ?>" data-price="<?=$course['price'] ?>"><i class="fas fa-shopping-cart text-danger"></i></button>
+      							<button class="icon-md bg-white rounded-circle border border-orange text-orange show-popup" data-user='<?=$user['email']?>' data-course='<?=$course['course_id']?>' data-title="<?=$course['title'] ?>" data-price="<?=$course['price'] ?>" data-imgs='<?=$course['image_courses']?>' <?php if(count(getPaymentExist(students($_POST['email'])['user_id'], $course['course_id'] ))>0){echo 'hidden';}if(count(getAddOrderExist(students($_POST['email'])['user_id'], $course['course_id'] ))>0){echo 'hidden';} ?>><i class="fas fa-shopping-cart text-danger"></i></button>
 							</div>
 						</div>
 					</div>
@@ -293,7 +298,7 @@ Featured course START -->
 								<!-- Info -->
 								<li class="list-inline-item d-flex justify-content-center align-items-center">
 									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">9.1k</span>
+									<span class="h6 fw-light mb-0 ms-2"><?=getTheJoinercourse($course['course_id'])?></span>
 								</li>
 								<!-- Rating -->
 								<li class="list-inline-item d-flex justify-content-center align-items-center">
@@ -318,7 +323,13 @@ Featured course START -->
 						<div class="d-flex justify-content-between align-items-center mb-0">
 							<div><a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Personal Development </a></div>
 							<!-- Price -->
-							<h5 class="text-success mb-0"><?=$course['price'] ?></h5>
+							<h5 class="text-success mb-0" <?php if(count(getPaymentExist(students($_POST['email'])['user_id'], $course['course_id'] ))>0){echo 'hidden';} ?>><?=$course['price'] ?></h5>
+							<form action="/blog_learning" method='post'  <?php if(count(getPaymentExist(students($_POST['email'])['user_id'], $course['course_id'] ))<1){echo 'hidden';} ?>>
+								<input type="text" id="modaluser" value='<?=$_POST['email']?>' name='email' hidden>
+								<input type="text" id="modalcourse" value='<?=$course['course_id']?>' name='course_id' hidden>
+								<input type="text" id="modalcourse" value='' name='home' hidden>
+								<button type="sumite" class="btn btn-primary">Join course</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -969,8 +980,9 @@ Action box END -->
 
 <!-- JavaScript to trigger modal on button click -->
 <?php 
-    // require 'models/user.model.php';
+    require 'views/students/payments/payment.view.php';
 ?>
+
 <script>
 $(document).ready(function() {
   $('.show-popup').click(function() {
@@ -978,11 +990,13 @@ $(document).ready(function() {
     var price = $(this).data('price');
     var user = $(this).data('user');
     var course = $(this).data('course');
+    var imgs = $(this).data('imgs');
     
     $('#modalTitle').text(title);
     $('#modalPrice').text(price);
     $('#modalUser').val(user);
     $('#modalCourse').val(course);
+	$('#imgs').attr('src','uploading/'+imgs);
     $('#popupModal').modal('show');
 
     $('#paymentModal').modal('show');
@@ -990,18 +1004,20 @@ $(document).ready(function() {
 	 // Speak the title and price
 	//  speak('You selected course ' + title + ', price ' + price);
 
-
+	// playNotificationMusic();
 	// Function to handle the button click on the initial modal
-	$('#pay').click(function() {
+	$('#').click(function() {
     // Show the second modal
-    $('#paymentModal').modal('hide'); // Hide the initial modal
     $('#confirmationModal').modal('show');
-    $('#modaluser').val(user);
-    $('#modalcourse').val(course);
 
-    // Play music for the notification
-    playNotificationMusic();
+    
   });
+  });
+});
+
+$(document).ready(function() {
+  $('.ssuccss-popup').click(function() {
+    $('#confirmationModal').modal('show');
   });
 });
 

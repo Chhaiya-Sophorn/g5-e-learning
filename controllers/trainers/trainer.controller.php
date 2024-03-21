@@ -1,1 +1,1 @@
-<?php require 'views/trainers/trainer.view.php' ?>
+<?php require 'views/trainers/manage.view.php';

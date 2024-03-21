@@ -1,7 +1,6 @@
 <?php 
 require "layouts/header.php";
-require 'models/lesson.mode.php';
-
+require 'models/manage.model.php';
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_POST['update'])){
         editLesson($_POST['lesson_id'],$_POST['title'],$_POST['description'], $_POST['video']);
@@ -16,10 +15,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }else if(isset($_POST['delete_quizResult']) && $_POST['quiz_idResult'] !=''){
         deleteQuizsumit($_POST['quiz_idResult']);
     }else{
-        if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['video']) && isset($_POST['course_id']) && count(lessonExist($_POST['title']))<1){
-            if($_POST['title'] !='' && $_POST['description']!='' && $_POST['video']!='' && $_POST['course_id']!='' && count(lessonExist($_POST['title']))<1){
-                addLesson( $_POST['title'], $_POST['description'],$_POST['video'], $_POST['course_id']);
-               
+        if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['video']) && isset($_POST['course']) && count(lessonExist($_POST['course'],$_POST['title']))<1){
+            if($_POST['title'] !='' && $_POST['description']!='' && $_POST['video']!='' && $_POST['course']!='' && count(lessonExist($_POST['course'],$_POST['title']))<1){
+                addLesson( $_POST['title'], $_POST['description'],$_POST['video'], $_POST['course']);  
             }
         }
         if(isset($_POST['lesson']) && isset($_POST['content'])){
@@ -33,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 ?>
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
-<!-- addlessons Modal -->
+<!-- addlessons Modal --> 
 <div class="container mt-5">
      <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -53,9 +51,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <label for="video" class="form-label">Video URL:</label>
                                 <input type="text" class="form-control" placeholder="Enter video URL" style="border-color: #ced4da;" name='video'>
                             </div>  
-                            <input type="text" value='<?=getCourse($_POST['email'])['course_id']?>' name='course_id' hidden>
+                            <input type="text" value='' name='course_id' hidden>
                             <input type="text" name='email' value='<?=$_POST['email']?>'hidden>
-                            <input type="password" name='password' value='<?=$_POST['password']?>' hidden>
+                            <input type="text" name='course' value='<?=$_POST['course']?>'hidden>
                             <button type="sumit" class="btn btn-orange">Submit</button>
                         </form>
                     </div>
@@ -83,9 +81,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <label for="video" class="form-label">Video URL:</label>
                                 <input type="text" class="form-control" id="video" placeholder="Enter video URL" style="border-color: #ced4da;" name='video' value=''>
                             </div>  
-                            <input type="text" value='<?=getCourse($_POST['email'])['course_id']?>' name='course_id' hidden>
+                            <!-- <input type="text" value='' name='course_id' hidden> -->
+                            <input type="text" name='course' value='<?=$_POST['course']?>'hidden>
                             <input type="text" name='email' value='<?=$_POST['email']?>'hidden>
-                            <input type="password" name='password' value='<?=$_POST['password']?>' hidden>
                             <input type="text" name='lesson_id' id='lesson_id' value='' hidden>
                             <input type="text" name='update' id='update' value='' hidden>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -110,7 +108,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <input type="text" name='delete' hidden>
                                 <input type="text" name='delete_id' id='delete_id' hidden>
                                 <input type="text" name='email' value='<?=$_POST['email']?>'hidden>
-                                <input type="password" name='password' value='<?=$_POST['password']?>' hidden>
+                                <input type="text" name='course' value='<?=$_POST['course']?>'hidden>
                                 <button typ='button' class="btn btn-danger">Delete</button>
                             </form>
 					</div>
@@ -122,14 +120,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <!-- ------------------video showing popup------------ -->
 <div class="container mt-1">
      <div class="modal fade" id="videoModel" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg"> <!-- Changed modal-dialog class to modal-lg for a wider modal -->
+          <div class="modal-dialog modal-xl"> <!-- Changed modal-dialog class to modal-lg for a wider modal -->
                <div class="modal-content">
-                    <div class="modal-body border border-success p-2 m-4">
-						<iframe width="730" height="345" id="videos" src=""></iframe>	
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-						</div>
+                    <div class="modal-body p-2 m-4 d-flex justify-content-center">
+						<iframe width="1000" height="450" id="videos" src=""></iframe>	
                     </div>
+                    <div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+					</div>
                </div>
           </div>
      </div>
@@ -148,7 +146,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <select class="form-select" aria-label="Default select example" name='lesson'>
                                     <option selected>Select the lessons</option>
                                     <?php 
-                                    $lessons =getTheLessons(getCourse($_POST['email'])['course_id']);
+                                    $lessons =getTheLessons($_POST['course']);
                                     foreach ($lessons as $lesson):
                                     ?>
                                     <option value="<?=$lesson['title']?>"><?=$lesson['title']?></option>
@@ -160,7 +158,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <input type="text" class="form-control" placeholder="Enter Quiz URL" style="border-color: #ced4da;" name='content'>
                             </div>  
                             <input type="text" name='email' value='<?=$_POST['email']?>' hidden>
-                            <input type="password" name='password' value='<?=$_POST['password']?>' hidden>
+                            <input type="text" name='course' value='<?=$_POST['course']?>' hidden>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <button type="sumit" class="btn btn-orange">Submit</button>
                         </form>
@@ -174,14 +172,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <!-- ------------------quiz showing popup------------ -->
 <div class="container mt-1">
      <div class="modal fade" id="quizModel" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg"> <!-- Changed modal-dialog class to modal-lg for a wider modal -->
+          <div class="modal-dialog modal-xl"> <!-- Changed modal-dialog class to modal-lg for a wider modal -->
                <div class="modal-content">
-                    <div class="modal-body border border-success p-2 m-4">
+                    <div class="modal-body p-2 m-4 d-flex justify-content-center">
 						<iframe width="730" height="345" id="quiz" src=""></iframe>	
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-						</div>
                     </div>
+                    <div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+					</div>
                </div>
           </div>
      </div>
@@ -200,7 +198,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <input type="text" name='delete_quiz' hidden>
                                 <input type="text" name='quiz_id' id='quizId' hidden>
                                 <input type="text" name='email' value='<?=$_POST['email']?>' hidden>
-                                <input type="password" name='password' value='<?=$_POST['password']?>' hidden>
+                                <input type="text" name='course' value='<?=$_POST['course']?>' hidden>
                                 <button typ='button' class="btn btn-danger">Delete</button>
                             </form>
 					</div>
@@ -222,7 +220,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <input type="text" name='delete_quizResult' hidden>
                                 <input type="text" name='quiz_idResult' id='quiz_idResult' hidden>
                                 <input type="text" name='email' value='<?=$_POST['email']?>' hidden>
-                                <input type="password" name='password' value='<?=$_POST['password']?>' hidden>
+                                <input type="text" name='course' value='<?=$_POST['course']?>' hidden>
                                 <button typ='button' class="btn btn-danger">Delete</button>
                             </form>
 					</div>
@@ -244,7 +242,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <select class="form-select" aria-label="Default select example" name='lesson_select' id='lesson_select'>
                                     <option selected>Select the lessons</option>
                                     <?php 
-                                    $lessons =getTheLessons(getCourse($_POST['email'])['course_id']);
+                                    $lessons =getTheLessons($_POST['course']);
                                     foreach ($lessons as $lesson):
                                     ?>
                                     <option value="<?=$lesson['title']?>"><?=$lesson['title']?></option>
@@ -255,9 +253,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <label for="video" class="form-label">Quiz URL:</label>
                                 <input type="text" class="form-control" placeholder="Enter Quiz URL" style="border-color: #ced4da;" name='contents' id='content'>
                             </div> 
-                            <input type="text" value='<?=getCourse($_POST['email'])['course_id']?>' name='course_id' hidden>
+                            <!-- <input type="text" value='' name='course_id' hidden> -->
                             <input type="text" name='email' value='<?=$_POST['email']?>'hidden>
-                            <input type="password" name='password' value='<?=$_POST['password']?>' hidden>
+                            <input type="text" name='course' value='<?=$_POST['course']?>'hidden>
                             <input type="text" name='edit_id' id='edit_id' value='' hidden>
                             <input type="text" name='quiz_edit' id='quiz_edit' value='' hidden>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -272,50 +270,42 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <!-- -------------quiz result showing----------- -->
 <div class="container mt-1">
      <div class="modal fade" id="qresultModel" tabindex="-1" aria-labelledby="qresultModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg"> <!-- Changed modal-dialog class to modal-lg for a wider modal -->
+          <div class="modal-dialog modal-xl"> <!-- Changed modal-dialog class to modal-lg for a wider modal -->
                <div class="modal-content">
-                    <div class="modal-body border border-success p-2 m-4 text-center">
-                        <img src="" id='imgresult'>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-						</div>
+                    <div class="modal-body p-2 m-4 d-flex justify-content-center" style="height: 350px; overflow-y: auto;">
+                        <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="scrollspy-example">
+                            <img src="" id='imgresult'>
+                        </div>
                     </div>
+                    <div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+					</div>
                </div>
           </div>
      </div>
 </div>
 <!-- ----------------------------------------------- -->
 <div class="row mb-4 mt-5">
-	<div class="col-lg-8 text-center mx-auto">
-		<h2 class="fs-1">Welcom to the <span class='text-orange'><?=getCourse($_POST['email'])['title']?></span> Courses</h2>
+    <div class="ml-3">
+            <form class="container-fluid justify-content-start" action='/trainer_home' method='post'>
+                <input type="text" name='email' value='<?=$_POST['email']?>' hidden>
+                <button type="submit" class="btn btn-orange btn-sm">
+                <i class="bi bi-arrow-left-circle-fill"></i> Back
+                </button>
+             </form>  
+    </div>
+	<div class="col-lg-8 text-center mx-auto mt-5">
+		<h2 class="fs-1">Welcom to the <span class='text-orange'><?=getCourseMa($_POST['course'])['title']?></span> Course Managment</h2>
 		<p class="mb-0">Information Technology Courses to expand your skills and boost your career & salary</p>
 	</div>
 </div>
 
-<section id='testing_blog'>
-    <div class="container mt-5">
-        <div class="row justify-content-center"> <!-- Center the row -->
-        <?php
-        $trainers =getCourse($_POST['email']);
-        $train = selectTrainer($trainers['user_id']);
-        foreach ($train as $trainer):
-        ?>
-            <div class="col-sm-6 col-lg-4 col-xl-3">
-                <div class="card card-body shadow rounded-3 text-center">
-                    <img class="rounded-circle mx-auto d-block" src="uploading/<?=$trainer['profile_image']?>" alt="" style="width: 170px; height: 170px;margin-top: -100px;">
-                    <h5 class='m-1'><?=$trainer['name']?></h5>
-                    <span>I am here to develop you</span>
-                </div>
-            </div>
-            <?php endforeach ?>
-        </div>
-    </div>
-</section>
 <div class="container ml-5">
 
     <a href="#lessons"><button type="button" class="btn btn-outline-orange">Lessons</button></a>
     <a href="#quizzes"><button type="button" class="btn btn-outline-orange">quiz</button></a>
     <a href="#list_student_join"> <button type="button" class="btn btn-outline-orange">The result testing of students</button></a>
+    <a href="#students"> <button type="button" class="btn btn-outline-orange">students</button></a>
 </div>
 
 <section id='lessons'>
@@ -347,8 +337,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </thead>
         <tbody>
         <?php 
-        $course_id =getCourse($_POST['email'])['course_id'];
-        $lessons = getTheLessons($course_id);
+        $lessons = getTheLessons($_POST['course']);
         foreach ($lessons as $lesson):
         ?>
         <tr>
@@ -366,6 +355,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     </div>
 
 </section>
+<div class="container ml-5">
+
+    <a href="#lessons"><button type="button" class="btn btn-outline-orange">Lessons</button></a>
+    <a href="#quizzes"><button type="button" class="btn btn-outline-orange">quiz</button></a>
+    <a href="#list_student_join"> <button type="button" class="btn btn-outline-orange">The result testing of students</button></a>
+    <a href="#students"> <button type="button" class="btn btn-outline-orange">students</button></a>
+</div>
 <section id='quizzes'>
     <div class="container">
     <div class="mt-1 mb-1 d-flex justify-content-between align-items-center">
@@ -394,8 +390,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </thead>
         <tbody id="quizTable" >
             <?php 
-            $course_id =getCourse($_POST['email'])['course_id'];
-            $lessons = getTheLessons($course_id);
+            $lessons = getTheLessons($_POST['course']);
             foreach ($lessons as $lesson):
                 foreach (getQuizzesbylessonId($lesson['lesson_id']) as $quize):
             ?>
@@ -416,6 +411,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     </div>
 
 </section>
+<div class="container ml-5">
+
+    <a href="#lessons"><button type="button" class="btn btn-outline-orange">Lessons</button></a>
+    <a href="#quizzes"><button type="button" class="btn btn-outline-orange">quiz</button></a>
+    <a href="#list_student_join"> <button type="button" class="btn btn-outline-orange">The result testing of students</button></a>
+    <a href="#students"> <button type="button" class="btn btn-outline-orange">students</button></a>
+</div>
 <section id='list_student_join'>
     <div class="container">
     <div class="mt-1 mb-1 d-flex justify-content-between align-items-center">
@@ -442,8 +444,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </thead>
         <tbody>
         <?php 
-            $course_id =getCourse($_POST['email'])['course_id'];
-            $lessons = getTheLessons($course_id);
+            $lessons = getTheLessons($_POST['course']);
             foreach ($lessons as $lesson):
                 foreach (getQuizzesSumitbylessonId($lesson['lesson_id']) as $quizeSumit):
             ?>
@@ -457,6 +458,56 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             endforeach;
         endforeach;
         ?>
+        </tbody>
+    </table>
+    </div>
+
+</section>
+<div class="container ml-5">
+
+    <a href="#lessons"><button type="button" class="btn btn-outline-orange">Lessons</button></a>
+    <a href="#quizzes"><button type="button" class="btn btn-outline-orange">quiz</button></a>
+    <a href="#list_student_join"> <button type="button" class="btn btn-outline-orange">The result testing of students</button></a>
+    <a href="#students"> <button type="button" class="btn btn-outline-orange">students</button></a>
+</div>
+<section id='students'>
+    <div class="container">
+    <div class="mt-1 mb-1 d-flex justify-content-between align-items-center">
+    <h3>students List</h3>
+
+    <!-- input search -->
+    <div class="d-flex align-items-center">
+        <!-- <form action="controllers/admin/courses/courseSearching.controller.php" method="post" > -->
+        <label for="search" class="me-4">Search:</label> <!-- Add margin to the label -->
+        <input class="form-control pe-5 bg-secondary bg-opacity-10 border-info" id="searchSubmit"  name="searchSubmit" type="text"
+        placeholder="Search" aria-label="Search" >
+        <!-- </form> -->
+    </div>
+
+    </div>        
+    <table class="table table-bordered  " id="SubmitTable" >
+        <thead class='text-orange'>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Date join course</th>
+            <th>view</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php 
+            $courses = getPaymentMn($_POST['course']);
+            foreach ($courses as $course):
+        ?>
+        <tr>
+            <td><?=getStudentMn($course['user_id'])['name']?></td>
+            <td><?=getStudentMn($course['user_id'])['phone']?></td>
+            <td><?=getStudentMn($course['user_id'])['email']?></td>
+            <td><?php print_r($course['date']) ?></td>
+            <td><button type="button" class="btn btn-orange"><i class="fas fa-eye"></i> View</button></td>
+        </tr>
+        <?php endforeach ?>
         </tbody>
     </table>
     </div>

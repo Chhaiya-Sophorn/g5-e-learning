@@ -1,10 +1,11 @@
 <?php
 
-function lessonExist(string $title): array{
+function lessonExist(int $id ,string $title): array{
     global $connection;
-    $statement =  $connection->prepare('SELECT *FROM lessons WHERE title = :title');
+    $statement =  $connection->prepare('SELECT *FROM lessons WHERE title = :title and course_id =:id');
     $statement->execute([
-        ':title' => $title
+        ':title' => $title,
+        ':id' => $id
     ]);
 
     //jenh 0 ber ot mean jenh 1
@@ -174,3 +175,30 @@ function quizResultSumitExist(string $image): array{
         return [];
     }
 }
+
+function getCourseMa(int $id) : array
+{
+    global $connection;
+    $statement = $connection->prepare("select * from courses where course_id = :id");
+    $statement->execute([':id' => $id]);
+    return $statement->fetch();
+}
+
+function getPaymentMn(int $id) : array
+{
+    global $connection;
+    $statement = $connection->prepare("select * from payments where course_id = :id");
+    $statement->execute([':id' => $id]);
+    return $statement->fetchAll();
+}
+
+function getStudentMn(int $id): array
+{
+    global $connection;
+    $statement =  $connection->prepare('SELECT * FROM users WHERE user_id = :id and roles_id=3');
+    $statement->execute([
+        ':id' => $id
+    ]);
+    return $statement->fetch();
+}
+
