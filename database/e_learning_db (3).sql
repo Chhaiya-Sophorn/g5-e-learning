@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2024 at 01:40 PM
+-- Generation Time: Mar 21, 2024 at 10:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -65,7 +65,9 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`course_id`, `title`, `description`, `user_id`, `category_id`, `price`, `image_courses`) VALUES
-(145, 'hhhh', 'Hello', 39, 1, '1000$', '06.jpg');
+(145, 'hhhh', 'Hello', 39, 1, '1000$', '06.jpg'),
+(152, 'HTML', 'I love you HTML', 41, 1, '2000$', '06.jpg'),
+(153, 'hh', 'I love desing so much', 39, 1, '5000$', '07.jpg');
 
 -- --------------------------------------------------------
 
@@ -117,9 +119,34 @@ CREATE TABLE `lessons` (
 --
 
 INSERT INTO `lessons` (`lesson_id`, `title`, `description`, `course_id`, `video`) VALUES
-(3, 'Lesson 1: What is the love ?', 'Love is the good thing for all the people.', 145, 'https://www.youtube.com/embed/XqZsoesa55w?si=zT7FWfFiXUA8oALF'),
+(3, 'Lesson 1: What is the love?', 'Love is the good thing for all the people.', 145, 'https://www.youtube.com/embed/XqZsoesa55w?si=zT7FWfFiXUA8oALF'),
 (27, 'Lesson 2: I love it.', 'Wheels on the Bus, Old Mac Donald\r\n', 145, 'https://www.youtube.com/embed/Ser69-nsRNs?si=MjqpDAFCwvKOiGSL'),
-(28, 'Lesson 3: I am here To be your', 'Check', 145, 'https://www.youtube.com/embed/hX04qBTeNFQ?si=pzzxoG1rjmA2Xmgx');
+(28, 'Lesson 3: I am here To be your', 'Check', 145, 'https://www.youtube.com/embed/hX04qBTeNFQ?si=pzzxoG1rjmA2Xmgx'),
+(29, 'Lesson 1: Love', 'I love you', 152, 'https://www.youtube.com/embed/Ser69-nsRNs?si=nTI8WUExjmTFizR7'),
+(30, 'Lesson 4 : Html', 'I love HTML', 145, 'https://www.youtube.com/embed/zS1KiLLYVBA?si=HMPilfIF4Nzz-NKm'),
+(31, 'Lesson 1: Figma Basic', 'It a good thing for you', 153, 'https://www.youtube.com/embed/tgbNymZ7vqY'),
+(35, 'I love chhiya', 'ddd', 145, 'https://www.youtube.com/embed/hX04qBTeNFQ?si=pzzxoG1rjmA2Xmgx');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `action` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `course_id`, `user_id`, `action`) VALUES
+(45, 145, 1, 'Yes'),
+(46, 152, 1, 'No');
 
 -- --------------------------------------------------------
 
@@ -130,8 +157,17 @@ INSERT INTO `lessons` (`lesson_id`, `title`, `description`, `course_id`, `video`
 CREATE TABLE `payments` (
   `payment_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `course_id` int(11) DEFAULT NULL
+  `course_id` int(11) DEFAULT NULL,
+  `total` decimal(10,2) DEFAULT NULL,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`payment_id`, `user_id`, `course_id`, `total`, `date`) VALUES
+(15, 1, 145, 1000.00, '2024-03-19');
 
 -- --------------------------------------------------------
 
@@ -152,7 +188,12 @@ CREATE TABLE `quizzes` (
 INSERT INTO `quizzes` (`quiz_id`, `lesson_id`, `content`) VALUES
 (2, 3, 'https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link'),
 (4, 27, 'https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link'),
-(9, 28, 'https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link');
+(9, 30, 'https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link'),
+(10, 29, 'https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link'),
+(12, 31, 'https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link'),
+(13, 31, 'https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link'),
+(14, 31, 'https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link'),
+(15, 31, 'https://docs.google.com/forms/d/e/1FAIpQLSe0vD9TC7s3laObBxrdYh7UvoLUeL2spHHkl3P4D-pe8o9H-Q/viewform?usp=sf_link');
 
 -- --------------------------------------------------------
 
@@ -172,7 +213,10 @@ CREATE TABLE `quiz_sumit` (
 --
 
 INSERT INTO `quiz_sumit` (`sumit_id`, `user_id`, `lesson_id`, `image`) VALUES
-(6, 1, 3, 'BgOfMe.png');
+(6, 1, 3, 'BgOfMe.png'),
+(7, 1, 29, 'my background.png'),
+(10, 1, 31, 'photo_2024-03-14_07-57-00.jpg'),
+(11, 1, 3, '10.jpg');
 
 -- --------------------------------------------------------
 
@@ -254,11 +298,15 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `gender`, `roles_id
 (36, 'Chhaiya Sophorn', 'chhaiya@student.psnumeriques.org', '123', 'Female', 3, '0969678884', '015a0c9e6538e8bdd8f415276a92a926 (1).jpg'),
 (37, 'YaYa', 'chnt@gg.passerellesnumeriques.org', '123@Pnc', 'Female', 3, '0969678884', 'non.webp'),
 (38, 'Chhaiya Sophorn', 'chhaiya.sophorn@studen.llesnumeriques.org', '123@Pnc', 'Female', 3, '0969678884', 'non.webp'),
-(39, 'Chhaiya', 'chhaiya@example.com', 'password1', 'Male', 2, '123456789', 'uploading/Untitled design (1).png'),
-(40, 'Sokunthea', 'sokunthea@example.com', 'password2', 'Female', 2, '987654321', 'uploading/koeuk_4.jpg'),
+(39, 'Chhaiya Sophorn', 'chhaiya@example.com', '123@pnc', 'Male', 2, '123456789', 'Untitled design (1).png'),
 (41, 'Kouk', 'kouk@example.com', 'password3', 'Male', 2, '555555555', '6262794953545595754_121.jpg'),
 (42, 'Chhaiya Sophorn', 'chhaiya.sophorn@student.umeriques.org', '123@Pnc', 'Female', 3, '0969678884', 'ebcaede226bb4a75611d61723efe7e10.jpg'),
-(43, 'Chhaiya Sophorn', 'chhaiya.sophorn@student.hfttlesnumeriques.org', '123@Chh', 'Male', 3, '0969678884', 'd38fe5a0955d48f297c350161bc8dc81.jpg');
+(43, 'Chhaiya Sophorn', 'chhaiya.sophorn@student.hfttlesnumeriques.org', '123@Chh', 'Male', 3, '0969678884', 'd38fe5a0955d48f297c350161bc8dc81.jpg'),
+(44, 'YaYa', 'chhaiya.sophorn@stent.passelesnumeriques.org', '123@Pnc', 'Female', 3, '0969678884', 'non.webp'),
+(45, 'Chhaiya Sophorn', 'chhaiya.s@nt.passerellesnumeriques.org', '123@Pnc', 'Female', 3, '0969678884', 'non.webp'),
+(46, 'Chhaiya Sophorn', 'chhaiya.sophorn@student.pques.org', '123445', 'Female', 2, '0969678884', '07.jpg'),
+(48, 'YaYa', 'ya@haha.org', '123', 'Male', 2, '0969678884', 'Untitled design (1).png'),
+(49, 'Sokunthea', 'sukuntha@haha.org', '123@pnc', 'Male', 2, '0969678884', 'Untitled design.png');
 
 --
 -- Indexes for dumped tables
@@ -298,6 +346,14 @@ ALTER TABLE `enrollments`
 ALTER TABLE `lessons`
   ADD PRIMARY KEY (`lesson_id`),
   ADD KEY `course_id` (`course_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `course_id` (`course_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `payments`
@@ -344,13 +400,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT for table `cs`
@@ -368,25 +424,31 @@ ALTER TABLE `enrollments`
 -- AUTO_INCREMENT for table `lessons`
 --
 ALTER TABLE `lessons`
-  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `quiz_sumit`
 --
 ALTER TABLE `quiz_sumit`
-  MODIFY `sumit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `sumit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -398,7 +460,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Constraints for dumped tables
@@ -423,6 +485,13 @@ ALTER TABLE `enrollments`
 --
 ALTER TABLE `lessons`
   ADD CONSTRAINT `lessons_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`);
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`),
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `payments`

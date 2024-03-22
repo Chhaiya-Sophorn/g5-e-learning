@@ -25,6 +25,8 @@ $routes = [
     '/trainer_edits' => 'controllers/trainers/edit.controller.php',
     '/trainer_password' => 'controllers/trainers/passwords/passwrod.controller.php',
     '/trainer_passwrod_comfirm' => 'controllers/trainers/passwords/getnew.controller.php',
+    '/detail' => 'controllers/admin/students/student_detail.controller.php',
+
 
 ];
 
