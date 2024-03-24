@@ -268,6 +268,8 @@ Action box END -->
      </div>
 </div>
 
+
+
 <!-- ------------------video showing popup------------ -->
 <div class="container">
      <div class="modal fade" id="videoModel" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
