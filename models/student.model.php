@@ -173,3 +173,25 @@ function addStudent(string $name, string $email, string $password, string $phone
     return $statement->rowCount() > 0;
 }
 
+function getCoursePaid(int $user_id){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM payments WHERE user_id = :id');
+    $statement->execute([
+        ':id' => $user_id
+    ]);
+
+    return $statement->fetchAll();
+    
+}
+
+function getThecourseJoin(int $course_id){
+
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM courses WHERE course_id = :id');
+    $statement->execute([
+        ':id' => $course_id
+    ]);
+
+    return $statement->fetch();
+
+}
