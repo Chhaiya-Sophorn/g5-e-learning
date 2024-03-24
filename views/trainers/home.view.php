@@ -14,8 +14,8 @@ Inner part START -->
 			<p class="mb-0">Information Technology Courses to expand your skills and boost your career & salary</p>
 		</div>
 		<div class=' d-flex justify-content-end p-5'>
-       	<a href="/trainer"><button class="btn btn-danger mb-0"><i class="fas fa-sign-in-alt me-2"></i>Log Out</button></a> 
-    </div>
+       		<a href="/trainer"><button class="btn btn-danger mb-0"><i class="fas fa-sign-in-alt me-2"></i>Log Out</button></a> 
+    		</div>
 	</div>
 </section>	
 <section class="pt-4">
