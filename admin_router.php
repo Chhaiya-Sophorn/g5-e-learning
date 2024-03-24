@@ -16,7 +16,6 @@ $routes = [
     '/editCategory' => 'controllers/admin/category/category_edit.controller.php',
     '/deleteCategory' => 'controllers/admin/category/category_delete.controller.php',
 
-
     '/list_trainer' => 'controllers/admin/trainer/trainer.controller.php',
     '/add_trainer' => 'controllers/admin/trainer/add.controller.php',
 ];
