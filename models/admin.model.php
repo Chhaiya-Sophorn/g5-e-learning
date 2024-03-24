@@ -1,14 +1,15 @@
 <?php
 
-function createCourse(string $title, string $description, int $categories, string $fileImg, int $user_id, string $price) 
+function createCourse(string $title, string $description, int $categories, $date, string $fileImg, int $user_id, string $price) 
 {
     global $connection;
-    $statement = $connection->prepare("INSERT INTO courses (title, description, user_id, category_id, price, image_courses) VALUES (:title, :description, :user_id, :category, :price, :fileImg)");
+    $statement = $connection->prepare("INSERT INTO courses (title, description, user_id, category_id, date, price, image_courses) VALUES (:title, :description, :user_id, :category,:date, :price, :fileImg)");
     $statement->execute([
         ':title' => $title,
         ':description' => $description,
         ':user_id' => $user_id,
         ':category' => $categories,
+        ':date' => $date,
         ':price' => $price,
         ':fileImg' => $fileImg,
     ]);
@@ -40,7 +41,7 @@ function getCourses() : array
     return $statement->fetchAll();
 }
 
-function updateCourse(int $id, string $title, string $description, int $user_id, int $category, string $price, string $image_course ) : bool
+function updateCourse(int $id, string $title, string $description, int $user_id, int $category,string $price, string $image_course ) : bool
 {
     global $connection;
     $statement = $connection->prepare("update courses set title = :title, description = :description,user_id= :user_id, category_id= :category_id, price= :price, image_courses= :image_course  where course_id = :course_id");
@@ -61,7 +62,7 @@ function updateCourse(int $id, string $title, string $description, int $user_id,
 function updateCourseNoImg(int $id, string $title, string $description, int $user_id, int $category, string $price ) : bool
 {
     global $connection;
-    $statement = $connection->prepare("update courses set title = :title, description = :description,user_id= :user_id, category_id= :category_id, price= :price  where course_id = :course_id");
+    $statement = $connection->prepare("update courses set title = :title, description = :description,user_id= :user_id, category_id= :category_id,  price= :price  where course_id = :course_id");
     $statement->execute([
         ':course_id' => $id,
         ':title' => $title,
@@ -69,6 +70,7 @@ function updateCourseNoImg(int $id, string $title, string $description, int $use
         ':user_id' => $user_id,
         ':category_id' => $category,
         ':price' => $price,
+        
     ]);
 
     return $statement->rowCount() > 0;
@@ -159,3 +161,30 @@ function getTeacher(int $id){
 
     return $statement->fetchAll();
 }
+
+
+// function dfeleteCourse(int $id) : bool
+// {
+//     global $connection;
+//     $statement = $connection->prepare("SELECT 
+//     courses.course_id,
+//     courses.title AS course_title,
+//     courses.description AS course_description,
+//     lessons.lesson_id,
+//     lessons.title AS lesson_title,
+//     lessons.description AS lesson_description,
+//     quizzes.quiz_id,
+//     quizzes.content AS quiz_content
+// FROM 
+//     courses
+// INNER JOIN 
+//     lessons ON courses.course_id = lessons.course_id
+// LEFT JOIN 
+//     quizzes ON lessons.lesson_id = quizzes.lesson_id;
+// ");
+//     $statement->execute([':id' => $id]);
+//     return $statement->rowCount() > 0;
+// }
+
+
+?>

@@ -9,6 +9,9 @@
           $category = getIdCategory($_POST["category_id"])['category_id'];
 
           $user_id = getIdTrainer($_POST['user_id'])['user_id'];
+        //   $date = htmlspecialchars($_POST('date'));
+          $date = htmlspecialchars(date('Y-m-d'));
+
           $price = htmlspecialchars($_POST['price']);
           $gender = 'Male';
           if (isset($_POST['gender']) && $_POST['gender'] == 'Female') {
@@ -22,37 +25,30 @@
                $image_size = $_FILES['image']['size'];
        
                // Move the uploaded image to the destination folder
-               move_uploaded_file($image_tmp_name, $image_folder);
-               createCourse($title, $description, $category, $image, $user_id, $price);
-               header("Location:/viewCourse");
+               if (!empty($title) && !empty($description) && !empty($category) && !empty($image) && !empty($user_id) && !empty($date) && !empty($price)) {
+                // Move the uploaded image to the destination folder
+                move_uploaded_file($image_tmp_name, $image_folder);
+               createCourse( $title,  $description,  $category,   $date,$image,  $user_id,  $price);
+            }
+            header("Location:/viewCourse"); // Assuming you have implemented the addTrainer() function to insert data into the database
+            //    move_uploaded_file($image_tmp_name, $image_folder);
+            //    createCourse($title, $description, $category, $image, $user_id, $date, $price);
+            //    header("Location:/viewCourse");
            } else {
                // No image file uploaded, use a default image
+               if (!empty($title) && !empty($description) && !empty($category) && !empty($image) && !empty($user_id) && !empty($date) && !empty($price)) {
+
                $image = "non.webp";
-               createCourse($title, $description, $category, $image, $user_id, $price);
-               header("Location:/viewCourse");
-           }
+               createCourse($title,  $description,  $category,  $image, $date,  $user_id,  $price);
+               if (!empty($title) && !empty($description) && !empty($category) && !empty($image) && !empty($user_id) && !empty($date) && !empty($price)) {
+                    echo `<div class="alert alert-secondary" role="alert">
+                    A simple secondary alert—check it out!
+                  </div>`;
+            }
+        }
+            header("Location:/viewCourse");
+        }
 
      }
-     
 
-
-
-
-
-//     // Display the search results
-//     echo "<h2>Search Results for '$searchCourse':</h2>";
-//     if (empty($results)) {
-//         echo "No results found.";
-//     } else {
-//         echo "<ul>";
-//         foreach ($results as $result) {
-//             echo "<li>$result</li>";
-//         }
-//         echo "</ul>";
-//     }
-// } else {
-//     // If no search term is provided, redirect back to the search form
-//     header("Location:/viewCourse ");
-//     exit();
-// }
-// ?>
+?>

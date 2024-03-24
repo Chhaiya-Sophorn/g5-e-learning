@@ -160,3 +160,11 @@ function getThecourseJoin(int $course_id){
     return $statement->fetch();
 
 }
+
+
+function getStudentName($id){
+    global $connection;
+    $statement = $connection->prepare("SELECT*FROM users WHERE  user_id=:3");
+    $statement->execute([':3' => $id]);
+    return $statement-> fetch();
+}

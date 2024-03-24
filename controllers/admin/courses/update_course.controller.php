@@ -9,6 +9,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
    $description = htmlspecialchars($_POST["description"]);
    $category = getIdCategory($_POST['category_id'])['category_id'];
    $user_id = getIdTrainer($_POST['user_id'])['user_id'];
+   $date = htmlspecialchars(date('Y-m-d'));
    $price = htmlspecialchars($_POST['price']);
    $image = $_POST['image'];
 
@@ -17,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
          $image_folder = '../../../uploading' . $image; // Use correct file path
          move_uploaded_file($image_tmp_name, $image_folder);
 
-         $isset = updateCourse( $id,  $title,  $description,  $user_id,  $category,  $price,  $image );
+         $isset = updateCourse( $id,  $title,  $description,  $user_id,  $category,$price ,  $image );
       }else{
          $isset = updateCourseNoImg( $id,  $title,  $description,  $user_id,  $category,  $price );
       }
