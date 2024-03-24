@@ -3,6 +3,17 @@
 	require 'layouts/header.php' ;
     require 'database/database.php';
 	require 'models/payment.model.php';
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	if(isset($_POST['course_id'])){
+		if($_POST['course_id']!='' && count(orderExist(students($_POST['email'])['user_id'],$_POST['course_id']))<1){
+		addLesson($_POST['course_id'],students($_POST['email'])['user_id']);
+	}
+	}
+	
+}
+
+
 ?>
 
 <!-- Header START --> 
@@ -11,7 +22,7 @@
   <nav class="navbar navbar-expand-xl">
     <div class="container">
       <!-- Logo START -->
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="#">
         <img class="light-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo">
         <img class="dark-mode-item navbar-brand-item" src="assets/images/logo-light.svg" alt="logo">
       </a>
@@ -261,7 +272,7 @@ Featured course START -->
 		<div class="row mb-4">
 			<div class="col-lg-8 text-center mx-auto">
 				<h2 class="fs-1 mb-0">Featured Courses</h2>
-				<p class="mb-0">Explore top picks of the week </p>
+				<p class="mb-0 text-orange">Explore top picks of the week </p>
 			</div>
 		</div>
 
@@ -302,18 +313,13 @@ Featured course START -->
 								</li>
 								<!-- Rating -->
 								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4.5</span>
+									<!-- <div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div> -->
+									<!-- <span class="h6 fw-light mb-0 ms-2">4.5</span> -->
 								</li>
 							</ul>
 							<!-- Avatar -->
 							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="uploading/<?php $haha= getTeacher($course['user_id']);
-								foreach ($haha as $ha){
-									echo $ha['profile_image'];
-								};
-								?>" alt="avatar">
-							</div>
+								<img class="avatar-img rounded-circle" src="uploading/<?=getTeacher($course['user_id'])['profile_image']?>" alt="avatar"></div>
 						</div>
 						<!-- Divider -->
 						<hr>
@@ -336,384 +342,6 @@ Featured course START -->
 			</div>	
 			<!-- Card Item END -->
 			<?php endforeach ?>
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-lg-4 col-xxl-3">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/18.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body px-2">
-						<!-- Badge and icon -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">2.5k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">3.6</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/07.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h6 class="card-title"><a href="#">Fundamentals of Business Analysis</a></h6>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<div><a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Business Development </a></div>
-							<!-- Price -->
-							<h5 class="text-success mb-0">$160</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-lg-4 col-xxl-3">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/21.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body px-2">
-						<!-- Badge and icon -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">6k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">3.8</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/05.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h6 class="card-title"><a href="#">Google Ads Training: Become a PPC Expert</a></h6>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<div><a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> SEO </a></div>
-							<!-- Price -->
-							<h5 class="text-success mb-0">$226</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-lg-4 col-xxl-3">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/20.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body px-2">
-						<!-- Badge and icon -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">15k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4.8</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/02.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h6 class="card-title"><a href="#">Behavior, Psychology and Care Training</a></h6>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<div><a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Lifestyle </a></div>
-							<!-- Price -->
-							<h5 class="text-success mb-0">$342</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-lg-4 col-xxl-3">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/15.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body px-2">
-						<!-- Badge and icon -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">8k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">3.6</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/11.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h6 class="card-title"><a href="#">Microsoft Excel - Excel from Beginner to Advanced</a></h6>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<div><a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Technology </a></div>
-							<!-- Price -->
-							<h5 class="text-success mb-0">$245</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-lg-4 col-xxl-3">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/14.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body px-2">
-						<!-- Badge and icon -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4.0</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/12.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h6 class="card-title"><a href="#">Twitter Marketing & Twitter Ads For Beginners</a></h6>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<div><a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Technology </a></div>
-							<!-- Price -->
-							<h5 class="text-success mb-0">$199</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-lg-4 col-xxl-3">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/19.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body px-2">
-						<!-- Badge and icon -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">6k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4.0</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/08.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h6 class="card-title"><a href="#">Consulting Approach to Problem Solving</a></h6>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<div><a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Psychology</a></div>
-							<!-- Price -->
-							<h5 class="text-success mb-0">$215</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-lg-4 col-xxl-3">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/16.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body px-2">
-						<!-- Badge and icon -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">2k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">3.5</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/06.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h6 class="card-title"><a href="#">Ultimate business intelligence analyst a to Z Course(Pro)</a></h6>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<div><a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Business</a></div>
-							<!-- Price -->
-							<h5 class="text-success mb-0">$112</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
 
 		</div>
 		<!-- Button -->
