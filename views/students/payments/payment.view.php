@@ -1,12 +1,12 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	if(isset($_POST['course_id'])){
-		if($_POST['course_id']!='' && count(orderExist($_POST['course_id']))<1){
-		addLesson($_POST['course_id'],students($_POST['email'])['user_id']);
+	  if($_POST['course_id']!='' && count(orderExist(students($_POST['email'])['user_id'],$_POST['course_id']))<1){
+	  addLesson($_POST['course_id'],students($_POST['email'])['user_id']);
 	}
 	}
 	
-}
+  }
 
 
 ?>
