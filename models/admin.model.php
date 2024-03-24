@@ -120,11 +120,6 @@ function searchCourse(string $title) {
 
 }
 
-
-
-
-
-
 // function getTrainerNames(int $id){
 //     global $connection;
 //     $statement = $connection->prepare("SELECT name FROM users WHERE  user_id= 2");
@@ -157,5 +152,5 @@ function getTeacher(int $id){
     $statement =  $connection->prepare('SELECT *FROM users WHERE user_id = :id');
     $statement->execute([':id' => $id]);
 
-    return $statement->fetchAll();
+    return $statement->fetch();
 }

@@ -1,10 +1,11 @@
 <?php
 
-function orderExist(string $id): array{
+function orderExist(int $user_id,int $id): array{
     global $connection;
-    $statement =  $connection->prepare('SELECT *FROM orders WHERE course_id = :id');
+    $statement =  $connection->prepare('SELECT *FROM orders WHERE course_id = :id and user_id=:user');
     $statement->execute([
-        ':id' => $id
+        ':id' => $id,
+        ':user' => $user_id
     ]);
 
     //jenh 0 ber ot mean jenh 1

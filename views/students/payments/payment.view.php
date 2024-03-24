@@ -1,15 +1,3 @@
-<?php
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-	if(isset($_POST['course_id'])){
-		if($_POST['course_id']!='' && count(orderExist($_POST['course_id']))<1){
-		addLesson($_POST['course_id'],students($_POST['email'])['user_id']);
-	}
-	}
-	
-}
-
-
-?>
 <!-- Payment Modal -->
 <div class="container mt-5">
      <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
@@ -25,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 						
-						<form action="<?php  if(isset($_POST['id'])){echo '/course';}else{echo '/student#courses';}?>" method='post'>
+						<form action='/student#courses' method='post'>
 							<input type="text" id="modalUser" value='' name='email' hidden>
 							<input type="text" id="modalCourse" value='' name='course_id' hidden>
 							<input type="text" id="modalcategory" value='<?=$_POST['id']?>' name='id' hidden>

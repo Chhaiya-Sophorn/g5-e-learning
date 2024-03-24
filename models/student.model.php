@@ -2,7 +2,7 @@
 
 function accountExist(string $email): array{
     global $connection;
-    $statement =  $connection->prepare('SELECT *FROM users WHERE email = :email');
+    $statement =  $connection->prepare('SELECT *FROM users WHERE email = :email and roles_id=3');
     $statement->execute([
         ':email' => $email
     ]);
@@ -86,10 +86,10 @@ function requireInformation(string $name, string $email, string $password, strin
         $information['password_comfirm'] = 'Your password is not feed!';
     }
 
-    if($name !='' && $email != '' && $password !='' && $phone !='' && $comfirm_password !='' && preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{5,7}$/', $password) && $password ==$comfirm_password){
+    if($name !='' && $email != '' && $password !='' && $phone !='' && $comfirm_password !='' && preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9@$!%*?&]{5,}$/i', $password) && $password ==$comfirm_password){
         $information['email'] = 'This email already exist!';
     }else{
-        if (!preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{5,7}$/', $password) && $password !='') {
+        if (!preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9@$!%*?&]{5,}$/i', $password) && $password !='') {
             $information['password'] = 'Password must contain at least one letter, one digit, one special character, and be 5 to 7 characters long.';
         }
     }
@@ -131,7 +131,7 @@ function strongPassword(string $password){
     $passwords = [
         "password" => ""
     ];
-    if (!preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{5,7}$/', $password) && $password !='') {
+    if (!preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9@$!%*?&]{5,}$/i', $password) && $password !='') {
         $passwords['password'] = 'Password must contain at least one letter, one digit, one special character, and be 5 to 7 characters long.';
     }
 

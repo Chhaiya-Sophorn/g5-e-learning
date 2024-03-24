@@ -11,14 +11,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $hashedPassword = password_hash($user['password'], PASSWORD_DEFAULT);
             if (password_verify($password, $hashedPassword)) {
                 require 'views/trainers/home.view.php';
+<<<<<<< HEAD
             }else{
             require 'views/trainers/login.view.php';
+=======
+            } else {
+                require 'views/trainers/login.view.php';
+            }
+>>>>>>> develop
         }
-
     } else {
         require 'views/trainers/login.view.php';
     }
-}
 
 // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //     $email = $_POST['email'];

@@ -77,10 +77,8 @@
     <table class="table text-start align-middle table-bordered table-dark table-hover mb-0 mt-3">
         <thead>
             <tr class="text-white">
-                <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Password</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Gender</th>
                 <th scope="col">Profile</th>
@@ -98,19 +96,16 @@
             foreach ($students as $key => $student) :
             ?>
                 <tr>
-                    <td><?= $key + 1 ?></td>
                     <td><?= $student['name'] ?></td>
                     <td><?= $student['email'] ?></td>
-                    <td><?= $student['password'] ?></td>
                     <td><?= $student['phone'] ?></td>
                     <td><?= $student['gender'] ?></td>
                     <td>
                         <img src="../../../uploading/<?= $student['profile_image'] ?>" class="avatar">
                     </td>
-                    <td>
-                        <a class="btn btn-sm btn-primary" href="" data-bs-toggle="modal" data-bs-target="#deleteStudent<?= $student['user_id'] ?>"><i class="fas fa-trash"></i> Delete</a>
-                        <a class="btn btn-sm btn-warning text-white" href="" data-bs-toggle="modal" data-bs-target="#deleteDetail<?= $student['user_id'] ?>"><i class="fas fa-eye"></i> Detail</a>
-                      
+                    <td class='d-flex gap-2'>
+                        <a class="d-flex justify-content-center align-items-center gap-1 btn btn-warning btn-sm text-white" href="" data-bs-toggle="modal" data-bs-target="#deleteDetail<?= $student['user_id'] ?>"><i class="fas fa-eye"></i> Detail</a>
+                        <a class="d-flex justify-content-center align-items-center gap-1 btn btn-primary btn-sm" href="" data-bs-toggle="modal" data-bs-target="#deleteStudent<?= $student['user_id'] ?>"><i class="fas fa-trash"></i> Delete</a>                      
                     </td>
                 </tr>
                 

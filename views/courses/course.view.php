@@ -2,13 +2,22 @@
 require "layouts/header.php";
 require 'models/category.model.php';
 require 'models/payment.model.php';
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	if(isset($_POST['course_id'])){
+		if($_POST['course_id']!='' && count(orderExist(students($_POST['email'])['user_id'],$_POST['course_id']))<1){
+		addLesson($_POST['course_id'],students($_POST['email'])['user_id']);
+	}
+	}
+	
+}
 ?>
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
 <!-- =======================
 Inner part START -->
-<section style='height: 300px;background-image: url("assets/images/bg/pastel-2571378_1280.jpg");'>
+<section style='height: 300px;background-image: url("assets/images/bg/abstract-1264071_1280.jpg");'>
 	<div class="mt-0">
 		<form class="container-fluid justify-content-start" action='/student' method='post'>
 			<input type="text" name='email' value='<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>' hidden>
@@ -25,7 +34,7 @@ Inner part START -->
 	</div>
 	
 </section>	
-<section class="pt-4">
+<section class="pt-4" id='c'>
 	<div class="container">
 		<!-- Instructor list START -->
 		<div class="row g-4 justify-content-center">
@@ -126,6 +135,34 @@ Action box START -->
 		</div>
 	</div>
 </section>
+
+<!-- Payment Modal -->
+<div class="container mt-5">
+     <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+               <div class="modal-content">
+                    <div class="modal-body border border p-4 m-4">
+					<div class="text-center"> 
+						<img src="" alt="Profile Image" id='imgs' class="rounded-circle mb-3" style="width: 130px; height: 130px; object-fit: cover;">
+					</div>
+					<div class="text-center">Course:<h5 class="text-info" id="modalTitle"></h5></div>
+					<div class="text-center">Price:<h5 class="text-success" id="modalPrice"></h5></div>
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+						
+						<form action='/course#c' method='post'>
+							<input type="text" id="modalUser" value='' name='email' hidden>
+							<input type="text" id="modalCourse" value='' name='course_id' hidden>
+							<input type="text" id="modalcategory" value='<?=$_POST['id']?>' name='id' hidden>
+							<button type='sumit'class="btn btn-primary succeses-popup">Add to card</button>
+						</form>   
+					</div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
 
 <!-- =======================
 Action box END -->
