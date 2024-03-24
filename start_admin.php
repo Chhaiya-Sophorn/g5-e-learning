@@ -2,8 +2,7 @@
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $page = "";
 $routes = [
-    '/start_admin' => 'controllers/admin/start_admin.controller.php',
-   
+    '/admin' => 'controllers/admin/start_admin.controller.php',
 ];
 
 if (array_key_exists($uri, $routes)) {

@@ -2,6 +2,12 @@
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $page = "";
 $routes = [
+
+    '/admin_signin' => 'controllers/admin/signin/login.controller.php',
+    '/admin_access' => 'controllers/admin/signin/access.controller.php',
+    '/admin_password' => 'controllers/admin/passwords/passwrod.controller.php',
+    '/admin_password_comfirm' => 'controllers/admin/passwords/getnew.controller.php',
+
     '/signin' => 'controllers/students/signin/signin.controller.php',
     '/signup' => 'controllers/students/signup/signup.controller.php',
     '/student' => 'controllers/students/home.controller.php',
