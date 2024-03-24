@@ -39,9 +39,8 @@
             <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-lg-4">
                 <div class="rounded p-4 p-sm-5 my-4 mx-3 shadow-lg" style="background-color: rgba(0, 0, 0,0.3);">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h3 class="text-white">Sign In</h3>
+                        <h3 class="text-white">Sign In for 👨🏼‍💻 addmin</h3>
                     </div>
-
                     <?php
                     $input = false;
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -59,18 +58,19 @@
                             </small>
                             <input type="name" class="form-control form-control-lg bd-info text-white" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.1);<?php if ($input) { if (strlen($require['name']) > 0) { echo 'border: 1px solid lightcoral;'; } } ?>" name='name' value="<?php if ($input) { echo $_POST['name']; } ?>">
                         </div>
-                        <label for="password" class="text-white" <?php if ($input) { if (strlen($require['password']) > 0) { echo 'hidden'; } } ?>>Password</label>
-                        <div class="form-floating mb-2 border-info rounded">
-                            <small class="form-text text-danger">
-                                <?php if ($input == true) { echo $require['password']; } ?>
-                            </small>
-                            <div class="input-group">
-                                <input type="password" class="form-control form-control-lg bd-info text-info" id="password"  style="background-color: rgba(0, 0, 0, 0.1);<?php if ($input) { if (strlen($require['password']) > 0) { echo 'border: 1px solid lightcoral;'; } } ?>" name='password' value="<?php if ($input) { echo $_POST['password']; } ?>">
-                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                                    <i class="bi bi-eye fs-2 "></i>
-                                </button>
+                        <label for="passwordInput" class="text-white " <?php if ($input) {if (strlen($require['password']) > 0) { echo 'hidden';}} ?>>Password</label>
+                            <div class="form-floating mb-2 border-white rounded">
+                                <small class="form-text text-danger">
+                                    <?php if ($input == true) {
+                                        echo $require['password'];
+                                    } ?>
+                                </small>
+                                
+                                <div class="input-group">
+                                    <input type="Password" class="form-control form-control-lg bd-white text-white" id="passwordInput" style="background-color: rgba(0, 0, 0, 0.1);<?php if ($input) {if (strlen($require['password']) > 0) {echo 'border: 1px solid lightcoral;';}} ?>" name='password' value="<?php if ($input) {echo $_POST['password'];} ?>">
+                                    <button type="button" class="btn btn-light" id="showPasswordBtn"  style="background-color: rgba(0, 0, 0, 0.1);"><i class="bi bi-eye"></i></button>
+                                </div>
                             </div>
-                        </div>
                         <button type="submit" class="btn py-3 w-100 mb-4 border-info" style="background-color: rgba(0, 0, 0, 0.5);color: orange;">Sign In</button>
                     </form>
                 </div>
@@ -94,15 +94,24 @@
     <script src="vendor/js/main.js"></script>
 
         <!-- Password Toggle Script -->
+
         <script>
-        document.getElementById("togglePassword").addEventListener("click", function() {
-            var passwordInput = document.getElementById("password");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
+    $(document).ready(function() {
+        $("#showPasswordBtn").click(function() {
+            var passwordInput = $("#passwordInput");
+            var icon = $(this).find("i");
+
+            if (passwordInput.attr("type") === "password") {
+                passwordInput.attr("type", "text");
+                icon.removeClass("bi-eye").addClass("bi-eye-slash");
             } else {
-                passwordInput.type = "password";
+                passwordInput.attr("type", "password");
+                icon.removeClass("bi-eye-slash").addClass("bi-eye");
             }
         });
-    </script>
+    });
+</script>
+
+
 </body>
 </html>

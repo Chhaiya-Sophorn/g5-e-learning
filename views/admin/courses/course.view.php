@@ -1,7 +1,6 @@
 <!-- Form pop up create form -->
 <!-- Payment Modal -->
 
-
 <!-- ........................\ -->
 <div class="container p-0">
      <!-- CSS style -->
@@ -21,7 +20,7 @@
      /* Style on search and input search */
      #search {
           border-radius: 5px;
-          background-color: #343a40;
+          Bground-color: #343a40;
           color: white;
           border: 1px solid #6c757d;
           padding: 0.375rem 0.75rem;
@@ -44,8 +43,8 @@
                </div>
 
                <!-- Button trigger modal -->
-               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                         class="fa fa-plus-square"></i> Create Course</button>
+               <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" style='background:#F28500;color:white'><i
+                         class="fa fa-plus-square text-white"></i> Create Course</button>
 
           </div>
           <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -175,7 +174,7 @@
                          <td class="text-center d-sm-flex gap-1 align-items-center p-3 ">
                               <form action="/courseEdit" method="post">
                                    <input type="text" name='id' value='<?=$course['course_id']?>' hidden>
-                                   <button class="btn btn-sm btn-success""  >
+                                   <button class="btn btn-sm btn-success">
                                         <i class=" fas fa-edit">Edit</i>
                                    </button>
                               </form>
@@ -245,7 +244,7 @@
                                                                       <a href=""><p
                                                                            class="modal-title border-bottom text-3 w-100 btn btn-primary text-dark text-center ">
                                                                            <?=getTrainerName($course['user_id'])['name'];?></p></a>
-          </p></a>
+                                                                      </p></a>
                                                                  </div>
 
                                                             </div>

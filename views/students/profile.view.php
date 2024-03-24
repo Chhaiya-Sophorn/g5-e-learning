@@ -6,12 +6,12 @@ require 'models/student.model.php';
 
 <section id="cover" style=' height: 250px; background-size:cover; background-image: url("assets/images/bg/composition-3288397_1280.jpg");' >
 <div class="ml-3" >
-            <form class="container-fluid justify-content-start" action='/student' method='post'>
-			          <input type="text" name='email' value='<?=getStudent($_POST['id'])['email']?>' hidden>
+            <form class="container-fluid justify-content-start" action='<?php if(isset($_POST['admin'])){echo '/list_student';}else{ echo '/student';}?>' method='post'>
+			    <input type="text" name='email' value='<?=getStudent($_POST['id'])['email']?>' hidden>
                 <button type="submit" class="btn btn-orange btn-sm">
                 <i class="bi bi-arrow-left-circle-fill"></i> Back
                 </button>
-             </form>
+            </form>
              <div class=' d-flex justify-content-end p-5'>
        		<button class="btn btn-danger mb-0"><i class="fas fa-camera me-2"></i>Change Cover</button>
     		</div>
@@ -23,8 +23,6 @@ require 'models/student.model.php';
     </div>
 	</div>
 </section>
-
-
 
 <section class="pt-4">
 	<div class="container">
@@ -125,13 +123,13 @@ require 'models/student.model.php';
 									<!-- Title -->
 									<h6 class="text-orange mb-0">Digital Marketing</h6>
 									<!-- Social button -->
-                  <form action="/blog_learning" method='post'>
-								    <input type="text" id="modaluser" value='<?=getStudent($_POST['id'])['email']?>' name='email' hidden>
-								    <input type="text" id="modaluser" value='<?=$_POST['id']?>' name='pro_id' hidden>
-                    <input type="text" id="modalcourse" value='<?=$course['course_id']?>' name='course_id' hidden>
-                    <input type="text" id="modalcourse" value='' name='home' hidden>
-                    <button type="sumite" class="btn btn-primary">Join course</button>
-                </form>
+                                <form action="/blog_learning" method='post'>
+                                    <input type="text" id="modaluser" value='<?=getStudent($_POST['id'])['email']?>' name='email' hidden>
+                                    <input type="text" id="modaluser" value='' name='pro_id' hidden>
+                                    <input type="text" id="modaluser" value='<?=$_POST['id']?>' name='id' hidden>
+                                    <input type="text" id="modalcourse" value='<?=$course['course_id']?>' name='course_id' hidden>
+                                    <button type="sumite" class="btn btn-primary">Join course</button>
+                                </form>
 								</div>
 							</div>
 						</div>

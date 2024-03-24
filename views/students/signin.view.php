@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,53 +32,69 @@
 </head>
 
 <body style="background-image: url('assets/images/bg/02.jpg'); background-size: cover; background-repeat: no-repeat;">
-<div class="container-fluid position-relative d-flex p-0">
-    
-    <!-- Sign In Start -->
-    <div class="container-fluid">
-        <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-            <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-lg-4">
-                <div class="rounded p-4 p-sm-5 my-4 mx-3 shadhow-lg" style="background-color: rgba(0, 0, 0,0.4);">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h3 class ='text-info'>Sign In</h3>
-                    </div>
+    <div class="container-fluid position-relative d-flex p-0">
+        
+        <!-- Sign In Start -->
+        <div class="container-fluid">
+            <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-lg-4">
+                    <div class="rounded p-4 p-sm-5 my-4 mx-3 shadhow-lg" style="background-color: rgba(0, 0, 0,0.4);">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h3 class='text-white'>Sign In</h3>
+                        </div>
 
-                    <?php
-                    
-                    $input =false;
-                    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                        $input = true;
-                        $require = applySignin( $_POST['email'], $_POST['password']);  
-                    }
-                    
-                    ?>
-                    <form action="/access" method='post'>
-                    <div class="form-floating mb-2 border-info rounded">
-                        <small class="form-text text-danger">
-                            <?php if($input==true){echo $require['email'];} ?>
-                        </small>
-                        <input type="email" class="form-control form-control-lg bd-info text-info" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.1);<?php if($input){ if(strlen($require['email'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='email' value="<?php if($input){echo $_POST['email'];} ?>">
-                        <label for="floatingInput" class="text-info" <?php if($input){if(strlen($require['email'])>0){echo 'hidden';}}?>>Email</label>
+                        <?php
+                        $input = false;
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                            $input = true;
+                            $require = applySignin($_POST['email'], $_POST['password']);
+                        }
+                        ?>
+                        <form action="/access" method='post'>
+                            <div class="form-floating mb-2 border-white rounded">
+                                <small class="form-text text-danger">
+                                    <?php if ($input == true) {
+                                        echo $require['email'];
+                                    } ?>
+                                </small>
+                                <input type="email" class="form-control form-control-lg bd-white text-white" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.1);<?php if ($input) {
+                                                                                                                                                                            if (strlen($require['email']) > 0) {
+                                                                                                                                                                                echo 'border: 1px solid lightcoral;';
+                                                                                                                                                                            }
+                                                                                                                                                                        } ?>" name='email' value="<?php if ($input) {
+                                                                                                                                                                                                        echo $_POST['email'];
+                                                                                                                                                                                                    } ?>">
+                                <label for="floatingInput" class="text-white" <?php if ($input) {
+                                                                                if (strlen($require['email']) > 0) {
+                                                                                    echo 'hidden';
+                                                                                }
+                                                                            } ?>>Email</label>
+                            </div>
+                            <label for="passwordInput" class="text-white " <?php if ($input) {if (strlen($require['password']) > 0) { echo 'hidden';}} ?>>Password</label>
+                            <div class="form-floating mb-2 border-white rounded">
+                                <small class="form-text text-danger">
+                                    <?php if ($input == true) {
+                                        echo $require['password'];
+                                    } ?>
+                                </small>
+                                
+                                <div class="input-group">
+                                    <input type="Password" class="form-control form-control-lg bd-white text-white" id="passwordInput" style="background-color: rgba(0, 0, 0, 0.1);<?php if ($input) {if (strlen($require['password']) > 0) {echo 'border: 1px solid lightcoral;';}} ?>" name='password' value="<?php if ($input) {echo $_POST['password'];} ?>">
+                                    <button type="button" class="btn btn-light" id="showPasswordBtn"  style="background-color: rgba(0, 0, 0, 0.1);"><i class="bi bi-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <a href="" style="color: blue;">Forgot Password</a>
+                            </div>
+                            <button type="submit" class="btn py-3 w-100 mb-4 border-white " style="background-color: rgba(0, 0, 0, 0.5);color: orange;">Sign In</button>
+                        </form>
+                        <p class="text-center mb-0">Don't have an Account? <a href="/signup" style="color: blue;">Create Account</a></p>
                     </div>
-                    <div class="form-floating mb-2 border-info rounded">
-                        <small class="form-text text-danger">
-                            <?php if($input==true){echo $require['password'];} ?>
-                        </small>
-                        <input type="Password" class="form-control form-control-lg bd-info text-info" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.1);<?php if($input){ if(strlen($require['password'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='password' value="<?php if($input){echo $_POST['password'];} ?>">
-                        <label for="floatingInput" class="text-info " <?php if($input){if(strlen($require['password'])>0){echo 'hidden';}}?>>Password</label>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <a href="" style="color: blue;" >Forgot Password</a>
-                    </div>
-                    <button type="submit" class="btn py-3 w-100 mb-4 border-info " style="background-color: rgba(0, 0, 0, 0.5);color: orange;">Sign In</button>
-                </form>
-                    <p class="text-center mb-0">Don't have an Account? <a href="/signup" style="color: blue;" >Create Account</a></p>
                 </div>
             </div>
         </div>
+        <!-- Sign In End -->
     </div>
-    <!-- Sign In End -->
-</div>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -94,6 +109,23 @@
 
     <!-- Template Javascript -->
     <script src="vendor/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#showPasswordBtn").click(function() {
+                var passwordInput = $("#passwordInput");
+                var icon = $(this).find("i");
+
+                if (passwordInput.attr("type") === "password") {
+                    passwordInput.attr("type", "text");
+                    icon.removeClass("bi-eye").addClass("bi-eye-slash");
+                } else {
+                    passwordInput.attr("type", "password");
+                    icon.removeClass("bi-eye-slash").addClass("bi-eye");
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

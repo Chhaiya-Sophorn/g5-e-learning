@@ -32,7 +32,7 @@ require "models/admin.model.php";
         </div>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal"><i class="fa fa-plus-square"></i> Create Category</button>
+        <button type="button" class="btn" style='background:#F28500;color:white' data-bs-toggle="modal" data-bs-target="#add-modal"><i class="fa fa-plus-square"></i> Create Category</button>
 
     </div>
     <table class="table text-start align-middle table-bordered table-dark table-hover mb-0 mt-3">
@@ -95,7 +95,7 @@ require "models/admin.model.php";
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-primary" id="exampleModalLabel">Update Category</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Update Category</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -134,8 +134,8 @@ require "models/admin.model.php";
 <div class="modal fade" id="add-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-primary" id="exampleModalLabel">Create Category</h5>
+            <div class="modal-header" >
+                <h5 class="modal-title" id="exampleModalLabel">Create Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

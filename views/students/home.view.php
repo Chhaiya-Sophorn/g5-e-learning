@@ -13,7 +13,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	
 }
 
-
 ?>
 
 <!-- Header START --> 
@@ -73,6 +72,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </li>
       </ul>
       <!-- Category menu END -->
+	  <div class="navbar-nav position-relative overflow-visible me-3">
+		<form action="/orders" method='post'>
+			<input type="text" name='email' value='<?= $_POST['email']?>' hidden>	
+			<button type='sumit' class='btn border-0'><i class="fas fa-shopping-cart fs-5"></i></button>
+        	<span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-success mt-xl-2 ms-n1"<?php if( count(getTheorder(students($_POST['email'])['user_id'])) === 0){echo 'hidden';}?>><?php echo count(getTheorder(students($_POST['email'])['user_id']))?></span>
+          	<!-- <span class="visually-hidden">unread messages</span> -->
+        	
+		</form>
+       
+      </div>
   
       <!-- Main navbar START -->
       <div class="navbar-collapse collapse" id="navbarCollapse">
@@ -88,44 +97,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       <!-- Right header content START -->
       <!-- Add to cart -->
   
-	  <div class="navbar-nav position-relative overflow-visible me-3">
-		<form action="/orders" method='post'>
-			<input type="text" name='email' value='<?= $_POST['email']?>' hidden>	
-			<button type='sumit' class='btn border-0'><i class="fas fa-shopping-cart fs-5"></i></button>
-        	<span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-success mt-xl-2 ms-n1"<?php if( count(getTheorder(students($_POST['email'])['user_id'])) === 0){echo 'hidden';}?>><?php echo count(getTheorder(students($_POST['email'])['user_id']))?></span>
-          	<!-- <span class="visually-hidden">unread messages</span> -->
-        	
-		</form>
-       
-      </div>
-      <!-- Language -->
-      <!-- <div class="dropdown ms-1 ms-lg-0">
-        <a class="nav-link" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown"
-          aria-expanded="true">
-          <i class="fas fa-globe me-2"></i>
-            <span class="d-none d-lg-inline-block">Language</span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow pt-3" aria-labelledby="profileDropdown">
-          <li> <a class="dropdown-item" href="#"><img class="fa-fw me-2" src="assets/images/flags/uk.svg" alt="">English</a></li>
-          <li> <a class="dropdown-item" href="#"><img class="fa-fw me-2" src="assets/images/flags/gr.svg" alt="">German</a></li>
-          <li> <a class="dropdown-item" href="#"><img class="fa-fw me-2" src="assets/images/flags/sp.svg" alt="">French</a></li>
-        </ul>
-      </div> -->
 
-      <!-- Language -->
-      <ul class="navbar-nav navbar-nav-scroll me-3 d-none d-xl-block">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="language" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-globe me-2"></i>
-            <span class="d-none d-lg-inline-block">Language</span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end min-w-auto" aria-labelledby="language">
-            <li> <a class="dropdown-item" href="#"><img class="fa-fw me-2" src="assets/images/flags/uk.svg" alt="">English</a></li>
-            <li> <a class="dropdown-item" href="#"><img class="fa-fw me-2" src="assets/images/flags/gr.svg" alt="">German</a></li>
-            <li> <a class="dropdown-item" href="#"><img class="fa-fw me-2" src="assets/images/flags/sp.svg" alt="">French</a></li>
-          </ul>
-        </li>
-      </ul>
       <?php 
 		
 		  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -185,8 +157,8 @@ Main Banner START -->
 				</figure>
 				
 				<!-- Title -->
-				<h1>Education, talents, and career opportunities. All in one place.</h1>
-				<p>Get inspired and discover something new today. Grow your skill with the most reliable online courses and certifications in marketing, information technology, programming, and data science. </p>
+				<h1>Education empowers individuals with knowledge and skills</h1>
+				<p>enabling them to unlock their full potential, pursue meaningful careers, and contribute positively to society's growth and development. </p>
 			</div>
 		</div>
 		<!-- Title and SVG END -->

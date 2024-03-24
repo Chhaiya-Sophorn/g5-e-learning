@@ -71,7 +71,7 @@
                </div>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-modal"><i class="fa fa-plus-square"></i> Add Student</button>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-modal" style='background:#F28500;color:white;'><i class="fa fa-plus-square"></i> Add Student</button>
 
     </div>
     <table class="table text-start align-middle table-bordered table-dark table-hover mb-0 mt-3">
@@ -104,7 +104,11 @@
                         <img src="../../../uploading/<?= $student['profile_image'] ?>" class="avatar">
                     </td>
                     <td class='d-flex gap-2'>
-                        <a class="d-flex justify-content-center align-items-center gap-1 btn btn-warning btn-sm text-white" href="" data-bs-toggle="modal" data-bs-target="#deleteDetail<?= $student['user_id'] ?>"><i class="fas fa-eye"></i> Detail</a>
+                        <form action="student_profile" method='post'>
+			                <input type="hidden" name="id" value='<?=$student['user_id'] ?>'>
+			                <input type="hidden" name="admin" value=''>
+                            <button type='sumit' class='d-flex justify-content-center align-items-center gap-1 btn btn-warning btn-sm'><i class="fas fa-eye"></i> Detail</button>
+                        </form>
                         <a class="d-flex justify-content-center align-items-center gap-1 btn btn-primary btn-sm" href="" data-bs-toggle="modal" data-bs-target="#deleteStudent<?= $student['user_id'] ?>"><i class="fas fa-trash"></i> Delete</a>                      
                     </td>
                 </tr>
@@ -224,7 +228,6 @@
         </div>
     </div>
 </div>
-
 
  <!-- Javascrip for Searching  -->
  <script>

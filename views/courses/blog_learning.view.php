@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
-<section style='height: 300px;background-image: url("assets/images/bg/composition-3288397_1280.jpg");'>
+<section id="cover" style=' height: 250px; background-size:cover; background-image: url("assets/images/bg/composition-3288397_1280.jpg");' >
 	<div class="mt-0">
-		<form class="container-fluid justify-content-start" action='<?php if(isset($_POST['home'])){echo '/student';}else{echo '/course';}; ?>' method='post'>
+		<form class="container-fluid justify-content-start" action='<?php if(isset($_POST['home'])){echo '/student';}else if(isset($_POST['pro_id'])){ echo '/student_profile';}else{echo '/course';}; ?>' method='post'>
 			<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
 			<input type="text" name='id' value='<?=$_POST['id']?>' hidden>
 			<button type="submit" class="btn btn-orange btn-sm">
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</div>
 	</div>
 </section>	
-<div class="container ml-5">
+<div class="container mt-2 ml-5">
 		<button type="button" id='lessons' class="btn btn-outline-orange">Lessons</button>
 		<button type="button" id='quizzes' class="btn btn-outline-orange">Quizzes</button>
 		<button type="button" id='trainers' class="btn btn-outline-orange">Trainer</button>
@@ -110,7 +110,7 @@ Live courses START -->
 												<h6 class="mb-1 fw-normal"><i class="fas fa-circle fw-bold text-success small me-2"></i></h6>
 											</div>
 											<!-- Button -->
-											<button type='button' class="btn btn-sm btn-success mb-0 vdo text-white" data-bs-toggle="modal" data-bs-target="#videoModel" data-videos="<?=$lesson['video']?>" data-lessontitle="<?=$lesson['title']?>">Let's study</button>
+											<button type='button' class="btn btn-sm btn-success mb-0 vdo text-white" data-bs-toggle="modal" data-bs-target="#videoModel" data-videos="<?=$lesson['video']?>" data-lessontitle="<?=$lesson['title']?>" data-description="<?=$lesson['description']?>">Let's study</button>
 										</div>
 									</div>
 								</div>
@@ -228,7 +228,7 @@ Action box END -->
                     <div class="col-6">
                         <div class="d-flex align-items-center mb-4">
                             <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
-                            <h5 class="text-truncate m-0"><span class="text-white">Email: <?= getTeacher(getCourse($_POST['course_id'])['user_id'])['email']?></h5>
+                            <h5 class="text-truncate m-0"><span class="text-white">Email:</span> <?= getTeacher(getCourse($_POST['course_id'])['user_id'])['email']?></h5>
                         </div>
                     </div>
                     <div class="col-6">
@@ -277,6 +277,9 @@ Action box END -->
 						<iframe width="1000" height="450" id="vid" src=""></iframe>	
 						<h5 id='lessontitle' class='m-2'></h5>
                     </div>
+					<div class="">
+						<p class='d-flex justify-content-center' id='des'></p>
+					</div>
                     <div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 					</div>
@@ -287,9 +290,9 @@ Action box END -->
 <!-- ------------------quiz showing popup------------ -->
 <div class="container mt-1 lg-8">
      <div class="modal fade" id="quizModel" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-               <div class="modal-content">
-                    <div class="modal-body p-2 m-4">
+          <div class="modal-dialog modal-xl">
+               <div class="modal-content ">
+                    <div class="row modal-body p-2 m-4 d-flex justify-content-center">
 						<iframe width="730" height="345" id="quizz" src=""></iframe>	
 						<h5 id='lessontitle' class='m-2'></h5>
 						<div class="modal-footer">
@@ -309,9 +312,12 @@ Action box END -->
 		$('.vdo').click(function() {
 			var video = $(this).data('videos');
 			var lessontitle = $(this).data('lessontitle');
+			var lessontitle = $(this).data('lessontitle');
+			var description = $(this).data('description');
 
 			$('#vid').attr('src', video);
 			$('#lessontitle').text(lessontitle);
+			$('#des').text(description);
 		});
 	});
 
