@@ -1,3 +1,4 @@
+
 <!-- Payment Modal -->
 <div class="container mt-5">
      <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
