@@ -3,6 +3,7 @@ require 'database/database.php';
 require 'models/admin.model.php';
 require 'models/category.model.php';
 require 'models/payment.model.php';
+
 ?>
 <section class="bg-light">
 	<div class="container p-6 mt-0 mt-lg-5">
@@ -117,6 +118,7 @@ Featured course START -->
 			<?php
 				$courses = getCourses();
 				foreach ($courses as $course) :
+									
 			?>
 			<!-- Card Item START -->
 			<div class="col-md-6 col-lg-4 col-xxl-3">
@@ -152,9 +154,7 @@ Featured course START -->
 							<!-- Avatar -->
 							<div class="avatar avatar-sm">
 								<img class="avatar-img rounded-circle" src="uploading/<?php $haha= getTeacher($course['user_id']);
-								foreach ($haha as $ha){
-									echo $ha['profile_image'];
-								};
+									echo $haha['profile_image'];
 								?>" alt="avatar">
 							</div>
 						</div>
@@ -166,9 +166,7 @@ Featured course START -->
 						<div class="d-flex justify-content-between align-items-center mb-0">
 							<div>
 								<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Trainer: <?php $haha= getTeacher($course['user_id']);
-									foreach ($haha as $ha){
-										echo $ha['name'];
-									};
+										echo $haha['name'];
 									?>
 								</a>
 							</div>
@@ -179,7 +177,9 @@ Featured course START -->
 				</div>
 			</div>
 			<!-- Card Item END -->
-			<?php endforeach ?>
+			<?php 
+			endforeach ;			
+			?>
 		</div>
 		<!-- Button -->
 		<div class="text-center mt-5">
