@@ -211,14 +211,18 @@ Action box END -->
 		</div>
 </section>
 <section class="pt-4" id="trainer">
-    <div class="container">
-        <div class="row align-items-center border rounded p-4 bg-orange">
+    <div class="container ">
+	<div class="col-lg-8 text-center mx-auto">
+			<h2 class="fs-1">Trainer</h2>
+			<p class="mb-0">Information Technology Courses to expand your skills and boost your career & salary</p>
+		</div>
+        <div class=" row align-items-center border rounded p-4 bg-orange shadow">
             <div class="col-lg-4 text-center">
 				<img class="img-fluid rounded-circle mb-1" src="uploading/<?= getTeacher(getCourse($_POST['course_id'])['user_id'])['profile_image']?>" alt="" style="width: 150px; height: 150px; object-fit: cover">
 				<h4 class="m-1"><span class="text-white"><?= getTeacher(getCourse($_POST['course_id'])['user_id'])['name']?></span></h4>
             </div>
             <div class="col-lg-7 py-5 px-3">
-                <div class="row py-2">
+                <div class=" py-2">
                     <div class="col-6">
                         <div class="d-flex align-items-center mb-4">
                             <i class="flaticon-cat font-weight-normal text-feet m-0 mr-3 animated infinite heartBeat delay-1s"></i>
@@ -229,18 +233,6 @@ Action box END -->
                         <div class="d-flex align-items-center mb-4">
                             <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
                             <h5 class="text-truncate m-0"><span class="text-white">Email:</span> <?= getTeacher(getCourse($_POST['course_id'])['user_id'])['email']?></h5>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="d-flex align-items-center mb-4">
-                            <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
-                            <h5 class="text-truncate m-0"><span class="text-white">Responding:</span> 7 courses</h5>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="d-flex align-items-center mb-4">
-                            <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
-                            <h5 class="text-truncate m-0"><span class="text-white">Experiences:</span> 20 Year</h5>
                         </div>
                     </div>
                 </div>
