@@ -75,7 +75,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	  <div class="navbar-nav position-relative overflow-visible me-3">
 		<form action="/orders" method='post'>
 			<input type="text" name='email' value='<?= $_POST['email']?>' hidden>	
-			<button type='sumit' class='btn border-0'><i class="fas fa-shopping-cart fs-5"></i></button>
+			<button type='sumit' class='btn border-0' style='margin-top: 8px;'><i class="fas fa-shopping-cart fs-5"></i></button>
         	<span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-success mt-xl-2 ms-n1"<?php if( count(getTheorder(students($_POST['email'])['user_id'])) === 0){echo 'hidden';}?>><?php echo count(getTheorder(students($_POST['email'])['user_id']))?></span>
           	<!-- <span class="visually-hidden">unread messages</span> -->
         	
