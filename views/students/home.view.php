@@ -609,7 +609,6 @@ $(document).ready(function() {
 	$('#').click(function() {
     // Show the second modal
     $('#confirmationModal').modal('show');
-
     
   });
   });

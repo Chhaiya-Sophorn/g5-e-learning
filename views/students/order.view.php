@@ -99,8 +99,41 @@
   </style>
 </head>
 <body>
-
 <section id='testing_blog' style='height: 200px;background-image: url("assets/images/bg/abstract-1264071_1280.jpg");'>
+<div class="container p-3" <?php 
+      if(isset($_POST['email']) && isset($_POST['selectioned']) && isset($_POST['expiration-date']) && isset($_POST['totals'])){
+        if($_POST['email']!='' && $_POST['selectioned']!='' && $_POST['expiration-date']!='' && $_POST['totals']!=''){
+              echo '';
+        }else{
+              echo 'hidden';
+        }
+      }else{
+        echo 'hidden';
+  }
+
+?>>
+  <div class="alert alert-success">
+    <strong>Your paid successfully!  <img src="studentprofile/check.png" alt="Profile Image" class="rounded-circle mb-3" style="width: 30px; height: 30px; object-fit: cover;"></strong>  
+    <span id="icon-cross" class="icon-cross">X</span>
+  </div>
+</div>
+
+<style>
+  .icon-cross {
+    float: right;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const iconCross = document.getElementById('icon-cross');
+  const alertBox = document.querySelector('.alert');
+
+  iconCross.addEventListener('click', function() {
+    alertBox.style.display = 'none';
+  });
+</script>
+ 
     <div class="row  mt-0">
     <div class="container">
       <form class="container-fluid justify-content-start" action='/student' method='post'>
@@ -192,42 +225,39 @@
 
 <div class="container mt-5 p-2">
   <div class="modal fade" id="payModal" tabindex="-1" aria-labelledby="payModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg "> <!-- Increased size -->
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header bg-warning text-dark"> <!-- Changed background color to orange -->
+        <div class="modal-header bg-warning text-dark">
           <h5 class="modal-title" id="payModalLabel">Payment Details</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body ">         
+        <div class="modal-body">
           <div class="d-flex justify-content-end align-items-center mb-2" style='background-image: url("studentprofile/abstract-1264071_1280.jpg");'>
             <img src="studentprofile/image-removebg-preview (3).png" alt="Visa" style="width: 400px;height: 70px;">
-            <!-- <img src="studentprofile/credit-card-1369111_1280.webp" alt="Visa" style="width: 100px;height: 60px;">
-            <img src="studentprofile/download (1).png" alt="Mastercard" style="width: 120px; height: 70px;">
-            <img src="studentprofile/paypal-784404_1280.webp" alt="Mastercard" style="width: 120px; height: 70px;"> -->
           </div>
           <form id="payment-form" action="/orders" method="post">
             <div class="mb-3">
               <label for="card-holder-name" class="form-label">Cardholder Name</label>
-              <input type="text" class="form-control form-control-lg focus-orange" id="card-holder-name" name="card-holder-name" required> <!-- Added form-control-lg class for larger size, and focus-orange class for orange color focus -->
+              <input type="text" class="form-control form-control-lg focus-orange" id="card-holder-name" name="card-holder-name" required>
             </div>
             <div class="mb-3">
               <label for="card-number" class="form-label">Card Number</label>
-              <input type="text" class="form-control form-control-lg focus-orange" id="card-number" name="card-number" required> <!-- Added form-control-lg class for larger size, and focus-orange class for orange color focus -->
+              <input type="text" class="form-control form-control-lg focus-orange" id="card-number" name="card-number" required>
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="expiration-date" class="form-label">Expiration Date</label>
-                <input type="date" class="form-control form-control-lg focus-orange" id="expiration-date" name="expiration-date" placeholder="MM/YY" required> <!-- Added form-control-lg class for larger size, and focus-orange class for orange color focus -->
+                <input type="date" class="form-control form-control-lg focus-orange" id="expiration-date" name="expiration-date" placeholder="MM/YY" required>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="cvv" class="form-label">CVV</label>
-                <input type="text" class="form-control form-control-lg focus-orange" id="cvv" name="cvv" required> <!-- Added form-control-lg class for larger size, and focus-orange class for orange color focus -->
+                <input type="text" class="form-control form-control-lg focus-orange" id="cvv" name="cvv" required>
               </div>
             </div>
             <input type="text" name='email' value='<?= $_POST['email']?>' hidden>  
-            <input type="text" id="modalCourse" name="selectioned" hidden><!-- Make sure this input field has the name attribute set to "selectioned" -->
-            <input type="text" id="totals" name="totals" hidden><!-- Make sure this input field has the name attribute set to "selectioned" -->
-            <button type="submit" class="btn btn-warning btn-lg">Pay Now</button> <!-- Changed button color to orange and added btn-lg class for larger size -->
+            <input type="text" id="modalCourse" name="selectioned" hidden>
+            <input type="text" id="totals" name="totals" hidden>
+            <button type="submit" class="btn btn-warning btn-lg paid">Pay Now</button>
           </form>
         </div>
       </div>
@@ -371,7 +401,7 @@
 
   $(document).ready(function() {
     $('.pays').click(function() {
-      $('#paymentModal').modal('hide');
+      $('#payModal').modal('hide');
       $('#payModal').modal('show');
     });
   });
