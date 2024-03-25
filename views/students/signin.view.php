@@ -51,7 +51,12 @@
                         }
                         ?>
                         <form action="/access" method='post'>
-                            <div class="form-floating mb-2 border-white rounded">
+                            <label for="floatingInput" class="text-white" <?php if ($input) {
+                                                                                if (strlen($require['email']) > 0) {
+                                                                                    echo 'hidden';
+                                                                                }
+                                                                            } ?>>Email</label>
+                            <div class="form-floating mb-2 rounded" >
                                 <small class="form-text text-danger">
                                     <?php if ($input == true) {
                                         echo $require['email'];
@@ -64,13 +69,9 @@
                                                                                                                                                                         } ?>" name='email' value="<?php if ($input) {
                                                                                                                                                                                                         echo $_POST['email'];
                                                                                                                                                                                                     } ?>">
-                                <label for="floatingInput" class="text-white" <?php if ($input) {
-                                                                                if (strlen($require['email']) > 0) {
-                                                                                    echo 'hidden';
-                                                                                }
-                                                                            } ?>>Email</label>
+                                
                             </div>
-                            <label for="passwordInput" class="text-white " <?php if ($input) {if (strlen($require['password']) > 0) { echo 'hidden';}} ?>>Password</label>
+                            <label for="passwordInput" class="text-white" <?php if ($input) {if (strlen($require['password']) > 0) { echo 'hidden';}} ?>>Password</label>
                             <div class="form-floating mb-2 border-white rounded">
                                 <small class="form-text text-danger">
                                     <?php if ($input == true) {
@@ -87,7 +88,7 @@
                             </div>
                             <button type="submit" class="btn py-3 w-100 mb-4 border-white " style="background-color: rgba(0, 0, 0, 0.5);color: orange;">Sign In</button>
                         </form>
-                        <p class="text-center mb-0">Don't have an Account? <a href="/signup" style="color: blue;">Create Account</a></p>
+                        <p class="text-center mb-0" style="color: white;">Don't have an Account? <a href="/signup" style="color: blue;">Create Account</a></p>
                     </div>
                 </div>
             </div>

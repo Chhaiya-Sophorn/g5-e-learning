@@ -25,24 +25,8 @@
 
       <!-- Signout button  -->
       <div class="navbar-nav d-none d-lg-inline-block">
-        <a href="/signin"><button class="btn btn-danger-soft mb-0"><i class="fas fa-sign-in-alt me-2"></i>Sign Up</button></a>
+        <a href="/signin"><button class="btn btn-danger-soft mb-0"><i class="fas fa-sign-in-alt me-2"></i>Join Now</button></a>
       </div>
-
-      <!-- Page menu START -->
-      <ul class="navbar-nav navbar-nav-scroll dropdown-clickable">
-        <li class="nav-item dropdown dropdown-menu-shadow-stacked">
-          <a class="nav-link" href="#" id="categoryMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-users me-1 d-none d-xl-inline-block"></i>
-            <span class="d-none d-xl-inline-block">Page</span>
-          </a>
-          <ul class="dropdown-menu z-index-unset" aria-labelledby="categoryMenu">
-            <li> <a class="dropdown-item" href="/trainer">Trainer</a> </li>
-            <li> <a class="dropdown-item" href="/admin">Admin</a> </li>
-            <li> <a class="dropdown-item" href="/signin">Student</a> </li>
-          </ul>
-        </li>
-      </ul>
-
     </div>
   </nav>
 </header>
