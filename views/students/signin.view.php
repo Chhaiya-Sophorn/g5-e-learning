@@ -84,7 +84,6 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <a href="" style="color: blue;">Forgot Password</a>
                             </div>
                             <button type="submit" class="btn py-3 w-100 mb-4 border-white " style="background-color: rgba(0, 0, 0, 0.5);color: orange;">Sign In</button>
                         </form>

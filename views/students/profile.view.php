@@ -90,7 +90,7 @@ require 'models/student.model.php';
 		<!-- Instructor list START -->
 		<div class="row g-4 justify-content-center" >
 			<div class="text-center mx-auto">
-				<h4 class=" text-orange">My Responsiblity</h4>
+				<h4 class=" text-orange">My Courses</h4>
 				<p class="mb-0">Information Technology Courses to expand your skills and boost your career & salary</p>
 			</div>
 			<?php 

@@ -1,6 +1,7 @@
 <!-- Form pop up create form -->
 <!-- Payment Modal -->
 
+
 <!-- ........................\ -->
 <div class="container p-0">
      <!-- CSS style -->
@@ -43,8 +44,8 @@
                </div>
 
                <!-- Button trigger modal -->
-               <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" style='background:#F28500;color:white'><i
-                         class="fa fa-plus-square text-white"></i> Create Course</button>
+               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style='background:#F28500;color:white'><i
+                         class="fa fa-plus-square"></i> Create Course</button>
 
           </div>
           <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -191,7 +192,7 @@
 
                               <button type="button" class="btn btn-sm btn-warning show-detail" data-bs-toggle="modal"
                                    data-bs-target="#detailModal<?= $course['course_id'] ?>">
-                                   <i class="fas fa-eye text-white ">Details</i>
+                                   <i class="fas fa-eye ">Details</i>
                               </button>
 
                               <form id="delete-form" style="display: inline;">
@@ -228,74 +229,6 @@
                                                        </button>
                                                   </form>
                                              </div>
-
-                                        </div>
-                                   </div>
-
-                              </div>
-
-                              <div class="modal fade " id="detailModal<?=$course['course_id']?>" tabindex="-1"
-                                   aria-labelledby="detailModalLabel" aria-hidden="true">
-                                   <div class="modal-dialog modal-dialog-centered " style=" max-width: 800px;">
-                                        <div class="modal-content w-100 p-3 bg-muted  w-100 ">
-                                             <!-- Modal body for course details -->
-                                             <div class="modal-body  ">
-                                                  <!-- Display course details here -->
-                                                  <div class="card d-flex ">
-
-                                                       <div class="modal-header bg-primary ">
-                                                            <h5 class="modal-title text-primary text-dark"
-                                                                 id="exampleModalLabel">
-                                                                 Details </h5>
-                                                            <button type="button" class="btn-close"
-                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
-                                                       </div>
-                                                       <div class="card-content d-flex w-100 gap-5 ">
-
-                                                            <div class="image  mt-3" style="width: 300px">
-                                                                 <div
-                                                                      class="text-start rounded m-3 d-flex row p-3 border w-100 justify-content-center align-items-center mt-3 col ">
-                                                                      <img src="uploading/<?=$course['image_courses']?>"
-                                                                           alt="Profile Image"
-                                                                           class="rounded-circle mb-3"
-                                                                           style="width: 130px; height: 110px; object-fit: cover;">
-                                                                      <a href=""><p
-                                                                           class="modal-title border-bottom text-3 w-100 btn btn-primary text-dark text-center ">
-                                                                           <?=getTrainerName($course['user_id'])['name'];?></p></a>
-                                                                      </p></a>
-                                                                 </div>
-
-                                                            </div>
-                                                            <!-- <p class="modal-footer"></p> -->
-                                                            <div class="text-start rounded  w-50 d-flex row h-auto">
-                                                                 <div class="text h-auto mt-5 gap-1">
-                                                                      <a href="#"><p class="modal-title mt-2 p-0 btn text-start">Category Name : <?=getCategoryName($course['category_id'])['title']?></p></a> <br>
-                                                                      <a href=""><p class="modal-title mt-2 p-0 btn text-start"> Course
-                                                                           Name :
-                                                                           <?=$course['title']?></p></a>
-                                                                      <p class="modal-title mt-2 text-start">Gender :
-                                                                           <?=getTrainerName($course['user_id'])['gender']?>
-                                                                      </p>
-                                                                      <div class="date text-start ">
-                                                                           <small class="text-muted">Asign since:
-                                                                                <?php echo date('Y-m-d'); ?></small>
-
-                                                                      </div>
-                                                                      <p class="modal-title mt-3  text-start ">
-                                                                           <?=$course['description']?></p>
-                                                        
-                                                                 </div>
-                                                            </div>
-                                                       </div>
-                                                  </div>
-
-                                                  <!-- ... Add other details as needed ... -->
-                                             </div>
-                                             <!-- Modal footer -->
-                                             <!-- <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary"
-                                                       data-bs-dismiss="modal">Close</button>
-                                             </div> -->
                                         </div>
                                    </div>
                               </div>
@@ -351,10 +284,11 @@
                                              </a>
                                              <p class="modal-title mt-2 text-start">Price :
                                                   <?= $course['price'] . " $" ?></p>
-                                              
+
+
+                                             <p class="modal-title mt-2 text-start">Joined :23 students </p>
                                                  
-                                             <p class="modal-title mt-2 text-start">Joined : 24 Students</p>
-                                                  
+
                                              <!-- <p class="modal-title mt-2 text-start">Gender :
                                              <?= getTrainerName($course['user_id'])['gender'] ?>
                                         </p> -->

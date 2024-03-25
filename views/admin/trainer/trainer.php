@@ -41,7 +41,7 @@
         </div>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-modal"><i class="fa fa-plus-square"></i> Add Trainer</button>
+        <button type="button" style='background:#F28500;color:white' class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-modal"><i class="fa fa-plus-square"></i> Add Trainer</button>
 
     </div>
     <table class="table text-start align-middle table-bordered table-dark table-hover mb-0 mt-3">
