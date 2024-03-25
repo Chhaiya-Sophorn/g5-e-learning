@@ -28,64 +28,70 @@ Inner part START -->
 </section>	
 <section class="pt-4">
 	<div class="container">
-		<img class="img-fluid rounded-circle mb-3" src="uploading/<?= getTrainersInfo($_POST['email'])['profile_image'] ?>" alt="" style="width: 150px; height: 150px; object-fit: cover;margin-top: -90px;">
 		<div class="mt-4">
 			<button type="button" id='personal' class="btn btn-outline-orange">My Personal Information</button>
-			<button type="button" id='respone' class="btn btn-outline-orange">My Responsiblity</button>
+			<button type="button" id='respone' class="btn btn-outline-orange">My Courses</button>
 			<button type="button" id='courses' class="btn btn-outline-orange">All the Courses</button>
 		</div>
 
 	</div>
 </section>	
-<section class="pt-2" id="personals">
-    <div class="container">
-        <div class="row align-items-center border rounded p-4 bg-orange">
-			<div class="d-flex justify-content-end">
-				<form action="/trainer_password" method='post'>
-					<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
-					<input type="text" name='user_id' value='<?= getTrainersInfo($_POST['email'])['user_id'] ?>' hidden>
-					<button type="sumit" class="btn btn-0 text-white"><i class="fas fa-key me-2"></i>Change Password</button>
-				</form>
-			<button type="button" class="btn border-0 show-edit" data-bs-toggle="modal" data-bs-target="#editPersonalModal" data-image="<?= getTrainersInfo($_POST['email'])['profile_image'] ?>" data-name="<?= getTrainersInfo($_POST['email'])['name'] ?>" data-phone="<?= getTrainersInfo($_POST['email'])['phone'] ?>" data-email="<?= $_POST['email'] ?>">
-				<i class="fas fa-edit text-white m-0 mr-3 fs-5"></i> 
-				<span class="text-black">Edit profile</span>
-			</button>
-			</div>
-            <div class="col-lg-4 text-center">
-				<img class="img-fluid rounded-circle mb-1" src="uploading/<?= getTrainersInfo($_POST['email'])['profile_image'] ?>" alt="" style="width: 150px; height: 150px; object-fit: cover;margin-top: -90px;">
-				<h4 class="m-1"><span class="text-white"><?= getTrainersInfo($_POST['email'])['name'] ?></span></h4>
-            </div>
-            <div class="col-lg-7 py-5 px-3">
-                <div class="row py-2">
-                    <div class="col-6">
-                        <div class="d-flex align-items-center mb-4">
-                            <i class="flaticon-cat font-weight-normal text-feet m-0 mr-3 animated infinite heartBeat delay-1s"></i>
-                            <h5 class="m-0"><span class="text-white">Phone:</span> <?= getTrainersInfo($_POST['email'])['phone'] ?></h5>
+
+<div class="d-flex justify-content-center">
+    <section class="" id="personals">
+        <div class="container">
+            <div class="row shadow align-items-center border rounded p-4 bg-" style="width:600px;margin-top: -57px;height:450px">
+                <div class="text-center">
+                    <img class="img-fluid rounded-circle mb-3" src="uploading/<?= getTrainersInfo($_POST['email'])['profile_image'] ?>" alt="" style="width: 150px; height: 150px; object-fit: cover;margin-top: -100px; ">
+                    <h4 class="m-1"><span class=""><?= getTrainersInfo($_POST['email'])['name'] ?></span></h4>
+                </div>
+                <div class="col-lg-7 py-5 px-3">
+                    <div class="py-2">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-4 gap-2">
+                                <i class="flaticon-cat font-weight-normal text-feet m-0 mr-3 animated infinite heartBeat delay-1s"></i>
+                                <span class="">Phone:</span>
+                                <h6 class="m-0"> <?= getTrainersInfo($_POST['email'])['phone'] ?></h6>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="d-flex align-items-center mb-4">
-                            <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
-                            <h5 class="text-truncate m-0"><span class="text-white">Email:</span> <?= getTrainersInfo($_POST['email'])['email'] ?></h5>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-4 gap-2">
+                                <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
+                                <span class="text-">Email:</span>
+                                <h6 class=" m-0"> <?= getTrainersInfo($_POST['email'])['email'] ?></h6>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="d-flex align-items-center mb-4">
-                            <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
-                            <h5 class="text-truncate m-0"><span class="text-white">Responding:</span> 7 courses</h5>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-4 gap-2">
+                                <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
+                                <span class="text-">Courses:</span>
+                                <h6 class=" m-0"><?=count(getCourseRespone(getTrainersInfo($_POST['email'])['user_id']))?> Courses</h6>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="d-flex align-items-center mb-4">
-                            <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
-                            <h5 class="text-truncate m-0"><span class="text-white">Experiences:</span> 20 Year</h5>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-4 gap-2">
+                                <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
+                                <span>Experiences:</span>
+                                <h6 class=" m-0"> 1 year</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
+				<div class="d-flex justify-content-end" style="margin-top: -57px;">
+				<form action="/trainer_password" method='post'>
+					<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
+					<input type="text" name='user_id' value='<?= getTrainersInfo($_POST['email'])['user_id'] ?>' hidden>
+					<button type="sumit" class="btn btn-0"><i class="fas fa-key me-2 text-orange"></i>Change Password</button>
+				</form>
+				<button type="button" class="btn border-0 show-edit" data-bs-toggle="modal" data-bs-target="#editPersonalModal" data-image="<?= getTrainersInfo($_POST['email'])['profile_image'] ?>" data-name="<?= getTrainersInfo($_POST['email'])['name'] ?>" data-phone="<?= getTrainersInfo($_POST['email'])['phone'] ?>" data-email="<?= $_POST['email'] ?>">
+					<i class="fas fa-edit m-0 mr-3 fs-5 text-orange"></i> 
+					<span class="text-black">Edit profile</span>
+				</button>
+			</div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 <section id='responsible' class="pt-1">
 	<div class="container">

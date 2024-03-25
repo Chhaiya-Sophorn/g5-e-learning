@@ -5,16 +5,13 @@ require 'models/student.model.php';
 ?>
 
 <section id="cover" style=' height: 250px; background-size:cover; background-image: url("assets/images/bg/composition-3288397_1280.jpg");' >
-<div class="ml-3" >
+<div class="" >
             <form class="container-fluid justify-content-start" action='<?php if(isset($_POST['admin'])){echo '/list_student';}else{ echo '/student';}?>' method='post'>
 			    <input type="text" name='email' value='<?=getStudent($_POST['id'])['email']?>' hidden>
                 <button type="submit" class="btn btn-orange btn-sm">
-                <i class="bi bi-arrow-left-circle-fill"></i> Back
+                <i class=" bi bi-arrow-left-circle-fill"></i> Back
                 </button>
             </form>
-             <div class=' d-flex justify-content-end p-5'>
-       		<button class="btn btn-danger mb-0"><i class="fas fa-camera me-2"></i>Change Cover</button>
-    		</div>
     </div>
 	<div class="row mb-4">
 		<div class="col-lg-8 text-center mx-auto">
@@ -24,67 +21,71 @@ require 'models/student.model.php';
 	</div>
 </section>
 
-<section class="pt-4">
+<!-- <section class="pt-2">
 	<div class="container">
-		<img class="img-fluid rounded-circle mb-3" src="uploading/<?=getStudent($_POST['id'])['profile_image']?>" alt="" style="width: 150px; height: 150px; object-fit: cover;margin-top: -90px; border: 3px solid orange ">
+      
 		<div class="mt-4">
 			<button type="button" id='personal' class="btn btn-outline-orange">My Personal Information</button>
 			<button type="button" id='coursejoin' class="btn btn-outline-orange">The course joining</button>
 		</div>
-
 	</div>
-</section>
-<section class="pt-2" id="personals">
-    <div class="container">
-        <div class="row align-items-center border rounded p-4 bg-orange">
-			<div class="d-flex justify-content-end">
-				<form action="/student_password" method='post'>
-					<input type="text" name='id' value='<?=$_POST['id']?>' hidden >
-                    <input type="text" class="form-control" id="email" name="email" value="<?=getStudent($_POST['id'])['email']?>" hidden>
-					<button type="sumit" class="btn btn-0 text-white"><i class="fas fa-key me-2"></i>Change Password</button>
-				</form>
-			<button type="button" class="btn border-0 show-edit" data-bs-toggle="modal" data-bs-target="#editPersonalModal" data-image="<?=getStudent($_POST['id'])['profile_image']?>" data-name="<?=getStudent($_POST['id'])['name']?>" data-phone="<?=getStudent($_POST['id'])['phone']?>" data-email='<?=getStudent($_POST['id'])['email']?>'>
-				<i class="fas fa-edit text-white m-0 mr-3 fs-5"></i>
-				<span class="text-black">Edit profile</span>
-			</button>
-			</div>
-            <div class="col-lg-4 text-center " style="width: 300px; " >
-				<img class="img-fluid rounded-circle mb-1" src="uploading/<?=getStudent($_POST['id'])['profile_image']?>" alt="" style="width: 150px; height: 150px; object-fit: cover;margin-top: -90px; ; ">
-				<h4 class="m-1"><span class="text-white"><?=getStudent($_POST['id'])['name']?></span></h4>
-            </div>
-            <div class="col-lg-7 py-5 px-3">
-                <div class="row py-2">
-                    <div class="col-6">
-                        <div class="d-flex align-items-center mb-4"  style="border-bottom: 2px solid white;" >
-                            <i class="flaticon-cat font-weight-normal text-feet m-0 mr-3 animated infinite heartBeat delay-1s"></i>
-                            <h5 class="m-0"><span class="text-white">Phone:</span> <?=getStudent($_POST['id'])['phone']?></h5>
+</section> -->
+
+<div class="d-flex justify-content-center">
+    <section class="" id="personals">
+        <div class="container">
+            <div class="row shadow align-items-center border rounded p-4 bg-" style="width:600px;margin-top: -57px;height:450px">
+                <div class="text-center">
+                    <img class="img-fluid rounded-circle mb-3" src="uploading/<?=getStudent($_POST['id'])['profile_image']?>" alt="" style="width: 200px; height: 200px; object-fit: cover;margin-top: -150px; ">
+                    <h4 class="m-1"><span class=""><?=getStudent($_POST['id'])['name']?></span></h4>
+                </div>
+                <div class="col-lg-7 py-5 px-3">
+                    <div class="py-2 text-">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-4 gap-2">
+                                <i class="flaticon-cat font-weight-normal text-feet m-0 mr-3 animated infinite heartBeat delay-1s"></i>
+                                <span class="">Phone:</span>
+                                <h6 class="m-0"> <?=getStudent($_POST['id'])['phone']?></h6>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="d-flex align-items-center mb-4"  style="border-bottom: 2px solid white;" >
-                            <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
-                            <h5 class="text-truncate m-0"><span class="text-white">Email:</span> <?=getStudent($_POST['id'])['email']?></h5>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-4 gap-2">
+                                <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
+                                <span class="text-">Email:</span>
+                                <h6 class=" m-0"> <?=getStudent($_POST['id'])['email']?></h6>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="d-flex align-items-center mb-4"  style="border-bottom: 2px solid white;" >
-                            <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
-                            <h5 class="text-truncate m-0"><span class="text-white">Responding:</span> 7 courses</h5>
-                            
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-4 gap-2">
+                                <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
+                                <span class="text-">Courses:</span>
+                                <h6 class=" m-0"> <?=count(getCoursePaid(($_POST['id'])))?> Courses</h6>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="d-flex align-items-center mb-4"  style="border-bottom: 2px solid white;" >
-                            <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
-                            <h5 class="text-truncate m-0"><span class="text-white">Joined : 2024-3-22 </span></h5>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-4 gap-2">
+                                <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
+                                <span>Joined:</span>
+                                <h6 class=" m-0"> 2024-3-22</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="d-flex justify-content-end" style="margin-top: -57px;">
+                    <form action="/student_password" method='post'>
+                        <input type="text" name='id' value='<?=$_POST['id']?>' hidden>
+                        <input type="text" class="form-control" id="email" name="email" value="<?=getStudent($_POST['id'])['email']?>" hidden>
+                        <button type="sumit" class="btn btn-0"><i class="fas fa-key me-2 text-orange"></i>Change Password</button>
+                    </form>
+                    <button type="button" class="btn border-0 show-edit" data-bs-toggle="modal" data-bs-target="#editPersonalModal" data-image="<?=getStudent($_POST['id'])['profile_image']?>" data-name="<?=getStudent($_POST['id'])['name']?>" data-phone="<?=getStudent($_POST['id'])['phone']?>" data-email='<?=getStudent($_POST['id'])['email']?>'>
+                        <i class="fas fa-edit text-orange m-0 mr-3 fs-5"></i>
+                        <span class="text-black">Edit profile</span>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
+</div>
 <section id='coursejoi' class="pt-1">
 	<div class="container">
 		<!-- Instructor list START -->
@@ -117,7 +118,7 @@ require 'models/student.model.php';
 									<span class="h6 fw-light">4.3<i class="fas fa-star text-warning ms-1"></i></span>
 								</div>
 								<!-- Content -->
-								<p class="text-truncate-2 mb-3"><?=getThecourseJoin($course['course_id'])['description']?></p>
+								<p class="-2 mb-3"><?=getThecourseJoin($course['course_id'])['description']?></p>
 								<!-- Info -->
 								<div class="d-sm-flex justify-content-sm-between align-items-center">
 									<!-- Title -->
