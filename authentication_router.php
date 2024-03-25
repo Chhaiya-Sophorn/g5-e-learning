@@ -2,6 +2,11 @@
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $page = "";
 $routes = [
+
+    '/admin_signin' => 'controllers/admin/signin/login.controller.php',
+    '/admin_access' => 'controllers/admin/signin/access.controller.php',
+    '/admin_password' => 'controllers/admin/passwords/passwrod.controller.php',
+    '/admin_password_comfirm' => 'controllers/admin/passwords/getnew.controller.php',
     
     '/pro' => '/Users/koeuk/Downloads/g5-e-learning 11/controllers/students/pro.controller.php',
     '/student_password' => 'controllers/students/passwords/passwrod.controller.php',
@@ -30,6 +35,8 @@ $routes = [
     '/trainer_edits' => 'controllers/trainers/edit.controller.php',
     '/trainer_password' => 'controllers/trainers/passwords/passwrod.controller.php',
     '/trainer_passwrod_comfirm' => 'controllers/trainers/passwords/getnew.controller.php',
+    '/detail' => 'controllers/admin/students/student_detail.controller.php',
+
 
 ];
 

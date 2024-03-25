@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $gender = 'Female';
 
     $user = accountExist($email);
-
+    
     if($name==""){
         require 'views/students/signup.view.php';
 
@@ -64,4 +64,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 
             }
     }
+
 }

@@ -2,7 +2,7 @@
 
 function accountExist(string $email): array{
     global $connection;
-    $statement =  $connection->prepare('SELECT *FROM users WHERE email = :email');
+    $statement =  $connection->prepare('SELECT *FROM users WHERE email = :email and roles_id=3');
     $statement->execute([
         ':email' => $email
     ]);
@@ -86,10 +86,10 @@ function requireInformation(string $name, string $email, string $password, strin
         $information['password_comfirm'] = 'Your password is not feed!';
     }
 
-    if($name !='' && $email != '' && $password !='' && $phone !='' && $comfirm_password !='' && preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{5,7}$/', $password) && $password ==$comfirm_password){
+    if($name !='' && $email != '' && $password !='' && $phone !='' && $comfirm_password !='' && preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9@$!%*?&]{5,}$/i', $password) && $password ==$comfirm_password){
         $information['email'] = 'This email already exist!';
     }else{
-        if (!preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{5,7}$/', $password) && $password !='') {
+        if (!preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9@$!%*?&]{5,}$/i', $password) && $password !='') {
             $information['password'] = 'Password must contain at least one letter, one digit, one special character, and be 5 to 7 characters long.';
         }
     }
@@ -131,11 +131,46 @@ function strongPassword(string $password){
     $passwords = [
         "password" => ""
     ];
-    if (!preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-Z0-9@$!%*?&]{5,7}$/', $password) && $password !='') {
+    if (!preg_match('/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9@$!%*?&]{5,}$/i', $password) && $password !='') {
         $passwords['password'] = 'Password must contain at least one letter, one digit, one special character, and be 5 to 7 characters long.';
     }
 
     return $passwords;
+}
+
+
+// =======================student in admin==================================
+function getStudents(){
+    global $connection;
+    $statement =  $connection->prepare('SELECT *FROM users WHERE roles_id = 3');
+    $statement->execute();
+    return $statement->fetchAll();
+}
+
+function deleteStudent(int $id)
+{
+    global $connection;
+    $statement =  $connection->prepare('DELETE FROM users WHERE user_id =:id');
+    $statement->execute([
+        ':id' => $id
+    ]);
+}
+
+function addStudent(string $name, string $email, string $password, string $phone, string $gender, string $image): bool
+{
+    global $connection;
+    $statement = $connection->prepare("INSERT INTO users (name, email, password, gender, roles_id, phone, profile_image) VALUES (:name, :email, :password, :gender, :role, :phone, :image)");
+    $statement->execute([
+        ':name' => $name,
+        ':email' => $email,
+        ':password' => $password,
+        ':gender' => $gender,
+        ':role' => 3,
+        ':phone' => $phone,
+        ':image' => $image,
+    ]);
+
+    return $statement->rowCount() > 0;
 }
 
 function getCoursePaid(int $user_id){
@@ -159,12 +194,4 @@ function getThecourseJoin(int $course_id){
 
     return $statement->fetch();
 
-}
-
-
-function getStudentName($id){
-    global $connection;
-    $statement = $connection->prepare("SELECT*FROM users WHERE  user_id=:3");
-    $statement->execute([':3' => $id]);
-    return $statement-> fetch();
 }

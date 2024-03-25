@@ -2,7 +2,7 @@
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $page = "";
 $routes = [
-    '/admin' => 'controllers/admin/admin.controller.php',
+    '/admin_home' => 'controllers/admin/admin.controller.php',
 
     // This is for Courses page
     '/courses_as_admin' => 'controllers/admin/courses/course.controller.php',
@@ -16,9 +16,10 @@ $routes = [
     '/editCategory' => 'controllers/admin/category/category_edit.controller.php',
     '/deleteCategory' => 'controllers/admin/category/category_delete.controller.php',
 
-
     '/list_trainer' => 'controllers/admin/trainer/trainer.controller.php',
     '/add_trainer' => 'controllers/admin/trainer/add.controller.php',
+    '/list_student'=>'controllers/admin/students/student_controller.php',
+
 ];
 
 if (array_key_exists($uri, $routes)) {

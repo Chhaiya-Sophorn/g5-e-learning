@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
-<section style='height: 300px;background-image: url("assets/images/bg/composition-3288397_1280.jpg");'>
+<section id="cover" style=' height: 250px; background-size:cover; background-image: url("assets/images/bg/composition-3288397_1280.jpg");' >
 	<div class="mt-0">
-		<form class="container-fluid justify-content-start" action='<?php if(isset($_POST['home'])){echo '/student';}else{echo '/course';}; ?>' method='post'>
+		<form class="container-fluid justify-content-start" action='<?php if(isset($_POST['home'])){echo '/student';}else if(isset($_POST['pro_id'])){ echo '/student_profile';}else{echo '/course';}; ?>' method='post'>
 			<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
 			<input type="text" name='id' value='<?=$_POST['id']?>' hidden>
 			<button type="submit" class="btn btn-orange btn-sm">
@@ -36,28 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</div>
 	</div>
 </section>	
+<div class="container mt-2 ml-5">
+		<button type="button" id='lessons' class="btn btn-outline-orange">Lessons</button>
+		<button type="button" id='quizzes' class="btn btn-outline-orange">Quizzes</button>
+		<button type="button" id='trainers' class="btn btn-outline-orange">Trainer</button>
+</div>
 
-<section>
-
-		<div class="container mt-5 border-info" style="height: 200px;">
-			<div class="row justify-content-center"> <!-- Center the row -->
-			<?php
-			$trainers =getCourse($_POST['course_id']);
-			$train = getTeacher($trainers['user_id']);
-			foreach ($train as $trainer):
-			?>
-				<div class="col-sm-6 col-lg-4 col-xl-3">
-					<div class="card card-body shadow rounded-3 text-center">
-						<img class="rounded-circle mx-auto d-block" src="uploading/<?=$trainer['profile_image']?>" alt="" style="width: 170px; height: 170px;margin-top: -100px;">
-						<h5 class='m-1'><?=$trainer['name']?></h5>
-						<span>I am here to develop you</span>
-					</div>
-				</div>
-				<?php endforeach ?>
-			</div>
-			<!-- <a href="#blog_study"><button class="btn btn-sm btn-orange mb-0" class="text-white">Let's study</button></a> -->
-		</div>	
-	</section>
 <!-- =======================
 Live courses START -->
 <section class="bg-light position-relative" id='blog_study'>
@@ -90,7 +74,7 @@ Live courses START -->
 			<div class="col-md-6 col-xl-4">
 				<h2 class="fs-1">Here are The Lessons</h2>
 				<p>How promotion excellent curiosity yet attempted happiness prosperous impression had conviction For every delay death ask to style Me mean able my by in they Extremity now strangers contained.</p>
-				<a href="#testing_blog" class="btn btn-orange mb-0">Test your understanding</a>
+				<a href="#testing_blog" class="btn btn-orange mb-0">             </a>
 			</div>
 			<!-- Course video START -->
 			<div class="col-md-6 col-xl-8">
@@ -123,29 +107,10 @@ Live courses START -->
 										<div class="d-sm-flex justify-content-sm-between align-items-center mt-3">
 											<!-- Avatar Group -->
 											<div>
-												<h6 class="mb-1 fw-normal"><i class="fas fa-circle fw-bold text-success small me-2"></i>Students attend</h6>
-												<ul class="avatar-group mb-2 mb-sm-0">
-													<li class="avatar avatar-xs">
-														<img class="avatar-img rounded-circle" src="assets/images/avatar/01.jpg" alt="avatar">
-													</li>
-													<li class="avatar avatar-xs">
-														<img class="avatar-img rounded-circle" src="assets/images/avatar/02.jpg" alt="avatar">
-													</li>
-													<li class="avatar avatar-xs">
-														<img class="avatar-img rounded-circle" src="assets/images/avatar/03.jpg" alt="avatar">
-													</li>
-													<li class="avatar avatar-xs">
-														<img class="avatar-img rounded-circle" src="assets/images/avatar/06.jpg" alt="avatar">
-													</li>
-													<li class="avatar avatar-xs">
-														<div class="avatar-img rounded-circle bg-primary">
-															<span class="text-white position-absolute top-50 start-50 translate-middle small">1K+</span>
-														</div>
-													</li>
-												</ul>
+												<h6 class="mb-1 fw-normal"><i class="fas fa-circle fw-bold text-success small me-2"></i></h6>
 											</div>
 											<!-- Button -->
-											<button type='button' class="btn btn-sm btn-success mb-0 vdo text-white" data-bs-toggle="modal" data-bs-target="#videoModel" data-videos="<?=$lesson['video']?>" data-lessontitle="<?=$lesson['title']?>">Let's study</button>
+											<button type='button' class="btn btn-sm btn-success mb-0 vdo text-white" data-bs-toggle="modal" data-bs-target="#videoModel" data-videos="<?=$lesson['video']?>" data-lessontitle="<?=$lesson['title']?>" data-description="<?=$lesson['description']?>">Let's study</button>
 										</div>
 									</div>
 								</div>
@@ -163,7 +128,6 @@ Live courses START -->
 </section>
 <!-- =======================
 Action box END -->
-
 <section id='testing_blog'>
 	<div class="row mb-4">
 			<div class="col-lg-8 text-center mx-auto">
@@ -176,18 +140,27 @@ Action box END -->
 						<select class="form-select form-select-lg text-center" aria-label=".form-select-lg example" style="width: 150px; font-size: smaller;" name='lesson_select'>
 							<option selected>Select the lesson</option>
 							<?php 
+							
+							$lesson =getQuizzes();
 							$lessons =getTheLessons($_POST['course_id']);
-							foreach ($lessons as $lesson):	
+							foreach ($lessons as $lesso):
+								foreach ($lesson as $leson):
+									if($leson['lesson_id'] === $lesso['lesson_id']):
+										echo $leson['lesson_id'];	
 							?>
-							<option value="<?=$lesson['title']?>"><?php
-										$les = $lesson['title'];
+							<option value="<?=$lesso['title']?>"><?php
+										$les = $lesso['title'];
 										$title = '';
 										for ($i = 0; $i < 8; $i++) {
 											$title .= $les[$i];
 										}
 										echo $title;
 										?></option>
-								<?php endforeach ?>
+								<?php 
+										endif;	
+									endforeach ;
+								endforeach ;
+								?>
 							</select>
 						<input type="text" value='<?=$_POST['email']?>' name='email' hidden>
 						<input type="text" id="modalcourse" value='<?=$_POST['course_id']?>' name='course_id' hidden>
@@ -237,7 +210,44 @@ Action box END -->
 			?>
 		</div>
 </section>
-
+<section class="pt-4" id="trainer">
+    <div class="container">
+        <div class="row align-items-center border rounded p-4 bg-orange">
+            <div class="col-lg-4 text-center">
+				<img class="img-fluid rounded-circle mb-1" src="uploading/<?= getTeacher(getCourse($_POST['course_id'])['user_id'])['profile_image']?>" alt="" style="width: 150px; height: 150px; object-fit: cover">
+				<h4 class="m-1"><span class="text-white"><?= getTeacher(getCourse($_POST['course_id'])['user_id'])['name']?></span></h4>
+            </div>
+            <div class="col-lg-7 py-5 px-3">
+                <div class="row py-2">
+                    <div class="col-6">
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="flaticon-cat font-weight-normal text-feet m-0 mr-3 animated infinite heartBeat delay-1s"></i>
+                            <h5 class="m-0"><span class="text-white">Phone:</span> <?= getTeacher(getCourse($_POST['course_id'])['user_id'])['phone']?></h5>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
+                            <h5 class="text-truncate m-0"><span class="text-white">Email:</span> <?= getTeacher(getCourse($_POST['course_id'])['user_id'])['email']?></h5>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
+                            <h5 class="text-truncate m-0"><span class="text-white">Responding:</span> 7 courses</h5>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="flaticon-doctor font-weight-normal text-feet m-0 mr-3 animated infinite tada delay-2s"></i>
+                            <h5 class="text-truncate m-0"><span class="text-white">Experiences:</span> 20 Year</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Payment Modal -->
 <div class="container mt-5">
      <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
@@ -258,29 +268,33 @@ Action box END -->
      </div>
 </div>
 
+
+
 <!-- ------------------video showing popup------------ -->
-<div class="container mt-1">
-     <div class="modal fade" id="videoModel" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
+<div class="container">
+     <div class="modal fade" id="videoModel" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl"> <!-- Changed modal-dialog class to modal-lg for a wider modal -->
                <div class="modal-content">
-                    <div class="modal-body p-2 m-4">
-						<iframe width="730" height="345" id="vid" src=""></iframe>	
+                    <div class=" row modal-body p-2 m-4 d-flex justify-content-center">
+						<iframe width="1000" height="450" id="vid" src=""></iframe>	
 						<h5 id='lessontitle' class='m-2'></h5>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-						</div>
                     </div>
+					<div class="">
+						<p class='d-flex justify-content-center' id='des'></p>
+					</div>
+                    <div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+					</div>
                </div>
           </div>
      </div>
 </div>
-
 <!-- ------------------quiz showing popup------------ -->
 <div class="container mt-1 lg-8">
      <div class="modal fade" id="quizModel" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-               <div class="modal-content">
-                    <div class="modal-body p-2 m-4">
+          <div class="modal-dialog modal-xl">
+               <div class="modal-content ">
+                    <div class="row modal-body p-2 m-4 d-flex justify-content-center">
 						<iframe width="730" height="345" id="quizz" src=""></iframe>	
 						<h5 id='lessontitle' class='m-2'></h5>
 						<div class="modal-footer">
@@ -293,15 +307,19 @@ Action box END -->
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
 
 	$(document).ready(function() {
 		$('.vdo').click(function() {
 			var video = $(this).data('videos');
 			var lessontitle = $(this).data('lessontitle');
+			var lessontitle = $(this).data('lessontitle');
+			var description = $(this).data('description');
 
 			$('#vid').attr('src', video);
 			$('#lessontitle').text(lessontitle);
+			$('#des').text(description);
 		});
 	});
 
@@ -322,6 +340,27 @@ Action box END -->
   });
 });
 
+document.getElementById('lessons').addEventListener('click', function() {
+        // Hide all sections first
+        document.getElementById('testing_blog').style.display = 'none';
+        document.getElementById('blog_study').style.display = 'block';
+        document.getElementById('trainer').style.display = 'none';
+
+    });
+document.getElementById('quizzes').addEventListener('click', function() {
+        // Hide all sections first
+        document.getElementById('testing_blog').style.display = 'block';
+        document.getElementById('blog_study').style.display = 'none';
+        document.getElementById('trainer').style.display = 'none';
+
+    });
+document.getElementById('trainers').addEventListener('click', function() {
+        // Hide all sections first
+        document.getElementById('testing_blog').style.display = 'none';
+        document.getElementById('blog_study').style.display = 'none';
+        document.getElementById('trainer').style.display = 'block';
+
+    });
 </script>
 </main>
 <!-- **************** MAIN CONTENT END **************** -->

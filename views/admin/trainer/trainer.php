@@ -78,10 +78,10 @@
                         <img src="../../../uploading/<?= $trainer['profile_image'] ?>" class="avatar">
                     </td>
                     <td>
-                        <form id="edit-form-<?= $trainer['user_id'] ?>" action="#" method="post" style="display: inline;">
-                            <input type="text" name="id" value="<?= $trainer['user_id'] ?>" hidden>
-                            <button type="submit" class="btn btn-sm btn-success" ><i class="fas fa-edit"></i> Edit</button>
-                            <button type="submit" form="delete-form-<?= $trainer['user_id'] ?>" class="btn btn-primary" style="display: none;">Confirm Edit</button>
+                        <form action="/trainer_home" method="post" style="display: inline;">
+                            <input type="text" name="email" value="<?= $trainer['email'] ?>" hidden>
+                            <input type="text" name="admin" value="" hidden>
+                            <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> Detail</button>
                         </form>
                         <form id="delete-form-<?= $trainer['user_id'] ?>" action="controllers/admin/trainer/delete.controller.php" method="post" style="display: inline;">
                             <input type="text" name="id" value="<?= $trainer['user_id'] ?>" hidden>

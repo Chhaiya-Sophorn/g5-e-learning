@@ -1,0 +1,1 @@
+<?php require 'views/admin/password.view.php';

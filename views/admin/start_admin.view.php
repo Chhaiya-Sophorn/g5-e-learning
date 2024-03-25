@@ -5,10 +5,10 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary text-center rounded p-4">
-                            <div class="d-flex mb-5">
-                                <h1 class="mb-0">👨🏼‍💻 Welcome New Admin </h1> 
+                            <div class="d-flex mb-5 justify-content-center">
+                                <h1 class="mb-0">👨🏼‍💻 Welcome Admin </h1> 
                             </div>
-                            <a href="/signin"class="btn btn-danger">LOG IN </a>
+                            <a href="/admin_signin"class="btn btn-danger">LOG IN </a>
                         </div>
                     </div>
                 </div>

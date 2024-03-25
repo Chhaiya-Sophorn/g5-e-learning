@@ -8,14 +8,22 @@ require 'models/trainer.info.model.php';
 <!-- =======================
 Inner part START -->
 <section style='height: 200px;background-image: url("assets/images/bg/pastel-2571378_1280.jpg");'>
+<div class="mt-0">
+		<form class="container-fluid justify-content-start" action='<?php if(isset($_POST['admin'])){echo '/list_trainer';}?>' <?php if(!isset($_POST['admin'])){ echo 'hidden';}?> method='post'>
+			<button type="submit" class="btn btn-orange btn-sm">
+				<i class="bi bi-arrow-left-circle-fill"></i> Back
+			</button>
+		</form>
+	</div>
+
 	<div class="row mb-4">
 		<div class="col-lg-8 text-center mx-auto">
 			<h2 class="fs-1">Welcom <?php if(getTrainersInfo($_POST['email'])['gender'] == 'Male'){echo 'Mr.';}else{echo 'Ms.';} ?> <span class='text-orange'><?=getTrainersInfo($_POST['email'])['name']?> </span>To E-learning </h2>
 			<p class="mb-0">Information Technology Courses to expand your skills and boost your career & salary</p>
 		</div>
-		<div class=' d-flex justify-content-end p-5'>
-       		<a href="/trainer"><button class="btn btn-danger mb-0"><i class="fas fa-sign-in-alt me-2"></i>Log Out</button></a> 
-    		</div>
+		<div class=' d-flex justify-content-end p-5'>	
+       		<a href="/trainer" style="<?php if(isset($_POST['admin'])){ echo 'display: none;';}else{ echo '';}?>"><button class="btn btn-danger mb-0"><i class="fas fa-sign-in-alt me-2"></i>Log Out</button></a> 
+    	</div>
 	</div>
 </section>	
 <section class="pt-4">
