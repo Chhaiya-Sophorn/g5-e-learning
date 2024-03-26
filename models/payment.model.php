@@ -119,3 +119,21 @@ function getTheJoinercourse(int $id): int {
     ]);
     return $statement->fetchColumn();
 }
+
+
+
+function getRevenuese() : array
+{
+    global $connection;
+    $statement = $connection->prepare("select * from payments");
+    $statement->execute();
+    return $statement->fetchAll();
+}
+
+function getCousesSolds(int $id) : array
+{
+    global $connection;
+    $statement = $connection->prepare("select * from courses where course_id =$id");
+    $statement->execute();
+    return $statement->fetch();
+}
