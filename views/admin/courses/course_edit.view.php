@@ -4,7 +4,7 @@
                <h5 class="modal-title text-primary" id="exampleModalLabel">Create Course</h5>
                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
           <!-- </div> -->
-          <form action="controllers/admin/courses/update_course.controller.php" method="post" class="g-5 p-2">
+          <form action="controllers/admin/courses/update_course.controller.php" method="post" class="g-5 p-2" enctype="multipart/form-data">
                <?php
 
                require 'database/database.php';

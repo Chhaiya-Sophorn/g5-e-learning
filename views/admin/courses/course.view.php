@@ -181,11 +181,11 @@
                                         style="width: 40px; height: 40px;">
                               </div>
                          </td>
-                         <td class="text-start"><?= $course['price'] . " $" ?></td>
+                         <td class="text-start"><?= $course['price'] ?></td>
                          <td class="text-start d-sm-flex gap-1 align-items-center p-3 ">
                               <form action="/courseEdit" method="post">
                                    <input type="text" name='id' value='<?= $course['course_id'] ?>' hidden>
-                                   <button class="btn btn-sm btn-success""  >
+                                   <button class="btn btn-sm btn-success" >
                                         <i class=" fas fa-edit">Edit</i>
                                    </button>
                               </form>
