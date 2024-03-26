@@ -25,17 +25,20 @@ Inner part START -->
        		<a href="/trainer" style="<?php if(isset($_POST['admin'])){ echo 'display: none;';}else{ echo '';}?>"><button class="btn btn-danger mb-0"><i class="fas fa-sign-in-alt me-2"></i>Log Out</button></a> 
     	</div>
 	</div>
-</section>	
+</section>
+<div style="margin-left: -207px;">
 <section class="pt-4">
 	<div class="container">
 		<div class="mt-4">
-			<button type="button" id='personal' class="btn btn-outline-orange">My Personal Information</button>
-			<button type="button" id='respone' class="btn btn-outline-orange">My Courses</button>
-			<button type="button" id='courses' class="btn btn-outline-orange">All the Courses</button>
+			<button type="button" id='personal' class="btn btn-outline-orange"><i class="bi bi-info-circle"></i> My Personal Information</button>
+			<button type="button" id='respone' class="btn btn-outline-orange"><i class="bi bi-person-check-fill"></i> My Courses</button>
+			<button type="button" id='courses' class="btn btn-outline-orange"><i class="bi bi-briefcase-fill"></i> All the Courses</button>
 		</div>
 
 	</div>
-</section>	
+</section>
+</div>
+	
 
 <div class="d-flex justify-content-center">
     <section class="" id="personals">
