@@ -342,7 +342,7 @@ Action box START -->
 						<div class="col-sm-8 position-relative">
 							<h3 class="mb-1">Earn a Certificate</h3>
 							<p class="mb-3 h5 fw-light lead">Get the right professional certificate program for you.</p>
-							<a href="#" class="btn btn-primary mb-0">View Programs</a>
+							<a href="#courses" class="btn btn-primary mb-0">View Programs</a>
 						</div>
 					</div>
 				</div>
@@ -360,7 +360,7 @@ Action box START -->
 						<div class="col-sm-8 position-relative">
 							<h3 class="mb-1">Best Rated Courses</h3>
 							<p class="mb-3 h5 fw-light lead">Enroll now in the most popular and best rated courses.</p>
-							<a href="#" class="btn btn-warning mb-0">View Courses</a>
+							<a href="#best" class="btn btn-warning mb-0">View Courses</a>
 						</div>
 					</div>
 				</div>
@@ -373,146 +373,45 @@ Action box END -->
 
 <!-- =======================
 IT courses START -->
-<section>
+<section id='best'>
 	<div class="container">
 		<!-- Title -->
 		<div class="row mb-4">
 			<div class="col-lg-8 text-center mx-auto">
-				<h2 class="fs-1">Top Courses for IT</h2>
+				<h2 class="fs-1">Top Courses</h2>
 				<p class="mb-0">Information Technology Courses to expand your skills and boost your career & salary</p>
 			</div>
 		</div>
 
 		<div class="row g-4">
+			<?php 
+			$courseCounts = array_count_values(array_column(getRevenuese(), 'course_id'));
 
+			// Sort the counts in descending order
+			arsort($courseCounts);
+			// Print the course_ids and their counts
+			foreach ($courseCounts as $courseId => $count) :
+
+			?>
 			<!-- Course item -->
 			<div class="col-sm-6 col-lg-4 col-xl-3">
 				<!-- Image -->
 				<div class="card card-metro overflow-hidden rounded-3">
-					<img src="assets/images/courses/4by3/01.jpg" alt="">
+					<img src="uploading/<?=getCousesSolds($courseId)['image_courses']?>" alt="">
 					<!-- Image overlay -->
 					<div class="card-img-overlay d-flex"> 
 						<!-- Info -->
 						<div class="mt-auto card-text">
-							<a href="#" class="text-white mt-auto h5 stretched-link">Digital Marketing</a>
-							<div class="text-white">23 Courses</div>
+							<a href="#courses" class="text-white mt-auto h5 stretched-link"><?=getCousesSolds($courseId)['title']?></a>
+							<div class="text-white"><?=$count?> students</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<!-- Image -->
-				<div class="card card-metro overflow-hidden rounded-3">
-					<img src="assets/images/courses/4by3/03.jpg" alt="">
-					<!-- Image overlay -->
-					<div class="card-img-overlay d-flex"> 
-						<!-- Info -->
-						<div class="mt-auto card-text">
-							<a href="#" class="text-white mt-auto h5 stretched-link">Figma</a>
-							<div class="text-white">16 Courses</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<!-- Image -->
-				<div class="card card-metro overflow-hidden rounded-3">
-					<img src="assets/images/courses/4by3/05.jpg" alt="">
-					<!-- Image overlay -->
-					<div class="card-img-overlay d-flex"> 
-						<!-- Info -->
-						<div class="mt-auto card-text">
-							<a href="#" class="text-white mt-auto h5 stretched-link">Python</a>
-							<div class="text-white">32 Courses</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<!-- Image -->
-				<div class="card card-metro overflow-hidden rounded-3">
-					<img src="assets/images/courses/4by3/06.jpg" alt="">
-					<!-- Image overlay -->
-					<div class="card-img-overlay d-flex"> 
-						<!-- Info -->
-						<div class="mt-auto card-text">
-							<a href="#" class="text-white mt-auto h5 stretched-link">Angular</a>
-							<div class="text-white">48 Courses</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<!-- Image -->
-				<div class="card card-metro overflow-hidden rounded-3">
-					<img src="assets/images/courses/4by3/07.jpg" alt="">
-					<!-- Image overlay -->
-					<div class="card-img-overlay d-flex"> 
-						<!-- Info -->
-						<div class="mt-auto card-text">
-							<a href="#" class="text-white mt-auto h5 stretched-link">React-Native</a>
-							<div class="text-white">31 Courses</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<!-- Image -->
-				<div class="card card-metro overflow-hidden rounded-3">
-					<img src="assets/images/courses/4by3/08.jpg" alt="">
-					<!-- Image overlay -->
-					<div class="card-img-overlay d-flex"> 
-						<!-- Info -->
-						<div class="mt-auto card-text">
-							<a href="#" class="text-white mt-auto h5 stretched-link">Sketch</a>
-							<div class="text-white">38 Courses</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<!-- Image -->
-				<div class="card card-metro overflow-hidden rounded-3">
-					<img src="assets/images/courses/4by3/09.jpg" alt="">
-					<!-- Image overlay -->
-					<div class="card-img-overlay d-flex"> 
-						<!-- Info -->
-						<div class="mt-auto card-text">
-							<a href="#" class="text-white mt-auto h5 stretched-link">Javascript</a>
-							<div class="text-white">33 Courses</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4 col-xl-3">
-				<!-- Image -->
-				<div class="card card-metro overflow-hidden rounded-3">
-					<img src="assets/images/courses/4by3/10.jpg" alt="">
-					<!-- Image overlay -->
-					<div class="card-img-overlay d-flex"> 
-						<!-- Info -->
-						<div class="mt-auto card-text">
-							<a href="#" class="text-white mt-auto h5 stretched-link">Bootstrap</a>
-							<div class="text-white">62 Courses</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> <!-- Row END -->
+			<?php 
+			
+			endforeach;
+			?>
 	</div>
 </section>
 <!-- =======================
