@@ -101,7 +101,7 @@ Inner part START -->
 		<!-- Instructor list START -->
 		<div class="row g-4 justify-content-center" >
 			<div class="text-center mx-auto">
-				<h4 class=" text-orange">My Responsiblity</h4>
+				<h4 class=" text-orange">My Courses</h4>
 				<p class="mb-0">Information Technology Courses to expand your skills and boost your career & salary</p>
 			</div>
 			<?php 
@@ -137,7 +137,8 @@ Inner part START -->
 									<form action="/trainer_manage" method='post' >
 										<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
 										<input type="text" name='course' value='<?=$course['course_id']?>' hidden>
-										<button type="sumite" class="btn btn-primary">Join course</button>
+										<?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
+										<button type="sumite" class="btn btn-primary"><?php if(isset($_POST['admin'])){ echo '<i class="fas fa-eye"></i> View ';}else{ echo 'Join course';}?></button>
 									</form>
 								</div>
 							</div>
@@ -170,7 +171,7 @@ Inner part START -->
 					<div class="row g-0">
 						<!-- Image -->
 						<div class="col-md-4">
-							<img src="uploading/<?=selectTrainers($course['user_id'])['profile_image']?>" class="rounded-3" alt="...">
+							<img src="uploading/<?=$course['image_courses']?>" class="rounded-3" alt="...">
 						</div>
 						<!-- Card body -->
 						<div class="col-md-8">
@@ -193,6 +194,7 @@ Inner part START -->
 									<form action="/trainer_manage" method='post' >
 										<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
 										<input type="text" name='course' value='<?=$course['course_id']?>' hidden>
+										<?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
 										<button type="sumite" class="btn btn-primary"><i class="fas fa-eye"></i> View </button>
 									</form>
 								</div>

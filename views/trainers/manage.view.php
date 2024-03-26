@@ -51,6 +51,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <label for="video" class="form-label">Video URL:</label>
                                 <input type="text" class="form-control" placeholder="Enter video URL" style="border-color: #ced4da;" name='video'>
                             </div>  
+                            <?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                             <input type="text" value='' name='course_id' hidden>
                             <input type="text" name='email' value='<?=$_POST['email']?>'hidden>
                             <input type="text" name='course' value='<?=$_POST['course']?>'hidden>
@@ -82,6 +83,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <input type="text" class="form-control" id="video" placeholder="Enter video URL" style="border-color: #ced4da;" name='video' value=''>
                             </div>  
                             <!-- <input type="text" value='' name='course_id' hidden> -->
+                            <?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                             <input type="text" name='course' value='<?=$_POST['course']?>'hidden>
                             <input type="text" name='email' value='<?=$_POST['email']?>'hidden>
                             <input type="text" name='lesson_id' id='lesson_id' value='' hidden>
@@ -105,6 +107,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <form action="#lessons" method='post'>
+                                <?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                                 <input type="text" name='delete' hidden>
                                 <input type="text" name='delete_id' id='delete_id' hidden>
                                 <input type="text" name='email' value='<?=$_POST['email']?>'hidden>
@@ -157,6 +160,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <label for="video" class="form-label">Quiz URL:</label>
                                 <input type="text" class="form-control" placeholder="Enter Quiz URL" style="border-color: #ced4da;" name='content'>
                             </div>  
+                            <?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                             <input type="text" name='email' value='<?=$_POST['email']?>' hidden>
                             <input type="text" name='course' value='<?=$_POST['course']?>' hidden>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -195,6 +199,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <form action="#quizzes" method='post'>
+                                <?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                                 <input type="text" name='delete_quiz' hidden>
                                 <input type="text" name='quiz_id' id='quizId' hidden>
                                 <input type="text" name='email' value='<?=$_POST['email']?>' hidden>
@@ -217,6 +222,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <form action="#list_student_join" method='post'>
+                                <?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                                 <input type="text" name='delete_quizResult' hidden>
                                 <input type="text" name='quiz_idResult' id='quiz_idResult' hidden>
                                 <input type="text" name='email' value='<?=$_POST['email']?>' hidden>
@@ -254,6 +260,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <input type="text" class="form-control" placeholder="Enter Quiz URL" style="border-color: #ced4da;" name='contents' id='content'>
                             </div> 
                             <!-- <input type="text" value='' name='course_id' hidden> -->
+                            <?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                             <input type="text" name='email' value='<?=$_POST['email']?>'hidden>
                             <input type="text" name='course' value='<?=$_POST['course']?>'hidden>
                             <input type="text" name='edit_id' id='edit_id' value='' hidden>
@@ -289,6 +296,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="ml-3">
             <form class="container-fluid justify-content-start" action='/trainer_home' method='post'>
                 <input type="text" name='email' value='<?=$_POST['email']?>' hidden>
+                <?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                 <button type="submit" class="btn btn-orange btn-sm">
                 <i class="bi bi-arrow-left-circle-fill"></i> Back
                 </button>
@@ -360,7 +368,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <a href="#lessons"><button type="button" class="btn btn-outline-orange">Lessons</button></a>
     <a href="#quizzes"><button type="button" class="btn btn-outline-orange">quiz</button></a>
     <a href="#list_student_join"> <button type="button" class="btn btn-outline-orange">The result testing of students</button></a>
-    <a href="#students"> <button type="button" class="btn btn-outline-orange">students</button></a>
+    <a href="#students"><button type="button" class="btn btn-outline-orange">students</button></a>
 </div>
 <section id='quizzes'>
     <div class="container">
@@ -505,7 +513,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <td><?=getStudentMn($course['user_id'])['phone']?></td>
             <td><?=getStudentMn($course['user_id'])['email']?></td>
             <td><?php print_r($course['date']) ?></td>
-            <td><button type="button" class="btn btn-orange"><i class="fas fa-eye"></i> View</button></td>
+            <td>
+                <button type="sumit" class="btn btn-orange"><i class="fas fa-eye"></i> View</button>  
+            </td>
         </tr>
         <?php endforeach ?>
         </tbody>

@@ -136,7 +136,11 @@ Action box END -->
 				<span class='text-orange'>Screenshort your result and upload here</span>
 				<form action="#testing_blog" method='post' enctype="multipart/form-data">
 					<div class='d-flex gap-2'>
-					<input type="file" name='image' class="form-control" aria-label="file example" style="background-color: rgba(0, 0, 0, 0.1);">
+						<?php if(isset($_POST['home'])){echo "<input type='text' name='home' value='' hidden>";}?>
+						<?php if(isset($_POST['pro_id'])){echo "<input type='text' name='pro_id' value='' hidden>";}?>
+						<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
+						<input type="text" name='id' value='<?=$_POST['id']?>' hidden>
+						<input type="file" name='image' class="form-control" aria-label="file example" style="background-color: rgba(0, 0, 0, 0.1);">
 						<select class="form-select form-select-lg text-center" aria-label=".form-select-lg example" style="width: 150px; font-size: smaller;" name='lesson_select'>
 							<option selected>Select the lesson</option>
 							<?php 
@@ -164,6 +168,7 @@ Action box END -->
 							</select>
 						<input type="text" value='<?=$_POST['email']?>' name='email' hidden>
 						<input type="text" id="modalcourse" value='<?=$_POST['course_id']?>' name='course_id' hidden>
+						<input type="text" id="modalcourse" value='' name='q' hidden>
 						<input type="text" id="modalcategory" value='<?=$_POST['id']?>' name='id' hidden>
 						<button type="sumite" class="btn btn-orange d-flex justify-content-center " data-bs-dismiss="modal">sumite</button>	
 					</div>		

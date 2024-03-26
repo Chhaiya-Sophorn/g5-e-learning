@@ -6,7 +6,7 @@ require 'models/student.model.php';
 
 <section id="cover" style=' height: 250px; background-size:cover; background-image: url("assets/images/bg/composition-3288397_1280.jpg");' >
 <div class="" >
-            <form class="container-fluid justify-content-start" action='<?php if(isset($_POST['admin'])){echo '/list_student';}else{ echo '/student';}?>' method='post'>
+            <form class="container-fluid justify-content-start" action="<?php if(isset($_POST['admin'])){echo '/list_student';}else { echo '/student';}?>" method='post'>
 			    <input type="text" name='email' value='<?=getStudent($_POST['id'])['email']?>' hidden>
                 <button type="submit" class="btn btn-orange btn-sm">
                 <i class=" bi bi-arrow-left-circle-fill"></i> Back
@@ -20,16 +20,6 @@ require 'models/student.model.php';
     </div>
 	</div>
 </section>
-
-<!-- <section class="pt-2">
-	<div class="container">
-      
-		<div class="mt-4">
-			<button type="button" id='personal' class="btn btn-outline-orange">My Personal Information</button>
-			<button type="button" id='coursejoin' class="btn btn-outline-orange">The course joining</button>
-		</div>
-	</div>
-</section> -->
 
 <div class="d-flex justify-content-center">
     <section class="" id="personals">
@@ -73,6 +63,7 @@ require 'models/student.model.php';
                 </div>
                 <div class="d-flex justify-content-end" style="margin-top: -57px;">
                     <form action="/student_password" method='post'>
+                        <?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                         <input type="text" name='id' value='<?=$_POST['id']?>' hidden>
                         <input type="text" class="form-control" id="email" name="email" value="<?=getStudent($_POST['id'])['email']?>" hidden>
                         <button type="sumit" class="btn btn-0"><i class="fas fa-key me-2 text-orange"></i>Change Password</button>
@@ -125,11 +116,12 @@ require 'models/student.model.php';
 									<h6 class="text-orange mb-0">Digital Marketing</h6>
 									<!-- Social button -->
                                 <form action="/blog_learning" method='post'>
+                                    <?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                                     <input type="text" id="modaluser" value='<?=getStudent($_POST['id'])['email']?>' name='email' hidden>
                                     <input type="text" id="modaluser" value='' name='pro_id' hidden>
                                     <input type="text" id="modaluser" value='<?=$_POST['id']?>' name='id' hidden>
                                     <input type="text" id="modalcourse" value='<?=$course['course_id']?>' name='course_id' hidden>
-                                    <button type="sumite" class="btn btn-primary">Join course</button>
+                                    <button type="sumite" class="btn btn-primary"><?php if(isset($_POST['admin'])){ echo "<i class='fas fa-eye'></i> view";}else{echo 'Join course';}?></button>
                                 </form>
 								</div>
 							</div>
@@ -169,6 +161,7 @@ require 'models/student.model.php';
                         <label for="email" class="form-label">Email:</label>
                         <input type="text" class="form-control" id="email" name="email" style="border-color: #ced4da;" value='<?=getStudent($_POST['id'])['email']?>'>
                     </div>
+                    <?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-orange">Update</button>
                 </form>

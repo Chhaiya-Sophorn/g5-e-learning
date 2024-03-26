@@ -44,6 +44,7 @@
 <div class="container">
     <div class="row justify-content-center mt-5">
         <form class="container-fluid justify-content-start" action='/trainer_home' method='post'>
+			<?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
             <input type="text" name='email' value='<?=$_POST['email']?>' hidden>
             <button type="submit" class="btn btn-orange btn-sm">
             <i class="bi bi-arrow-left-circle-fill"></i> Back
@@ -89,6 +90,7 @@
                             </button>
                         </div>
                     </div>
+					<?php if(isset($_POST['admin'])){ echo "<input type='text' name='admin' value=''hidden >";}?>
                     <input type="text" name='email' value='<?=$_POST['email']?>' hidden>
 					<input type="text" name='user_id' value='<?= $_POST['user_id'] ?>' hidden>
                     <button type="submit" class="btn btn-orange d-block mx-auto">Change Password</button>
