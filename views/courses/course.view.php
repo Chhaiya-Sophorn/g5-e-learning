@@ -34,7 +34,7 @@ Inner part START -->
 	</div>
 	
 </section>	
-<section class="pt-4" id='c'>
+<section class="pt-4" id='c' style="background-color: rgba(0, 0, 0,0.05);">
 	<div class="container">
 		<!-- Instructor list START -->
 		<div class="row g-4 justify-content-center">

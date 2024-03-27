@@ -14,7 +14,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 ?>
-
 <!-- Header START --> 
 <header class="navbar-light navbar-sticky navbar-transparent">
   <!-- Logo Nav START -->
@@ -197,7 +196,7 @@ Video END -->
 
 <!-- =======================
 Category START -->
-<section id='categories_blog'>
+<section id='categories_blog' style="background-color: rgba(0, 0, 0,0.05);">
 	<div class="container">
 		<div class="row mb-4">
 			<div class="col-lg-8 text-center mx-auto">
@@ -238,7 +237,7 @@ Category END -->
 
 <!-- =======================
 Featured course START -->
-<section id='courses' class="pt-0 pt-md-5">
+<section id='courses' class="pt-0 pt-md-5" style="background-color: rgba(0, 0, 0,0.05);">
 	<div class="container">
 		<!-- Title -->
 		<div class="row mb-4">
@@ -299,7 +298,7 @@ Featured course START -->
 						<h6 class="card-title"><a href="#"><?=$course['title'] ?></a></h6>
 						<!-- Badge and Price -->
 						<div class="d-flex justify-content-between align-items-center mb-0">
-							<div><a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Personal Development </a></div>
+							<div><a href="#" class="badge bg-info bg-opacity-10 text-info me-2"> <i class="fas fa-circle small fw-bold"></i>Trainer: <?=getTeacher($course['user_id'])['name']?> </a></div>
 							<!-- Price -->
 							<h5 class="text-success mb-0" <?php if(count(getPaymentExist(students($_POST['email'])['user_id'], $course['course_id'] ))>0){echo 'hidden';} ?>><?=$course['price'] ?></h5>
 							<form action="/blog_learning" method='post'  <?php if(count(getPaymentExist(students($_POST['email'])['user_id'], $course['course_id'] ))<1){echo 'hidden';} ?>>
@@ -373,7 +372,7 @@ Action box END -->
 
 <!-- =======================
 IT courses START -->
-<section id='best'>
+<section id='best' style="background-color: rgba(0, 0, 0,0.1);">
 	<div class="container">
 		<!-- Title -->
 		<div class="row mb-4">
@@ -533,7 +532,6 @@ function playNotificationMusic() {
 </script>
 
 <?php require 'layouts/footer.php' ?>
-</body>
-</html>
+
 
 

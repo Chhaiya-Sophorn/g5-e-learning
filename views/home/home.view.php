@@ -87,7 +87,7 @@ Category START -->
 			foreach ($categorys as $cate) :
 			?>
 				<!-- Category item -->
-				<div class="col-sm-6 col-lg-4 col-xl-3" >
+				<div class="col-sm-6 col-lg-4 col-xl-3 shadow" >
 					<div class="card card-body shadow rounded-3">
 						<div class="d-flex align-items-center">
 							<img class="rounded-circle me-lg-2" src="uploading/<?= $cate['image'] ?>" alt="" style="width: 70px; height: 70px;">

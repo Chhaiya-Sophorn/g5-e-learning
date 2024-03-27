@@ -53,12 +53,12 @@
                     
                     ?>
                     <form action="/trainer_access" method='post'>
+                    <label for="floatingInput" class="text-white" <?php if($input){if(strlen($require['email'])>0){echo 'hidden';}}?>>Email</label>
                     <div class="form-floating mb-2 border-info rounded">
                         <small class="form-text text-danger">
                             <?php if($input==true){echo $require['email'];} ?>
                         </small>
                         <input type="email" class="form-control form-control-lg bd-info text-white" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.1);<?php if($input){ if(strlen($require['email'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='email' value="<?php if($input){echo $_POST['email'];} ?>">
-                        <label for="floatingInput" class="text-white" <?php if($input){if(strlen($require['email'])>0){echo 'hidden';}}?>>Email</label>
                     </div>
                     <label for="passwordInput" class="text-white " <?php if ($input) {if (strlen($require['password']) > 0) { echo 'hidden';}} ?>>Password</label>
                             <div class="form-floating mb-2 border-white rounded">

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
-<section id="cover" style=' height: 250px; background-size:cover; background-image: url("assets/images/bg/composition-3288397_1280.jpg");' >
+<section id="cover" style=' height: 250px; background-size:cover; background-image: url("assets/images/bg/composition-3288397_1280.jpg");'>
 	<div class="mt-0">
 		<form class="container-fluid justify-content-start" action='<?php if(isset($_POST['home'])){echo '/student';}else if(isset($_POST['pro_id'])){ echo '/student_profile';}else{echo '/course';}; ?>' method='post'>
 			<input type="text" name='email' value='<?=$_POST['email']?>' hidden>
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</div>
 	</div>
 </section>	
-<div class="container mt-2 ml-5">
+<div class="container mt-2 ml-5" >
 		<button type="button" id='lessons' class="btn btn-outline-orange">Lessons</button>
 		<button type="button" id='quizzes' class="btn btn-outline-orange">Quizzes</button>
 		<button type="button" id='trainers' class="btn btn-outline-orange">Trainer</button>
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!-- =======================
 Live courses START -->
-<section class="bg-light position-relative" id='blog_study'>
+<section class="bg-light position-relative" id='blog_study' style="background-color: rgba(0, 0, 0,0.05);">
 
 	<!-- SVG decoration -->
 	<figure class="position-absolute top-50 start-0 translate-middle-y ms-5 d-none d-xxl-block">
@@ -128,7 +128,7 @@ Live courses START -->
 </section>
 <!-- =======================
 Action box END -->
-<section id='testing_blog'>
+<section id='testing_blog' style="background-color: rgba(0, 0, 0,0.05);">
 	<div class="row mb-4">
 			<div class="col-lg-8 text-center mx-auto">
 				<h2 class="fs-1">Test your understanding</h2>
@@ -176,7 +176,7 @@ Action box END -->
 
 			</div>
 		</div>	
-	<div class="container">
+	<div class="container" style="background-color: rgba(0, 0, 0,0.05);">
 		<div class="row g-4">
 		<?php 
 			$lessons =getTheLessons($_POST['course_id']);
@@ -215,7 +215,7 @@ Action box END -->
 			?>
 		</div>
 </section>
-<section class="pt-4" id="trainer">
+<section class="pt-4" id="trainer" style="background-color: rgba(0, 0, 0,0.05);">
     <div class="container ">
 	<div class="col-lg-8 text-center mx-auto">
 			<h2 class="fs-1">Trainer</h2>

@@ -98,7 +98,7 @@
     }
   </style>
 </head>
-<body>
+<body style="background-color: rgba(0, 0, 0,0.05);">
 <section id='testing_blog' style='height: 200px;background-image: url("assets/images/bg/abstract-1264071_1280.jpg");'>
 <div class="container p-3" <?php 
       if(isset($_POST['email']) && isset($_POST['selectioned']) && isset($_POST['expiration-date']) && isset($_POST['totals'])){

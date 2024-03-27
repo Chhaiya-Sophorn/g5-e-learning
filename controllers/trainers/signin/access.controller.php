@@ -14,13 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 } else {
                     require 'views/trainers/login.view.php';
                 }
-            }
         } else {
             require 'views/trainers/login.view.php';
         }
     }else{
         require 'views/trainers/login.view.php';
     }
-
+}
 
 ?>

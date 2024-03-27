@@ -50,28 +50,28 @@
                         $require = requireInformation($_POST['name'], $_POST['email'], $_POST['password'], $_POST['phone'],$_POST['password_comfirm']);  
                     }
                     ?>
-                    <form action="/create_student" method="post" class='bd bd-white' enctype="multipart/form-data">                          
+                    <form action="/create_student" method="post" class='bd bd-white' enctype="multipart/form-data">     
+                        <label for="floatingInput" class="text-white" <?php if($input){if(strlen($require['name'])>0){echo 'hidden';}}?>>Name</label>                     
                         <div class="form-floating mb-2 border-info rounded">
                             <input type="text" name='refrash' hidden>
                             <small class="form-text text-danger">
                                 <?php if($input==true){echo $require['name'];} ?>
                             </small>
                             <input type="name" class="form-control bd-primary form-control-lg text-white" id="floatingInput" placeholder="Name" style="background-color: rgba(0,0,0,0.3); <?php if($input==true){if(strlen($require['name'])>0){echo 'border: 1px solid lightcoral;'; }}?>" name='name' value='<?php if($input==true){echo $_POST['name'];} ?>'>
-                            <label for="floatingInput" class="text-white" <?php if($input){if(strlen($require['name'])>0){echo 'hidden';}}?>>Name</label>
                         </div>
+                        <label for="floatingInput" class="text-white" <?php if($input){if(strlen($require['phone'])>0){echo 'hidden';}}?>>Phone</label>
                         <div class="form-floating mb-2 border-white rounded">
                             <small class="form-text text-danger">
                                 <?php if($input){echo $require['phone'];} ?>
                             </small>
                             <input type="text" class="form-control form-control-lg text-white" id="floatingInput" placeholder="Phone" style="background-color: rgba(0, 0, 0, 0.3);<?php if($input){ if(strlen($require['phone'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='phone' value="<?php if($input){echo $_POST['phone'];} ?>">
-                            <label for="floatingInput" class="text-white" <?php if($input){if(strlen($require['phone'])>0){echo 'hidden';}}?>>Phone</label>
                         </div>
+                        <label for="floatingInput" class="text-white" <?php if($input){if(strlen($require['email'])>0){echo 'hidden';}}?>>Email address</label>
                         <div class="form-floating mb-2 border-white rounded">
                             <small class="form-text text-danger">
                                 <?php if($input){echo $require['email'];} ?>
                             </small>
                             <input type="email" class="form-control form-control-lg text-white" id="floatingInput" placeholder="name@example.com" style="background-color: rgba(0, 0, 0, 0.3);<?php if($input){if(strlen($require['email'])>0){echo 'border: 1px solid lightcoral;';}}?>" name='email' value=' <?php if($input){echo $_POST['email'];} ?>'>
-                            <label for="floatingInput" class="text-white" <?php if($input){if(strlen($require['email'])>0){echo 'hidden';}}?>>Email address</label>
                         </div>
                         <label for="passwordInput" class="text-white " <?php if ($input) {if (strlen($require['password']) > 0) {echo 'hidden';}} ?>>Password</label>
                         <div class="form-floating mb-2 border-white rounded">
@@ -86,7 +86,7 @@
                                 <button type="button" class="btn btn-light" id="showPasswordBtn"  style="background-color: rgba(0, 0, 0, 0.1);"><i class="bi bi-eye"></i></button>
                             </div>
                         </div>
-                        <label for="passwordConfirmInput" class="text-white " <?php if ($input) {if (strlen($require['password_comfirm']) > 0) {echo 'hidden';}} ?>>password_comfirm</label>
+                        <label for="passwordConfirmInput" class="text-white " <?php if ($input) {if (strlen($require['password_comfirm']) > 0) {echo 'hidden';}} ?>>Password comfirm</label>
                         <div class="form-floating mb-2 border-white rounded">
                             <small class="form-text text-danger">
                                 <?php if ($input == true) {
@@ -114,7 +114,7 @@
                             <input type="file" name='image' class="form-control" aria-label="file example" style="background-color: rgba(0, 0, 0, 0.1);">
                         </div>
                         <div class="d-flex justify-content-between">
-                            <div class='btn h-10 w-20 mb-2 border-white' style="background-color: rgba(0, 0, 0, 0.5);"><a href="/signin" style="color: blue;" >Sign in Account</a></div>
+                            <div class='btn h-10 w-20 mb-2 border-white' style="background-color: rgba(0, 0, 0, 0.5);"><a href="/signin" style="color: white;" >Sign in Account</a></div>
                             <button type="submit" class="btn h-10 w-20 mb-2 border-white text-orange" style="background-color: rgba(0, 0, 0, 0.5);color: orange;">Create Account</button>
                         </div>
                     </form>

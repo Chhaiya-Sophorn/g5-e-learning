@@ -26,8 +26,8 @@ Inner part START -->
     	</div>
 	</div>
 </section>
-<div style="margin-left: -207px;">
-<section class="pt-4">
+<div style="margin-left: -207px;" >
+<section class="pt-4"style="background-color: rgba(0, 0, 0,0.05);">
 	<div class="container">
 		<div class="mt-4">
 			<button type="button" id='personal' class="btn btn-outline-orange"><i class="bi bi-info-circle"></i> My Personal Information</button>
@@ -40,7 +40,7 @@ Inner part START -->
 </div>
 	
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" style="background-color: rgba(0, 0, 0,0.05);">
     <section class="" id="personals">
         <div class="container">
             <div class="row shadow align-items-center border rounded p-4 bg-" style="width:600px;margin-top: -57px;height:450px">
@@ -96,7 +96,7 @@ Inner part START -->
     </section>
 </div>
 
-<section id='responsible' class="pt-1">
+<section id='responsible' class="pt-1" style="background-color: rgba(0, 0, 0,0.05);">
 	<div class="container">
 		<!-- Instructor list START -->
 		<div class="row g-4 justify-content-center" >
@@ -153,7 +153,7 @@ Inner part START -->
 
 	</div>
 </section>
-<section id='allcourses' class="pt-1">
+<section id='allcourses' class="pt-1" style="background-color: rgba(0, 0, 0,0.05);">
 	<div class="container">
 		<div class="text-center mx-auto">
 				<h4 class=" text-orange">All the Courses</h4>

@@ -20,9 +20,9 @@ require 'models/student.model.php';
     </div>
 	</div>
 </section>
-
+<div style="background-color: rgba(0, 0, 0,0.05);">
 <div class="d-flex justify-content-center">
-    <section class="" id="personals">
+    <section class="bg-white" id="personals">
         <div class="container">
             <div class="row shadow align-items-center border rounded p-4 bg-" style="width:600px;margin-top: -57px;height:450px">
                 <div class="text-center">
@@ -169,7 +169,7 @@ require 'models/student.model.php';
         </div>
     </div>
 </div>
-
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
